@@ -1,0 +1,80 @@
+/* pages/workspace/workspace/schedule/schedule.wxss */
+
+page {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  font-size: 14px;
+  height: 600px;
+  overflow-y: scroll;
+  background-size: 100% auto;
+  position: relative;
+}
+
+.box {
+  display: block;
+  margin: 10px;
+  height: 400px;
+}
+
+.box-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.flex-item {
+  flex-flow: nowrap;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 14.2%;
+
+}
+
+.item-content {
+  border-radius: 40%;
+  margin: 5px;
+  padding: 0 10px;
+  text-align: center;
+  height: 2rem;
+  line-height: 2rem;
+  color: black;
+}
+
+
+.item-content-current-day {
+  flex-grow: 2;
+}
+
+
+.current-detail{
+  height: 160px;
+  margin: 10px;
+  border-width: 3px;
+  border-color: yellow;
+  border-style: solid;
+  font-size: 1rem;
+}
+
+
+.current-consumption{
+  width: 80%;
+  height: 40px;
+  position: absolute;
+  left: 40px;
+  top:500px;
+}
+
+.current-remainer{
+  position: absolute;
+  left:40px;
+  width: 80%;
+  height: 40px;
+  top:550px;
+}
+

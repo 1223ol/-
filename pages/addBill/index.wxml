@@ -1,0 +1,23 @@
+<!--pages/addBill/index.wxml-->
+<view class="itemView">
+  <view class="backgroupGrey flex-borider-both">
+    <text>请输入金额：</text>
+  </view>
+  <input class="flex-borider-both" name="userName" placeholder="0.00" />
+</view>
+<view class="itemView">
+  <view class="backgroupGrey flex-borider-both">
+    <text>请输入分类：</text>
+  </view>
+  <picker mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
+    <text>{{array[index]}}</text>
+</picker>
+</view>
+<view class="itemView">
+  <view class="backgroupGrey flex-borider-both">
+    <text>请输入时间：</text>
+  </view>
+  <picker mode="date" value="{{date}}" start="2017-09-26" end="2020-10-10" bindchange="listenerDatePickerSelected">
+    <text>{{date}}</text>
+  </picker>
+</view>
