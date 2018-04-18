@@ -17,15 +17,22 @@ page {
 .box {
   display: block;
   margin: 10px;
-  height: 400px;
+  height: 420px;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50px;
 }
+
+
 
 .box-flex {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   flex-wrap: wrap;
-
+  opacity: 1;
 }
 
 .flex-item {
@@ -33,7 +40,7 @@ page {
   flex-grow: 1;
   flex-shrink: 1;
   width: 14.2%;
-
+  opacity: 1;
 }
 
 .item-content {
@@ -44,6 +51,7 @@ page {
   height: 2rem;
   line-height: 2rem;
   color: black;
+  opacity: 1;
 }
 
 
