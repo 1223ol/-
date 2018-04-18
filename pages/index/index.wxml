@@ -1,4 +1,4 @@
-<view class="page"  style="background: url('../../images/back2.jpg');">
+<view class="page"  style="background: url('../../images/back5.jpg');">
   <view class="box">
     <view class="box-flex">
       <view class="flex-item">
@@ -46,7 +46,6 @@
     </view>
   </view>
 
------------------------------------------------------------
 
   <view class="current-detail">
     <text>总消费</text>
