@@ -5,6 +5,6 @@
 # @Link    : https://daikersec.com
 # @Version : $Id$
 
-
+from flask import Flask
 from app import app
 app.run(debug = True)
