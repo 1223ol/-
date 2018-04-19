@@ -3,14 +3,13 @@
 page {
   background-color: white;
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+
   justify-content: flex-start;
-  align-items: stretch;
+  
   font-size: 18px;
-  height: 600px;
+  height: 620px;
   overflow-y: scroll;
-  background-size: 100% auto;
+  
   position: relative;
 }
 
@@ -76,7 +75,7 @@ page {
   height: 40px;
   position: absolute;
   left: 40px;
-  top:440px;
+  top:470px;
 }
 
 .current-remainer{
@@ -84,6 +83,6 @@ page {
   left:40px;
   width: 80%;
   height: 40px;
-  top:500px;
+  top:530px;
 }
 

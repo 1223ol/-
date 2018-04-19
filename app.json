@@ -1,9 +1,9 @@
 {
   "pages": [
-
+"pages/index/index", 
     "pages/plan/index",
     "pages/addBill/index",
-    "pages/index/index",
+    
     "pages/showBill/index",
     
 
