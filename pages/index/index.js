@@ -1,17 +1,19 @@
 var app = getApp();
 Page({
     data: {
-        currentDate: "",
+        selectDate: "",
         dayList: '',
         currentDayList: '',
         currentObj: '',
         currentDay: '',
+        consumption:0,
+        balance:0,
     },
     onLoad: function (options) {
         var currentObj = this.getCurrentDayString()
         this.setData({
             currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
-            currentDay: currentObj.getDate(),
+            selectDate: currentObj.getDate(),
             currentObj: currentObj
         })
         this.setSchedule(currentObj)
@@ -54,6 +56,13 @@ Page({
             var a = c_obj.getFullYear() + '/' + (c_obj.getMonth() + 1) + '/' + c_obj.getDate()
             return new Date(a)
         }
+    },
+    tapName:function(event){
+         this.setData({
+            selectDate: event.currentTarget.id,
+            consumption: event.currentTarget.id,
+            balance: event.currentTarget.id
+        })
     },
     setSchedule: function (currentObj) {
         var that = this
