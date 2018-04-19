@@ -57,12 +57,37 @@ Page({
             return new Date(a)
         }
     },
-    tapName:function(event){
-         this.setData({
+    jumpToBill:function(event){
+          var that = this;
+          wx.navigateTo({
+            url: '../showBill/index'
+          })
+          that.setData({
             selectDate: event.currentTarget.id,
-            consumption: event.currentTarget.id,
-            balance: event.currentTarget.id
-        })
+          });
+          console.log(this.data.selectDate);
+       
+    },
+    tapName:function(event){
+        var that = this;
+        wx.request({
+          url: 'http://127.0.0.1/', //仅为示例，并非真实的接口地址
+          data: {
+             x: '',
+             y: ''
+          },
+          header: {
+              'content-type': 'application/json' // 默认值
+          },
+          success: function(res) {
+            var obj = res.data;
+            that.setData({
+            selectDate: event.currentTarget.id,
+            consumption: obj.consumption,
+            balance: obj.balance
+        });
+          }
+        });
     },
     setSchedule: function (currentObj) {
         var that = this
