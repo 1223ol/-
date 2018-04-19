@@ -63,7 +63,7 @@ Page({
         var dayString = Y + '/' + m + '/' + currentObj.getDate()
         var currentDayNum = new Date(Y, m, 0).getDate()
         var currentDayWeek = currentObj.getUTCDay() + 1
-        var result = currentDayWeek - (d % 7 - 1);
+        var result = currentDayWeek - (d % 7 -2 );
         var firstKey = result <= 0 ? 7 + result : result;
         var currentDayList = []
         var f = 0
