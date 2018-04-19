@@ -1,4 +1,4 @@
-<view class="page"  style="background: url('../../images/back5.jpg');">
+<view class="page"  style="background: url('../../images/back6.jpg');">
   <view class="box">
     <view class="box-flex">
       <view class="flex-item">
@@ -7,7 +7,7 @@
         </view>
       </view>
       <view class="flex-item item-content-current-day">
-        <view class="item-content">{{currentDate}}</view>
+        <view class="item-content" style='font-size:16px'>{{currentDate}}</view>
       </view>
       <view class="flex-item">
         <view class="item-content" bindtap="doDay" data-key="right">

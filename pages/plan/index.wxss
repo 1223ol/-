@@ -1,4 +1,14 @@
 /* pages/plan/index.wxss */
+
+.addBill{
+  height: 580px;
+}
+.itemView{
+  background-color: yellowgreen;
+  height: 100px;
+}
+
+
 .flex-borider-both{
   border-top: 1rpx solid #ddd;
   border-bottom: 1rpx solid #ddd;

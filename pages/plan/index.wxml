@@ -1,23 +1,26 @@
 <!--pages/addBill/index.wxml-->
-<view class="itemView">
-  <view class="backgroupGrey flex-borider-both">
-    <text>请输入总金额金额：</text>
+<view class='addBill' style="background: url('../../images/back5.jpg');">
+  <view class="itemView">
+    <view class="backgroupGrey flex-borider-both">
+      <text>请输入总金额金额：</text>
+    </view>
+    <input class="flex-borider-both" name="userName" placeholder="0.00" />
   </view>
-  <input class="flex-borider-both" name="userName" placeholder="0.00" />
-</view>
-<view class="itemView">
-  <view class="backgroupGrey flex-borider-both">
-    <text>请输入开始时间：</text>
+  <view class="itemView">
+    <view class="backgroupGrey flex-borider-both">
+      <text>请输入开始时间：</text>
+    </view>
+    <picker mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+      <text>{{startDate}}</text>
+    </picker>
   </view>
-  <picker mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
-    <text>{{startDate}}</text>
-  </picker>
-</view>
-<view class="itemView">
-  <view class="backgroupGrey flex-borider-both">
-    <text>请输入结束时间：</text>
+  <view class="itemView">
+    <view class="backgroupGrey flex-borider-both">
+      <text>请输入结束时间：</text>
+    </view>
+    <picker mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
+      <text>{{endDate}}</text>
+    </picker>
   </view>
-  <picker mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
-    <text>{{endDate}}</text>
-  </picker>
+
 </view>

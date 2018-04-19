@@ -7,7 +7,7 @@ page {
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: stretch;
-  font-size: 14px;
+  font-size: 18px;
   height: 600px;
   overflow-y: scroll;
   background-size: 100% auto;
@@ -17,7 +17,7 @@ page {
 .box {
   display: block;
   margin: 10px;
-  height: 420px;
+  height: 380px;
   border-style: solid;
   color: black;
   background-color: rgba(255, 255, 255, 0.7);
@@ -76,7 +76,7 @@ page {
   height: 40px;
   position: absolute;
   left: 40px;
-  top:480px;
+  top:440px;
 }
 
 .current-remainer{
@@ -84,6 +84,6 @@ page {
   left:40px;
   width: 80%;
   height: 40px;
-  top:550px;
+  top:500px;
 }
 

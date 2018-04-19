@@ -1,14 +1,17 @@
 {
   "pages": [
+
+    "pages/plan/index",
+    "pages/addBill/index",
     "pages/index/index",
     "pages/showBill/index",
-    "pages/addBill/index",
+    
 
 
 
     "pages/result/index",
-    "pages/logs/logs",
-    "pages/plan/index"
+    "pages/logs/logs"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
