@@ -48,12 +48,13 @@
 
 
   <view class="current-detail">
-    <text>总消费</text>
+
     <view class="current-consumption">
+    <text style='float:left;left:100px'>总消费</text>
       <text style='float:right;right:60px;'>24444444444444444元</text>
     </view>
     <view class="current-remainer">
-      <text style='folat:left;left:100px'>今日可用</text>
+      <text style='float:left;left:100px'>今日可用</text>
       <text style='float:right;right:60px;'>2333333元</text>
     </view>
 
