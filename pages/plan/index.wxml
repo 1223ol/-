@@ -1,7 +1,12 @@
-<!--pages/addBill/index.wxml-->
-<view class='addBill' style="background: url('../../images/back7.jpg');">
+<!--pages/plan/index.wxml-->
+<view class='plan' style="background: url('../../images/back7.jpg');">
 
-  <text>\n\n</text>
+  <view class='buttonItem'>
+    <button class="buttonAdd" type="default" size="default">添加流水</button>
+    <button class="buttonPlan" type="default" size="default">添加计划</button>
+  </view>
+
+  <text>\n\n\n\n</text>
   <view class="itemView">
 
     <text class="itemText">请输入总金额金额：</text>
@@ -33,5 +38,7 @@
   </view>
 <!--美工  -->
 <view bindtap="addPlan">确认按钮</view>
+
+  <button class="confirm" type="default" size="default">确认</button>
 
 </view>

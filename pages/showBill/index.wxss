@@ -31,3 +31,7 @@
     bottom: 0;
     width: 100%;
 }
+
+.showBill{
+  height: 600px;
+}

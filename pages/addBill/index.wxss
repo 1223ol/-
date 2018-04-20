@@ -1,8 +1,89 @@
-.flex-borider-both{
-  border-top: 1rpx solid #ddd;
-  border-bottom: 1rpx solid #ddd;
-  border-right: 1rpx solid #ddd;
+.addBill{
+  height: 600px;
+  width: 100%;
 }
-.backgroupGrey{
-  background: grey;
+
+
+
+.itemView{
+  height: 100px;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50px;
+}
+
+.itemText{
+
+  position: absolute;
+  left: 140px;
+
+  height: 25px;
+ 
+  color: black;
+ 
+}
+
+.itemPrice{
+  position: absolute;
+  left: 45%;
+  top: 160px;
+}
+
+.itemType{
+  position: absolute;
+  top:320px;
+  left: 45%;
+}
+
+.itemDate{
+  position: absolute;
+  top:480px;
+  left: 35%;
+}
+
+
+.buttonItem{
+  position: absolute;
+  top:30px;
+  width: 250px;
+  height: 55px;
+  left: 15%;
+}
+
+.buttonAdd{
+  width: 120px;
+  position: absolute;
+  left: 10%;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.9);
+  border-radius: 50px;
+}
+.buttonPlan{
+  width: 120px;
+  position: absolute;
+  left: 60%;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.9);
+  border-radius: 50px;
+}
+
+
+.confirm{
+  position: absolute;
+  font-size: 1rem;
+  height: 50px;
+  width:100px;
+  top:548px;
+  left: 70%;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.9);
+  border-radius: 50px;
 }
