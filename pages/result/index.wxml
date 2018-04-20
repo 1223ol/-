@@ -1,5 +1,9 @@
-
 <view class="container">
-    <text class="middle" decode="{{true}}" space="{{true}}">今天消费情况</text>
-    <canvas canvas-id="radarCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+<picker mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
+    <text>{{array[index]}}</text>
+</picker>
+
+
+  <text class="middle" decode="{{true}}" space="{{true}}">今天消费情况</text>
+  <canvas canvas-id="radarCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
 </view>

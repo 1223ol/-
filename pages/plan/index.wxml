@@ -6,7 +6,7 @@
 
     <text class="itemText">请输入总金额金额：</text>
 
-    <input class="flex-borider-both" class='itemPrice' name="userName" placeholder="0.00" />
+    <input class="flex-borider-both" class='itemPrice' name="userName" placeholder="0.00" bindinput='changMoney' />
   </view>
 
   <text>\n\n</text>
@@ -31,7 +31,7 @@
       <text>{{endDate}}</text>
     </picker>
   </view>
-
-
+<!--美工  -->
+<view bindtap="addPlan">确认按钮</view>
 
 </view>

@@ -5,19 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+  	"limit":1,
     "bill":[
       { 
-        "inAndEx":"支出",
         "type":"吃饭",
         "money":50,
         "date":"04-05"
       },
-      {
-        "inAndEx": "支出",
-        "type": "其他支出",
-        "money": 50,
-        "date": "04-05"
-      }
     ]
   },
 
@@ -25,7 +19,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+      var that = this;
+        wx.request({
+          url: 'http://127.0.0.1/showBill', //仅为示例，并非真实的接口地址
+          data: {
+             x: '',
+             y: ''
+          },
+          header: {
+              'content-type': 'application/json' // 默认值
+          },
+          success: function(res) {
+            var obj = res.data;
+            that.setData({
+            bill:obj
+        });
+          }
+        });
   },
 
   /**

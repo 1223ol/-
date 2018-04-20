@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    money:0.0,
     startDate: '2016-09-26',
     endDate: '2016-09-26',
     array: ['饮食', '服饰装容', '生活日用', '住房缴费', '交通出行', "通讯", "文教娱乐", "健康", "其他消费"],
@@ -30,6 +31,30 @@ Page({
   onReady: function () {
 
   },
+  changMoney:function(event){
+    this.setData({
+      money: event.detail.value
+    });
+  },
+  addPlan:function(event){
+    var that = this;
+    wx.request({
+      url: 'http://127.0.0.1/addPlan', //仅为示例，并非真实的接口地址
+      data: {
+        money: this.data.money,
+        startDate: this.data.startDate,
+        endDate:this.data.endDate
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var obj = res.data;
+        console.log(obj.status);
+      }
+    });
+  }
+  ,
   listenerPickerSelected: function (e) {
     //改变index值，通过setData()方法重绘界面
     this.setData({

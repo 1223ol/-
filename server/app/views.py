@@ -4,7 +4,7 @@
 # @Author  : daiker (daikersec@gmail.com)
 # @Link    : https://daikersec.com
 # @Version : $Id$
-
+from flask import request
 from app import app
 import json
 @app.route('/')
@@ -35,4 +35,13 @@ def showBill():
         "date":"2018-04-19"
     }
     ]
-    return json.dumps(testData,ensure_ascii=False) 
+    return json.dumps(testData,ensure_ascii=False)
+
+@app.route("/addPlan")
+def addPlan():
+    data={}
+    print request.args.get('money')
+    print request.args.get('startDate')
+    print request.args.get('endDate')
+    data['status'] = 'success'
+    return json.dumps(data,ensure_ascii=False)

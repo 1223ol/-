@@ -3,6 +3,8 @@ var app = getApp();
 var radarChart = null;
 Page({
   data: {
+    array: ['雷达图', '柱状图', '扇形图', '折线图'],
+    index: 0
   },
   touchHandler: function (e) {
     console.log(radarChart.getCurrentDataIndex(e));

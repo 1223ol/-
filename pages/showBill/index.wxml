@@ -1,7 +1,6 @@
 <!--pages/showBill/index.wxml-->
 <view id="panel" class="flex-column">
     <view class="flex-cell flex-row">
-      <text class="flex-cell flex-row">收支</text>
       <text class="flex-cell flex-row">类别</text>
       <text class="flex-cell flex-row">金额</text>
       <text class="flex-cell flex-row">日期</text>
@@ -10,12 +9,10 @@
 <block wx:for="{{bill}}" wx:key="{{bill}}" wx:for-item="people">
   <view id="panel" class="flex-column">
     <view class="flex-cell flex-row">
-      <text class="flex-cell flex-row">{{people.inAndEx}}</text>
       <text class="flex-cell flex-row">{{people.type}}</text>
       <text class="flex-cell flex-row">{{people.money}}</text>
       <text class="flex-cell flex-row">{{people.date}}</text>
     </view>
-
   </view>
 </block>
 <!-- 
