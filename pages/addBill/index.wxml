@@ -1,23 +1,34 @@
 <!--pages/addBill/index.wxml-->
-<view class="itemView">
-  <view class="backgroupGrey flex-borider-both">
-    <text>请输入金额：</text>
+<view class='addBill' style="background: url(' ../../images/back5.jpg ');">
+  <view class='buttonItem'>
+    <button class="buttonAdd" type="default" size="default">添加流水</button>
+    <button class="buttonPlan" type="default" size="default">添加计划</button>
   </view>
-  <input class="flex-borider-both" name="userName" placeholder="0.00" />
-</view>
-<view class="itemView">
-  <view class="backgroupGrey flex-borider-both">
-    <text>请输入分类：</text>
+  <text>\n\n\n\n</text>
+  <view class="itemView">
+   
+      <text class='itemText'>请输入金额：</text>
+    
+    <input class="flex-borider-both itemPrice" name="userName" placeholder="0.00" />
   </view>
-  <picker mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
-    <text>{{array[index]}}</text>
-</picker>
-</view>
-<view class="itemView">
-  <view class="backgroupGrey flex-borider-both">
-    <text>请输入时间：</text>
+  <text>\n\n</text>
+  <view class="itemView">
+    
+      <text class='itemText'>请输入分类：</text>
+   
+    <picker class='itemType' mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
+      <text>{{array[index]}}</text>
+    </picker>
   </view>
-  <picker mode="date" value="{{date}}" start="2017-09-26" end="2020-10-10" bindchange="listenerDatePickerSelected">
-    <text>{{date}}</text>
-  </picker>
+  <text>\n\n</text>
+  <view class="itemView">
+    
+      <text class='itemText'>请输入时间：</text>
+    
+    <picker class='itemDate' mode="date" value="{{date}}" start="2017-09-26" end="2020-10-10" bindchange="listenerDatePickerSelected">
+      <text>{{date}}</text>
+    </picker>
+  </view>
+
+  <button class="confirm" type="default" size="default">确认</button>
 </view>

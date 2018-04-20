@@ -1,4 +1,5 @@
 <!--pages/showBill/index.wxml-->
+<view class='showBill' style="background: url('../../images/back8.jpg');">
 <view id="panel" class="flex-column">
     <view class="flex-cell flex-row">
       <text class="flex-cell flex-row">收支</text>
@@ -30,4 +31,6 @@
       <text class="flex-cell flex-row">花费:￥0</text>
       <text class="flex-cell flex-row">余额:￥0</text>
     </view>
+</view>
+
 </view>
