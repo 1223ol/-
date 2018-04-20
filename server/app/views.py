@@ -6,12 +6,33 @@
 # @Version : $Id$
 
 from app import app
-
+import json
 @app.route('/')
 @app.route('/index')
 def index():
-    return "Hello, World!"
+    consumption = 30
+    balance = 80
+    t={}
+    t['consumption']=consumption
+    t['balance']=balance    
+    return json.dumps(t,ensure_ascii=False) 
 
-@app.route("/showPlan"):
-	return "123"
+@app.route("/showPlan")
+def showPlan():
+    return "123"
 
+@app.route("/showBill")
+def showBill():
+    testData = [
+    {	
+    	"type":"吃饭",
+        "money":50,
+        "date":"2018-04-19"
+    },
+    {
+    	"type":"买衣服",
+        "money":200,
+        "date":"2018-04-19"
+    }
+    ]
+    return json.dumps(testData,ensure_ascii=False) 

@@ -21,12 +21,12 @@ class User(db.Model):
 class Date(db.Model):
     __tablename__ = 'date'
     dateId = db.Column(db.Integer,primary_key = True)
-    data = db.Column(db.Date,index = True)
+    date = db.Column(db.Date,index = True)
     uid = db.Column(db.Integer,db.ForeignKey('user.uid'))
     # category = db.relationship('Category', backref='datetime', lazy='dynamic')
 
     def __repr__(self):
-        return '<Date {did}:{name}>'.format(name = self.username,did = self.dateId)
+        return '<Date {did}:{name}>'.format(name = self.date,did = self.dateId)
 
 
 
