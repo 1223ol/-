@@ -59,7 +59,7 @@
       <text style='float:right;right:60px;'>{{consumption}}</text>
     </view>
     <view class="current-remainer">
-      <text style='float:left;left:100px'>今日可用</text>
+      <text style='float:left;left:100px'>今日剩余</text>
       <text style='float:right;right:60px;'>{{balance}}</text>
     </view>
 
