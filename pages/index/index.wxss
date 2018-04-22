@@ -31,7 +31,7 @@ page {
   display: -webkit-flex;
   display: flex;
   flex-wrap: wrap;
-  opacity: 1;
+  
 }
 
 .flex-item {
@@ -40,6 +40,7 @@ page {
   flex-shrink: 1;
   width: 14.2%;
   opacity: 1;
+  
 }
 
 .item-content {
@@ -51,6 +52,7 @@ page {
   line-height: 2rem;
   color: black;
   opacity: 1;
+  
 }
 
 

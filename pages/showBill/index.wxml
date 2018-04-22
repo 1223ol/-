@@ -1,33 +1,33 @@
 <!--pages/showBill/index.wxml-->
 <view class='showBill' style="background: url('../../images/back8.jpg');">
-<view id="panel" class="flex-column">
+  <view id="panel" class="flex-column">
     <view class="flex-cell flex-row">
       <text class="flex-cell flex-row">类别</text>
       <text class="flex-cell flex-row">金额</text>
       <text class="flex-cell flex-row">日期</text>
     </view>
   </view>
-<block wx:for="{{bill}}" wx:key="{{bill}}" wx:for-item="people">
-  <view id="panel" class="flex-column">
-    <view class="flex-cell flex-row">
-      <text class="flex-cell flex-row">{{people.type}}</text>
-      <text class="flex-cell flex-row">{{people.money}}</text>
-      <text class="flex-cell flex-row">{{people.date}}</text>
+  <block wx:for="{{bill}}" wx:key="{{bill}}" wx:for-item="people">
+    <view id="panel" class="flex-column">
+      <view class="flex-cell flex-row">
+        <text class="flex-cell flex-row">{{people.type}}</text>
+        <text class="flex-cell flex-row">{{people.money}}</text>
+        <text class="flex-cell flex-row">{{people.date}}</text>
+      </view>
     </view>
-  </view>
-</block>
-<!-- 
+  </block>
+  <!-- 
 /**
   * css设计的时候应该放到最底端
   */
 -->
-<view id="panel" class="flex-column buttom">
+  <view id="panel" class="flex-column buttom">
     <view class="flex-cell flex-row">
       <text class="flex-cell flex-row">合计:</text>
       <text class="flex-cell flex-row">收入:￥0</text>
       <text class="flex-cell flex-row">花费:￥0</text>
       <text class="flex-cell flex-row">余额:￥0</text>
     </view>
-</view>
+  </view>
 
 </view>

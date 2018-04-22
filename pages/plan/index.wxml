@@ -36,9 +36,8 @@
       <text>{{endDate}}</text>
     </picker>
   </view>
-<!--美工  -->
-<view bindtap="addPlan">确认按钮</view>
 
-  <button class="confirm" type="default" size="default">确认</button>
+
+  <button  bindtap="addPlan" class="confirm" type="default" size="default">确认</button>
 
 </view>

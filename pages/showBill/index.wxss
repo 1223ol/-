@@ -2,6 +2,8 @@
 #panel{
   height:5vh;
   background:#fff;
+  font-size: 1.1rem;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 #panel text{
@@ -35,3 +37,5 @@
 .showBill{
   height: 600px;
 }
+
+
