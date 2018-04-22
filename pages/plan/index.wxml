@@ -7,7 +7,7 @@
   </view>
 
   <text>\n\n\n\n</text>
-  <view class="itemView">
+  <view class="itemView-1">
 
     <text class="itemText">请输入总金额金额：</text>
 
@@ -17,7 +17,7 @@
   <text>\n\n</text>
 
 
-  <view class="itemView">
+  <view class="itemView-2">
 
     <text class="itemText">请输入开始时间：</text>
 
@@ -28,7 +28,7 @@
 
   <text>\n\n</text>
 
-  <view class="itemView">
+  <view class="itemView-3">
 
     <text class="itemText">请输入结束时间：</text>
 
