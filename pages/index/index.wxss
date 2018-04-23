@@ -3,12 +3,11 @@
 page {
   background-color: white;
   display: flex;
-
+  height: 100vh;
   justify-content: flex-start;
   
   font-size: 18px;
-  height: 620px;
-  overflow-y: scroll;
+
   
   position: relative;
 }
@@ -16,12 +15,12 @@ page {
 .box {
   display: block;
   margin: 10px;
-  height: 380px;
+  height: 60%;
   border-style: solid;
   color: black;
   background-color: rgba(255, 255, 255, 0.7);
   border-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50px;
+  border-radius: 35px;
 }
 
 
@@ -62,8 +61,9 @@ page {
 
 
 .current-detail{
-  height: 160px;
+  height: 25%;
   margin: 10px;
+  top:50%;
   font-size: 1rem;
   border-style: solid;
   background-color: rgba(255, 255, 255, 0.7);
@@ -77,7 +77,7 @@ page {
   height: 40px;
   position: absolute;
   left: 40px;
-  top:470px;
+  top:75vh;
 }
 
 .current-remainer{
@@ -85,5 +85,5 @@ page {
   left:40px;
   width: 80%;
   height: 40px;
-  top:530px;
+  top:85vh;
 }
