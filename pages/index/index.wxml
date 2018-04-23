@@ -3,8 +3,8 @@
     <view class="box-flex">
       <view class="flex-item">
         <view class="item-content" bindtap="doDay" data-key='left'>
-          <text>1</text>
-          <!-- 这里面换成图片 -->
+          <image class="leftArrow" src="../../images/箭头左.png" mode="aspectFill"> </image> 
+
         </view>
       </view>
       <view class="flex-item item-content-current-day">
@@ -12,7 +12,7 @@
       </view>
       <view class="flex-item">
         <view class="item-content" bindtap="doDay" data-key="right">
-          <view>2</view>
+          <image class="rightArrow" src="../../images/箭头右.png" mode="aspectFill"> </image>  
         </view>
       </view>
     </view>
