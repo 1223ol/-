@@ -4,15 +4,15 @@
     <button class="buttonAdd" type="default" size="default" bindtap="jumpToAddBill">添加流水</button>
     <button class="buttonPlan" type="default" size="default" bindtap='jumpToPlan'>添加计划</button>
   </view>
-  <text>\n\n\n\n</text>
-  <view class="itemView">
+ 
+  <view class="itemView-1">
    
       <text class='itemText'>请输入金额：</text>
     
     <input class="flex-borider-both itemPrice" name="userName" placeholder="0.00" />
   </view>
-  <text>\n\n</text>
-  <view class="itemView">
+
+  <view class="itemView-2">
     
       <text class='itemText'>请输入分类：</text>
    
@@ -20,8 +20,8 @@
       <text>{{array[index]}}</text>
     </picker>
   </view>
-  <text>\n\n</text>
-  <view class="itemView">
+
+  <view class="itemView-3">
     
       <text class='itemText'>请输入时间：</text>
     
