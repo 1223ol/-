@@ -2,6 +2,22 @@
 <picker mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
     <text>{{array[index]}}</text>
 </picker>
+<view class="itemView-2">
+
+      <text class="itemText">请输入开始时间：</text>
+
+      <picker class='itemStartDate' mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+        <text>{{startDate}}</text>
+      </picker>
+    </view>
+    <view class="itemView-2">
+
+      <text class="itemText">请输入结束时间时间：</text>
+
+      <picker class='itemStartDate' mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+        <text>{{startDate}}</text>
+      </picker>
+    </view>
 
 
   <text class="middle" decode="{{true}}" space="{{true}}">今天消费情况</text>

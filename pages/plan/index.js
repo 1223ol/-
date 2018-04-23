@@ -9,7 +9,8 @@ Page({
     startDate: '2016-09-26',
     endDate: '2016-09-26',
     array: ['饮食', '服饰装容', '生活日用', '住房缴费', '交通出行', "通讯", "文教娱乐", "健康", "其他消费"],
-    index: 0
+    index: 0,
+    selectItem:0
   },
 
   /**
@@ -120,18 +121,16 @@ Page({
 
 
     jumpToAddBill: function (event) {
-      var that = this;
-      wx.navigateTo({
-        url: '../addBill/index'
-      })
+      this.setData({
+        selectItem:0
+      });
 
     },
 
     jumpToPlan: function (event) {
-      var that = this;
-      wx.navigateTo({
-        url: '../plan/index'
-      })
+      this.setData({
+        selectItem: 1
+      });
 
     },
 
