@@ -8,6 +8,7 @@ Page({
     money:0.0,
     startDate: '2016-09-26',
     endDate: '2016-09-26',
+    date: '2016-09-26',
     array: ['饮食', '服饰装容', '生活日用', '住房缴费', '交通出行', "通讯", "文教娱乐", "健康", "其他消费"],
     index: 0,
     selectItem:0
@@ -54,8 +55,13 @@ Page({
         console.log(obj.status);
       }
     });
-  }
-  ,
+  },
+  listenerDatePickerSelected: function (e) {
+    //改变index值，通过setData()方法重绘界面
+    this.setData({
+      date : e.detail.value
+    });
+  },
   listenerPickerSelected: function (e) {
     //改变index值，通过setData()方法重绘界面
     this.setData({
