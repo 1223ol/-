@@ -2,11 +2,11 @@
 <view class='plan' style="background: url('../../images/back7.jpg');">
 
   <view class='buttonItem'>
-    <button class="buttonAdd" type="default" size="default">添加流水</button>
-    <button class="buttonPlan" type="default" size="default">添加计划</button>
+    <button class="buttonAdd" type="default" size="default"  bindtap="jumpToAddBill">添加流水</button>
+    <button class="buttonPlan" type="default" size="default" bindtap="jumpToPlan">添加计划</button>
   </view>
 
-  <text>\n\n\n\n</text>
+  
   <view class="itemView-1">
 
     <text class="itemText">请输入总金额金额：</text>
@@ -14,7 +14,7 @@
     <input class="flex-borider-both" class='itemPrice' name="userName" placeholder="0.00" bindinput='changMoney' />
   </view>
 
-  <text>\n\n</text>
+ 
 
 
   <view class="itemView-2">
@@ -26,7 +26,7 @@
     </picker>
   </view>
 
-  <text>\n\n</text>
+  
 
   <view class="itemView-3">
 

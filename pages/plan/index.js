@@ -1,4 +1,4 @@
-// pages/addBill/index.js
+// pages/plan/index.js
 Page({
 
   /**
@@ -114,5 +114,25 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+
+
+
+    jumpToAddBill: function (event) {
+      var that = this;
+      wx.navigateTo({
+        url: '../addBill/index'
+      })
+
+    },
+
+    jumpToPlan: function (event) {
+      var that = this;
+      wx.navigateTo({
+        url: '../plan/index'
+      })
+
+    },
+
 })

@@ -1,8 +1,8 @@
 <!--pages/addBill/index.wxml-->
 <view class='addBill' style="background: url(' ../../images/back5.jpg ');">
   <view class='buttonItem'>
-    <button class="buttonAdd" type="default" size="default">添加流水</button>
-    <button class="buttonPlan" type="default" size="default">添加计划</button>
+    <button class="buttonAdd" type="default" size="default" bindtap="jumpToAddBill">添加流水</button>
+    <button class="buttonPlan" type="default" size="default" bindtap='jumpToPlan'>添加计划</button>
   </view>
   <text>\n\n\n\n</text>
   <view class="itemView">

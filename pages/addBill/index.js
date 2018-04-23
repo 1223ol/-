@@ -81,5 +81,23 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+
+
+
+  jumpToPlan: function (event) {
+    var that = this;
+    wx.navigateTo({
+      url: '../plan/index'
+    })
+
+  },
+
+  jumpToAddBill: function (event) {
+    var that = this;
+    wx.navigateTo({
+      url: '../addBill/index'
+    })
+
+  },
 })
