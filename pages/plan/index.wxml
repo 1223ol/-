@@ -47,39 +47,7 @@
 
     <view class="itemView-2forbill">
 
-      <text class='itemTextforBill'>请输入分类：</text> =======
-    </view>
-
-    <view class="bill" wx:if="{{selectItem==0}}">
-
-      <view class=" itemView-1 ">
-
-        <text class='itemText'>请输入金额：</text>
-
-        <input class="flex-borider-both itemPrice " name="userName " placeholder="0.00 " />
-      </view>
-
-      <view class="itemView-2 ">
-
-        <text class='itemText'>请输入分类：</text>
-
-        <picker class='itemType' mode="selector " range="{{array}} " value="{{index}} " bindchange="listenerPickerSelected ">
-          <text>{{array[index]}}</text>
-        </picker>
-      </view>
-
-      <view class="itemView-3 ">
-
-        <text class='itemText'>请输入时间：</text>
-
-        <picker class='itemDate' mode="date " value="{{date}} " start="2017-09-26 " end="2020-10-10 " bindchange="listenerDatePickerSelected ">
-          <text>{{date}}</text>
-        </picker>
-      </view>
-
-      <picker class='itemTypeforBill' mode="selector " range="{{array}} " value="{{index}} " bindchange="listenerPickerSelected ">
-        <text>{{array[index]}}</text>
-      </picker>
+      <text class='itemTextforBill'>请输入分类：</text> 
     </view>
 
     <view class="itemView-3forbill">
