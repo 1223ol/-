@@ -1,6 +1,6 @@
 <view class="container">
 <text class="itemText">请输入图形形状：</text>
-<picker mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
+<picker mode="selector" range="{{array}}" value="{{index}}" bindchange='listenerPickerSelected'>
     <text>{{array[index]}}</text>
 </picker>
 <view class="itemView-2">
@@ -19,8 +19,11 @@
         <text>{{endDate}}</text>
       </picker>
     </view>
+<view class="itemView-2">
 
+     <button class="confirm " type="default " size="default " bindtap='submit'>确认</button>
+    </view>
 
   <text class="middle" decode="{{true}}" space="{{true}}">今天消费情况</text>
-  <canvas canvas-id="radarCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+  <canvas canvas-id="myChart" class="canvas" bindtouchstart="touchHandler"></canvas>
 </view>

@@ -5,7 +5,8 @@
 # @Link    : https://daikersec.com
 # @Version : $Id$
 from flask import request
-from app import app
+from app import app,db
+from models import *
 import json
 @app.route('/')
 @app.route('/index')
@@ -52,8 +53,24 @@ def addPlan():
 @app.route("/addBill")
 def addBill():
     data={}
-    print request.args.get('money')
-    print request.args.get('typeName')
-    print request.args.get('date')
+    money =  request.args.get('money')
+    typeName = request.args.get('typeName')
+    date = request.args.get('date')
+    try:
+        # db.session.add(Date(date,1))
+        # db.session.commit()
+        # db.session.add(Category(typeName,money))
+        # db.session.commit()
+        data['status'] = 'success'
+    except Exception as e:
+        data['status'] = 'fail'
+    return json.dumps(data,ensure_ascii=False)
+
+@app.route("/result")
+def result():
+    data={}
+    print request.args.get('startDate')
+    print request.args.get('endDate')
     data['status'] = 'success'
+    data['result'] =  [90, 110, 145, 95, 87, 160]
     return json.dumps(data,ensure_ascii=False)

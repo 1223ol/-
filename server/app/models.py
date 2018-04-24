@@ -24,7 +24,9 @@ class Date(db.Model):
     date = db.Column(db.Date,index = True)
     uid = db.Column(db.Integer,db.ForeignKey('user.uid'))
     # category = db.relationship('Category', backref='datetime', lazy='dynamic')
-
+    def __init__(self,date,uid):
+        self.date = date
+        self.uid = uid
     def __repr__(self):
         return '<Date {did}:{name}>'.format(name = self.date,did = self.dateId)
 
@@ -36,6 +38,11 @@ class Category(db.Model):
     name = db.Column(db.String(64), index = True)
     dateId = db.Column(db.Integer,db.ForeignKey('date.dateId'))
     money = db.Column(db.Float,index = True)
+
+    def __init__(self,name,dateId,money):
+        self.name = name
+        self.dateId = dateId
+        self.money = money
 
 
     def __repr__(self):
