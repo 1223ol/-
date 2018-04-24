@@ -45,7 +45,7 @@
     </view>
 
     <view class="itemView-2">
-      <text class="itemTextforplan">请输入分类：</text>
+      <text class="itemTextforBill">请输入分类：</text>
       <picker class='itemType' mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
         <text>{{array[index]}}</text>
       </picker>

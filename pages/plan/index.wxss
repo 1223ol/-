@@ -38,7 +38,7 @@
 .itemTextforplan{
 
   position: absolute;
-  left: 30%;
+  left: 35%;
 
   height: 25px;
  
@@ -48,19 +48,6 @@
 
 
 
-/*
-.itemView{
-  margin: auto;
-  width: 98%;
-  height: 100px;
-  border-style: solid;
-  color: black;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 0, 0, 0.9);
-  border-radius: 50px;
-}
-
-*/
 
 .itemView-1{
   position: absolute;
@@ -97,7 +84,18 @@
   border-radius: 50px;
 }
 
+.itemTextforBill{
+  position: absolute;
 
+  left: 30%;
+}
+
+
+.itemTextforplan{
+  position: absolute;
+
+  left: 30%;
+}
 
 .flex-borider-both{
   border-top: 1rpx solid #ddd;
@@ -114,7 +112,7 @@
 .itemStartDateforplan{
   position: absolute;
   top:45%;
-  left: 45%;
+  left: 35%;
 }
 
 
@@ -170,9 +168,22 @@
 .itemTextforBill{
 
   position: absolute;
-  left: 140px;
+  left: 35%;
 
-  height: 25px;
+  height: 45%;
+ 
+  color: black;
+ 
+}
+
+
+
+.itemTextforbill{
+
+  position: absolute;
+  left: 35%;
+
+  height: 45%;
  
   color: black;
  
@@ -192,6 +203,12 @@
 
 .itemDateforBill{
   position: absolute;
-  top:480px;
+  top:45%;
   left: 35%;
+}
+
+.itemType{
+  position: absolute;
+  top:45%;
+  left: 45%;  
 }
