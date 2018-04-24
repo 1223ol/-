@@ -6,6 +6,8 @@ Page({
    */
   data: {
   	"limit":1,
+    allSpend:0,
+    surplus:0,
     "bill":[
       { 
         "type":"吃饭",
@@ -32,7 +34,9 @@ Page({
           success: function(res) {
             var obj = res.data;
             that.setData({
-            bill:obj
+            bill:obj.Bill,
+            allSpend: obj.allSpend,
+            surplus: obj.surplus,
         });
           }
         });

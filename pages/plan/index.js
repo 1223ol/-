@@ -35,13 +35,26 @@ Page({
   onReady: function () {
 
   },
-  addPlan:function(event){
-console.log("addPlan is invoked");
-  },
   addBill: function (event) {
     console.log("addBill is invoked");
+    var that = this;
+    wx.request({
+      url: 'http://127.0.0.1/addBill', //仅为示例，并非真实的接口地址
+      data: {
+        money: that.data.billMoney,
+        typeName: that.data.array[that.data.index],
+        date: that.data.date
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var obj = res.data;
+        console.log(obj.status);
+      }
+    });
   },
-  addMyPlan: function (event) {
+  addPlan: function (event) {
     console.log("addPlan is invoke");
     var that = this;
     wx.request({
@@ -69,7 +82,7 @@ console.log("addPlan is invoked");
   changBillMoney: function (event) {
     console.log("changBillMoney  is invoke");
     this.setData({
-      billmoney: event.detail.value
+      billMoney: event.detail.value
     });
   },
   listenerDatePickerSelected: function (e) {

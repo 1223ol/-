@@ -23,7 +23,8 @@ def showPlan():
 
 @app.route("/showBill")
 def showBill():
-    testData = [
+    testData = {}
+    testData['Bill'] = [
     {	
     	"type":"吃饭",
         "money":50,
@@ -35,6 +36,8 @@ def showBill():
         "date":"2018-04-19"
     }
     ]
+    testData['allSpend'] = 50
+    testData['surplus'] = 30
     return json.dumps(testData,ensure_ascii=False)
 
 @app.route("/addPlan")
@@ -43,5 +46,14 @@ def addPlan():
     print request.args.get('money')
     print request.args.get('startDate')
     print request.args.get('endDate')
+    data['status'] = 'success'
+    return json.dumps(data,ensure_ascii=False)
+
+@app.route("/addBill")
+def addBill():
+    data={}
+    print request.args.get('money')
+    print request.args.get('typeName')
+    print request.args.get('date')
     data['status'] = 'success'
     return json.dumps(data,ensure_ascii=False)

@@ -15,7 +15,7 @@
 
       <text class="itemText">请输入结束时间时间：</text>
 
-      <picker  mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+      <picker  mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
         <text>{{endDate}}</text>
       </picker>
     </view>

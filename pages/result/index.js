@@ -24,11 +24,25 @@ Page({
       endDate: time
     });
   },
+  listenerStartDatePickerSelected: function (e) {
+    this.setData(
+      {
+        startDate: e.detail.value
+      }
+    );
+  },
+  listenerEndDatePickerSelected: function (e) {
+    this.setData(
+      {
+        endDate: e.detail.value
+      }
+    );
+  },
   onReady: function (e) {
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
-      windowWidth = res.windowWidth-120;
+      windowWidth = res.windowWidth - 120;
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }

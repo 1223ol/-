@@ -61,7 +61,7 @@
 
 
     <view>
-      <button class="confirm " type="default " size="default " bindtap='addPlan'>确认</button>
+      <button class="confirm " type="default " size="default " bindtap='addBill'>确认</button>
     </view>
 
 </view>
