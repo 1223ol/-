@@ -2,7 +2,8 @@
   "pages": [
 "pages/index/index",
 
-"pages/addBill/index",
+
+
 
 "pages/plan/index",
 
@@ -21,6 +22,7 @@
    
   
     "pages/logs/logs"
+
 
 
    

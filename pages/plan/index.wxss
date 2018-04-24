@@ -111,16 +111,30 @@
   left: 45%;
 }
 
+.itemType{
+  position: absolute;
+  top:45%;
+  left: 45%;
+}
+
 .itemStartDate{
   position: absolute;
   top:45%;
   left: 35%;
 }
 
+
 .itemEndDate{
   position: absolute;
   top:45%;
   left: 35%;
+}
+
+.itemDate{
+  position: absolute;
+  top: 45%;
+  left: 35%;
+  font-size: 12rem;
 }
 
 

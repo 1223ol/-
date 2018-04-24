@@ -2,42 +2,64 @@
 <view class='plan' style="background: url('../../images/back7.jpg');">
 
   <view class='buttonItem'>
-    <button class="buttonAdd" type="default" size="default"  bindtap="jumpToAddBill">添加流水</button>
+    <button class="buttonAdd" type="default" size="default" bindtap="jumpToAddBill">添加流水</button>
     <button class="buttonPlan" type="default" size="default" bindtap="jumpToPlan">添加计划</button>
   </view>
+  <view class="plan" wx:if="{{selectItem==1}}">
+    <view class="itemView-1">
 
-  
-  <view class="itemView-1">
+      <text class="itemText">请输入总金额金额：</text>
 
-    <text class="itemText">请输入总金额金额：</text>
+      <input class="flex-borider-both" class='itemPrice' name="userName" placeholder="0.00" bindinput='changMoney' />
+    </view>
 
-    <input class="flex-borider-both" class='itemPrice' name="userName" placeholder="0.00" bindinput='changMoney' />
+    <view class="itemView-2">
+
+      <text class="itemText">请输入开始时间：</text>
+
+      <picker class='itemStartDate' mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+        <text>{{startDate}}</text>
+      </picker>
+    </view>
+
+    <view class="itemView-3">
+      <text class="itemText">请输入结束时间：</text>
+
+      <picker class='itemEndDate' mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
+        <text>{{endDate}}</text>
+      </picker>
+    </view>
   </view>
 
- 
+  <view class="bill" wx:if="{{selectItem==0}}">
 
+    <view class=" itemView-1 ">
 
-  <view class="itemView-2">
+      <text class='itemText'>请输入金额：</text>
 
-    <text class="itemText">请输入开始时间：</text>
+      <input class="flex-borider-both itemPrice " name="userName " placeholder="0.00 " />
+    </view>
 
-    <picker class='itemStartDate' mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
-      <text>{{startDate}}</text>
-    </picker>
+    <view class="itemView-2 ">
+
+      <text class='itemText'>请输入分类：</text>
+
+      <picker class='itemType' mode="selector " range="{{array}} " value="{{index}} " bindchange="listenerPickerSelected ">
+        <text>{{array[index]}}</text>
+      </picker>
+    </view>
+
+    <view class="itemView-3 ">
+
+      <text class='itemText'>请输入时间：</text>
+
+      <picker class='itemDate' mode="date " value="{{date}} " start="2017-09-26 " end="2020-10-10 " bindchange="listenerDatePickerSelected ">
+        <text>{{date}}</text>
+      </picker>
+    </view>
+
   </view>
 
-  
-
-  <view class="itemView-3">
-
-    <text class="itemText">请输入结束时间：</text>
-
-    <picker class='itemEndDate' mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
-      <text>{{endDate}}</text>
-    </picker>
-  </view>
-
-
-  <button  bindtap="addPlan" class="confirm" type="default" size="default">确认</button>
+  <button bindtap="addPlan " class="confirm " type="default " size="default ">确认</button>
 
 </view>
