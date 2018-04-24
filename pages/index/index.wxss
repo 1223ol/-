@@ -51,7 +51,7 @@ page {
   line-height: 2rem;
   color: black;
   opacity: 1;
-  
+
 }
 
 
@@ -86,4 +86,21 @@ page {
   width: 80%;
   height: 40px;
   top:85vh;
+}
+
+.rightArrow{
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 4vh;
+  right: 10%;
+}
+
+
+.leftArrow{
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 4vh;
+  left: 10%;
 }
