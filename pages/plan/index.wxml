@@ -58,6 +58,7 @@
       </picker>
     </view>
 
+
   </view>
 
   <button bindtap="addPlan " class="confirm " type="default " size="default ">确认</button>

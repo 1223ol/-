@@ -51,7 +51,7 @@ page {
   line-height: 2rem;
   color: black;
   opacity: 1;
-  
+
 }
 
 
@@ -93,6 +93,7 @@ page {
   height: 30px;
   width: 30px;
   top: 4vh;
+  right: 10%;
 }
 
 
@@ -101,4 +102,5 @@ page {
   height: 30px;
   width: 30px;
   top: 4vh;
+  left: 10%;
 }

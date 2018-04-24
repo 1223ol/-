@@ -134,7 +134,7 @@
   position: absolute;
   top: 45%;
   left: 35%;
-  font-size: 12rem;
+ 
 }
 
 
@@ -152,7 +152,7 @@
   border-radius: 50px;
 }
 
-//下面是以前的的css，再改
+
 
 .addBill{
   height: 600px;
@@ -184,20 +184,15 @@
 .itemPrice{
   position: absolute;
   left: 45%;
-  top: 160px;
+  top: 45%;
 }
 
 .itemType{
   position: absolute;
-  top:320px;
+  top:45%;
   left: 45%;
 }
 
-.itemDate{
-  position: absolute;
-  top:480px;
-  left: 35%;
-}
 
 
 .buttonItem{
