@@ -1,4 +1,5 @@
 <view class="container">
+<text class="itemText">请输入图形形状：</text>
 <picker mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
     <text>{{array[index]}}</text>
 </picker>
@@ -6,7 +7,7 @@
 
       <text class="itemText">请输入开始时间：</text>
 
-      <picker class='itemStartDate' mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+      <picker  mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
         <text>{{startDate}}</text>
       </picker>
     </view>
@@ -14,8 +15,8 @@
 
       <text class="itemText">请输入结束时间时间：</text>
 
-      <picker class='itemStartDate' mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
-        <text>{{startDate}}</text>
+      <picker  mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+        <text>{{endDate}}</text>
       </picker>
     </view>
 
