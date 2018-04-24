@@ -53,7 +53,7 @@
 
     <view class="itemView-3">
       <text class='itemTextforBill'>请输入时间：</text>
-      <picker class='itemDateforBill' mode="date " value="{{date}} " start="2017-09-26 " end="2020-10-10 " bindchange="listenerDatePickerSelected ">
+      <picker class='itemEndDateforBill' mode="date" value="{{date}}" start="2017-09-26" end="2020-10-10" bindchange="listenerDatePickerSelected">
         <text>{{date}}</text>
       </picker>
     </view>

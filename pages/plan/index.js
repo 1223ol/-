@@ -9,7 +9,7 @@ Page({
     billMoney: 0.0,
     startDate: '2016-09-26',
     endDate: '2016-09-26',
-    date: '2016-09-26',
+    date : '2016-09-26',
     array: ['饮食', '服饰装容', '生活日用', '住房缴费', '交通出行', "通讯", "文教娱乐", "健康", "其他消费"],
     index: 0,
     selectItem: 1
@@ -24,7 +24,8 @@ Page({
     // 再通过setData更改Page()里面的data，动态更新页面的数据  
     this.setData({
       startDate: time,
-      endDate: time
+      endDate: time,
+      date:time
     });
   },
 
