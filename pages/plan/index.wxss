@@ -35,7 +35,7 @@
 }
 
 
-.itemText{
+.itemTextforplan{
 
   position: absolute;
   left: 30%;
@@ -105,19 +105,19 @@
   border-right: 1rpx solid #ddd;
 }
 
-.itemPrice{
+.itemPriceforplan{
   position: absolute;
   top:45%;
   left: 45%;
 }
 
-.itemStartDate{
+.itemStartDateforplan{
   position: absolute;
   top:45%;
   left: 35%;
 }
 
-.itemEndDate{
+.itemEndDateforplan{
   position: absolute;
   top:45%;
   left: 35%;
@@ -138,16 +138,16 @@
   border-radius: 50px;
 }
 
-//下面是以前的的css，再改
+ /* 下面是以前的的css，再改  */
 
-.addBill{
+.addBillforBill{
   height: 600px;
   width: 100%;
 }
 
 
 
-.itemView{
+.itemViewforBill{
   height: 100px;
   border-style: solid;
   color: black;
@@ -156,7 +156,7 @@
   border-radius: 50px;
 }
 
-.itemText{
+.itemTextforBill{
 
   position: absolute;
   left: 140px;
@@ -167,65 +167,20 @@
  
 }
 
-.itemPrice{
+.itemPriceforBill{
   position: absolute;
   left: 45%;
   top: 160px;
 }
 
-.itemType{
+.itemTypeforBill{
   position: absolute;
   top:320px;
   left: 45%;
 }
 
-.itemDate{
+.itemDateforBill{
   position: absolute;
   top:480px;
   left: 35%;
-}
-
-
-.buttonItem{
-  position: absolute;
-  top:30px;
-  width: 250px;
-  height: 55px;
-  left: 15%;
-}
-
-.buttonAdd{
-  width: 120px;
-  position: absolute;
-  left: 10%;
-  border-style: solid;
-  color: black;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 0, 0, 0.9);
-  border-radius: 50px;
-}
-.buttonPlan{
-  width: 120px;
-  position: absolute;
-  left: 60%;
-  border-style: solid;
-  color: black;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 0, 0, 0.9);
-  border-radius: 50px;
-}
-
-
-.confirm{
-  position: absolute;
-  font-size: 1rem;
-  height: 50px;
-  width:100px;
-  top:548px;
-  left: 70%;
-  border-style: solid;
-  color: black;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 0, 0, 0.9);
-  border-radius: 50px;
 }

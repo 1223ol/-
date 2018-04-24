@@ -8,61 +8,66 @@
   <view class="plan" wx:if="{{selectItem==1}}">
     <view class="itemView-1">
 
-      <text class="itemText">请输入总金额金额：</text>
+      <text class="itemTextforplan">请输入总金额金额：</text>
 
-      <input class="flex-borider-both" class='itemPrice' name="userName" placeholder="0.00" bindinput='changMoney' />
+      <input class="flex-borider-both" class='itemPriceforplan' name="userName" placeholder="0.00" bindinput='changMoney' />
     </view>
 
     <view class="itemView-2">
 
-      <text class="itemText">请输入开始时间：</text>
+      <text class="itemTextforplan">请输入开始时间：</text>
 
-      <picker class='itemStartDate' mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+      <picker class='itemStartDateforplan' mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
         <text>{{startDate}}</text>
       </picker>
     </view>
 
     <view class="itemView-3">
-      <text class="itemText">请输入结束时间：</text>
+      <text class="itemTextforplan">请输入结束时间：</text>
 
-      <picker class='itemEndDate' mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
+      <picker class='itemEndDateforplan' mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
         <text>{{endDate}}</text>
       </picker>
     </view>
+    <view>
+      <button class="confirm " type="default " size="default " bindtap='addPlan'>确认</button>
+    </view>
+
 
   </view>
 
-<view class="bill" wx:if="{{selectItem==0}}">
+  <view class="bill" wx:if="{{selectItem==0}}">
 
-<view class=" itemView-1 ">
-   
-      <text class='itemText'>请输入金额：</text>
-    
-    <input class="flex-borider-both itemPrice " name="userName " placeholder="0.00 " />
+    <view class=" itemView-1forbill">
+
+      <text class='itemTextforBill'>请输入金额：</text>
+
+      <input class="flex-borider-both itemPriceforBill" name="userName " placeholder="0.00 " bindinput='changBillMoney' />
+    </view>
+
+    <view class="itemView-2forbill">
+
+      <text class='itemTextforBill'>请输入分类：</text>
+
+      <picker class='itemTypeforBill' mode="selector " range="{{array}} " value="{{index}} " bindchange="listenerPickerSelected ">
+        <text>{{array[index]}}</text>
+      </picker>
+    </view>
+
+    <view class="itemView-3forbill">
+
+      <text class='itemTextforBill'>请输入时间：</text>
+
+      <picker class='itemDateforBill' mode="date " value="{{date}} " start="2017-09-26 " end="2020-10-10 " bindchange="listenerDatePickerSelected ">
+        <text>{{date}}</text>
+      </picker>
+    </view>
+    <view>
+      <button class="confirm " type="default " size="default " bindtap='addBill'>确认</button>
+    </view>
+
+
   </view>
 
-  <view class="itemView-2 ">
-    
-      <text class='itemText'>请输入分类：</text>
-   
-    <picker class='itemType' mode="selector " range="{{array}} " value="{{index}} " bindchange="listenerPickerSelected ">
-      <text>{{array[index]}}</text>
-    </picker>
-  </view>
-
-  <view class="itemView-3 ">
-    
-      <text class='itemText'>请输入时间：</text>
-    
-    <picker class='itemDate' mode="date " value="{{date}} " start="2017-09-26 " end="2020-10-10 " bindchange="listenerDatePickerSelected ">
-      <text>{{date}}</text>
-    </picker>
-  </view>
-
-
-
-</view>
-
-  <button  bindtap="addPlan " class="confirm " type="default " size="default ">确认</button>
 
 </view>
