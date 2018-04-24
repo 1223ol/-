@@ -1,10 +1,7 @@
 {
   "pages": [
-
-
-    
-"pages/index/index",
-
+    "pages/index/index",
+"pages/result/index",    
 
 
 
@@ -12,7 +9,7 @@
 
 "pages/showBill/index",
 
-"pages/result/index",
+
 "pages/logs/logs"
   ],
 
