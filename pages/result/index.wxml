@@ -1,29 +1,34 @@
-<view class="container">
-<text class="itemText">请输入图形形状：</text>
-<picker mode="selector" range="{{array}}" value="{{index}}" bindchange='listenerPickerSelected'>
-    <text>{{array[index]}}</text>
-</picker>
-<view class="itemView-2">
+<view class="container" style="background: url('../../images/back9.jpg');">
 
-      <text class="itemText">请输入开始时间：</text>
+    <view class='itemView-3'>
+      <text class="itemGraph">图表形状</text>
+      <picker class='graph' mode="selector" range="{{array}}" value="{{index}}" bindchange='listenerPickerSelected'>
+        <text>{{array[index]}}</text>
+      </picker>
+    </view>
 
-      <picker  mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+    <view class="itemView-1">
+
+      <text class="itemText">开始时间</text>
+
+      <picker class='date' mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
         <text>{{startDate}}</text>
       </picker>
     </view>
+
     <view class="itemView-2">
 
-      <text class="itemText">请输入结束时间时间：</text>
+      <text class="itemText">结束时间</text>
 
-      <picker  mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
+      <picker class='date' mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
         <text>{{endDate}}</text>
       </picker>
     </view>
-<view class="itemView-2">
+    
+    <button class="confirm " type="default " size="default " bindtap='submit'>确认</button>
 
-     <button class="confirm " type="default " size="default " bindtap='submit'>确认</button>
-    </view>
-
-  <text class="middle" decode="{{true}}" space="{{true}}">今天消费情况</text>
-  <canvas canvas-id="myChart" class="canvas" bindtouchstart="touchHandler"></canvas>
+<view class='chart'>
+    <text class="middle" decode="{{true}}" space="{{true}}">今天消费情况</text>
+    <canvas canvas-id="myChart" class="canvas" bindtouchstart="touchHandler"></canvas>
+</view>
 </view>
