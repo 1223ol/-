@@ -74,3 +74,14 @@ def result():
     data['status'] = 'success'
     data['result'] =  [90, 110, 145, 95, 87, 160]
     return json.dumps(data,ensure_ascii=False)
+
+@app.route("/login")
+def login():
+    data = {}
+    data['status'] = 'success'
+    data['result'] =  [90, 110, 145, 95, 87, 160]
+    return json.dumps(data,ensure_ascii=False)
+
+@app.route("/.well-known/pki-validation/fileauth.txt")
+def verity():
+    return "20180424101213022w97rnxl5swy0p57qo6uy2rfmr52o3bb05g2c8zaku4pffsj"
