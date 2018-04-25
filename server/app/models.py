@@ -13,6 +13,9 @@ class User(db.Model):
     username = db.Column(db.String(64), index = True)
     unionId = db.Column(db.Integer, index = True)
     # date = db.relationship('Date', backref='Customer', lazy='dynamic')
+    def __init__(self,username,unionId):
+        self.username = username
+        self.unionId = unionId
     def __repr__(self):
         return '<User %r>' % (self.username)
 
@@ -57,6 +60,9 @@ class Plan(db.Model):
     endTime = db.Column(db.Date,index = True)
     Money = db.Column(db.Float,index = True)
 
-
+    def __init__(self,startTime,endTime,Money):
+        self.startTime = startTime
+        self.endTime = endTime
+        self.Money = Money
     def __repr__(self):
         return '<Plan {pId}:{sTime}-{eTime}>'.format(pId = self.planId,sTime = self.startTime,eTime = self.endTime)

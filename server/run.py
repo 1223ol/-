@@ -7,4 +7,5 @@
 
 from flask import Flask
 from app import app
-app.run(debug = True,host="119.29.177.23",port=80,ssl_context=('ssl/tally.slickghost.com.crt', 'ssl/tally.slickghost.com.key'))
+if __name__ == '__main__':
+    app.run()

@@ -20,6 +20,7 @@ def index():
 
 @app.route("/showPlan")
 def showPlan():
+    print(db.session.query('user').first())
     return "123"
 
 @app.route("/showBill")
