@@ -1,5 +1,5 @@
 <!--pages/plan/index.wxml-->
-<view class='plan' style="background: url('../../images/back7.jpg');">
+<view class='plan' style="background: url('../../images/back8.jpg');">
 
   <view class='buttonItem'>
     <button class="buttonAdd" type="default" size="default" bindtap="jumpToAddBill">添加流水</button>
