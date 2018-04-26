@@ -50,7 +50,7 @@ In [27]: db.session.query(models.Plan).order_by(models.Plan.planId.desc()).first
 Out[27]: <Plan 1:2018-04-01-2018-05-01>
 
 ----------------------------------
-In [6]: lastday = models.Category(unicode('饮食'),datetime.date(2018,04,10),200)
+In [6]: lastday = models.Category(unicode('饮食'),1,200)
 
 In [7]: db.session.add(lastday)
 

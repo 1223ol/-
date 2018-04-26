@@ -62,9 +62,6 @@ Page({
     wx.navigateTo({
       url: '../showBill/index'
     })
-    that.setData({
-      selectDate: event.currentTarget.id,
-    });
     console.log(this.data.selectDate);
 
   },
@@ -73,8 +70,7 @@ Page({
     wx.request({
       url: 'http://127.0.0.1/', //仅为示例，并非真实的接口地址
       data: {
-        x: '',
-        y: ''
+        date: event.currentTarget.id,
       },
       header: {
         'content-type': 'application/json' // 默认值

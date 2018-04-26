@@ -9,7 +9,7 @@ Page({
     billMoney: 0.0,
     startDate: '2016-09-26',
     endDate: '2016-09-26',
-    date : '2016-09-26',
+    date: '2016-09-26',
     array: ['饮食', '服饰装容', '生活日用', '住房缴费', '交通出行', "通讯", "文教娱乐", "健康", "其他消费"],
     index: 0,
     selectItem: 1
@@ -25,7 +25,7 @@ Page({
     this.setData({
       startDate: time,
       endDate: time,
-      date:time
+      date: time
     });
   },
 
@@ -51,6 +51,12 @@ Page({
       success: function (res) {
         var obj = res.data;
         console.log(obj.status);
+        wx.showToast({
+          title: obj.status,
+          icon: 'succes',
+          duration: 1000,
+          mask: true
+        })
       }
     });
   },
@@ -69,7 +75,12 @@ Page({
       },
       success: function (res) {
         var obj = res.data;
-        console.log(obj.status);
+        wx.showToast({
+          title: obj.status,
+          icon: 'succes',
+          duration: 1000,
+          mask: true
+        })
       }
     });
   },

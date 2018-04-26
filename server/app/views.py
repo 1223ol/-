@@ -4,16 +4,33 @@
 # @Author  : daiker (daikersec@gmail.com)
 # @Link    : https://daikersec.com
 # @Version : $Id$
-from flask import request
+from flask import request,g
 from app import app,db
 from models import *
 import json
+import sys
+import datetime 
+import random                                                                                                 
+reload(sys)
+sys.setdefaultencoding('utf8')
+def str2Date(strDate):
+    dateList = strDate.split("-")
+    return datetime.date(int(dateList[0]),int(dateList[1]),int(dateList[2]))
+def date2Str(myDate):
+    return str(myDate.year) + "-" + str(myDate.month) + "-" + str(myDate.day)
+
 @app.route('/')
 @app.route('/index')
 def index():
-    consumption = 30
-    balance = 80
     t={}
+    date = request.args.get('date')
+    print request.args.get('b')
+    if date == '4' :
+        consumption = 30
+        balance = 40 - consumption
+    else:
+        consumption = random.randint(20,40)
+        balance = 40 - consumption
     t['consumption']=consumption
     t['balance']=balance    
     return json.dumps(t,ensure_ascii=False) 
@@ -25,30 +42,32 @@ def showPlan():
 
 @app.route("/showBill")
 def showBill():
+    allBill = db.session.query(Category).all()
     testData = {}
-    testData['Bill'] = [
-    {	
-    	"type":"吃饭",
-        "money":50,
-        "date":"2018-04-19"
-    },
-    {
-    	"type":"买衣服",
-        "money":200,
-        "date":"2018-04-19"
-    }
-    ]
-    testData['allSpend'] = 50
-    testData['surplus'] = 30
+    testData['Bill']  = []
+    for i in allBill:
+        bill = {}
+        bill['type'] = i.name
+        bill['money'] = i.money
+        bill['date'] = date2Str(db.session.query(Date).filter_by(dateId=i.dateId).first().date)
+        testData['Bill'] .append(bill)
+    testData['allSpend'] = 30
+    testData['surplus'] = 10
     return json.dumps(testData,ensure_ascii=False)
 
 @app.route("/addPlan")
 def addPlan():
     data={}
-    print request.args.get('money')
-    print request.args.get('startDate')
-    print request.args.get('endDate')
-    data['status'] = 'success'
+    money =  request.args.get('money')
+    startDate = request.args.get('startDate')
+    endDate = request.args.get('endDate')
+    myplan = Plan(str2Date(startDate),str2Date(endDate),money)
+    try:
+        db.session.add(myplan)
+        db.session.commit()
+        data['status'] = 'success'
+    except Exception as e:
+        data['status'] = 'Fail'
     return json.dumps(data,ensure_ascii=False)
 
 @app.route("/addBill")
@@ -58,20 +77,28 @@ def addBill():
     typeName = request.args.get('typeName')
     date = request.args.get('date')
     try:
-        # db.session.add(Date(date,1))
-        # db.session.commit()
-        # db.session.add(Category(typeName,money))
-        # db.session.commit()
+        dateId = db.session.query(Date.dateId).filter_by(date=str2Date(date)).first()
+        if dateId == None:
+            myDate = Date(str2Date(date),1)
+            db.session.add(myDate)
+            db.session.commit()
+            dateId = db.session.query(Date.dateId).filter_by(date=str2Date(date)).first()
+        # print(dateId[0])
+        bill = Category(unicode(typeName),dateId[0],money)
+        db.session.add(bill)
+        db.session.commit()
         data['status'] = 'success'
     except Exception as e:
         data['status'] = 'fail'
+        raise e
     return json.dumps(data,ensure_ascii=False)
 
 @app.route("/result")
 def result():
     data={}
-    print request.args.get('startDate')
-    print request.args.get('endDate')
+    startDate =  request.args.get('startDate')
+    endDate =  request.args.get('endDate')
+    db.session.query(Category).filter_by(name=unicode('饮食')).all()
     data['status'] = 'success'
     data['result'] =  [90, 110, 145, 95, 87, 160]
     return json.dumps(data,ensure_ascii=False)
