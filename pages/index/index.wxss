@@ -58,6 +58,7 @@ page {
 
 .item-content-current-day {
   flex-grow: 2;
+  width: 40vw;
 }
 
 
