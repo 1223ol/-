@@ -80,16 +80,25 @@ def showPlan():
 
 @app.route("/showBill")
 def showBill():
-    allBill = db.session.query(Category).all()
+    year = int(request.args.get('year'))
+    month = int(request.args.get('month'))
+    date = int(request.args.get('date'))
+    dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=1).first()
+    if dateId == None:
+        allBill = []
+    else:      
+        allBill = db.session.query(Category).filter_by(dateId = dateId[0]).all()
     testData = {}
     testData['Bill']  = []
+    allSpend = 0
     for i in allBill:
         bill = {}
         bill['type'] = i.name
         bill['money'] = i.money
+        allSpend += i.money
         bill['date'] = date2Str(db.session.query(Date).filter_by(dateId=i.dateId).first().date)
         testData['Bill'] .append(bill)
-    testData['allSpend'] = 30
+    testData['allSpend'] = allSpend
     testData['surplus'] = 10
     return json.dumps(testData,ensure_ascii=False)
 
