@@ -1,6 +1,8 @@
 /* pages/plan/index.wxss */
 
 .plan{
+  font-family:  	KaiTi;
+  font-size: 1.2rem;
   height: 100vh;
 }
 
