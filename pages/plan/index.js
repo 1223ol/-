@@ -43,7 +43,8 @@ Page({
       data: {
         money: that.data.billMoney,
         typeName: that.data.array[that.data.index],
-        date: that.data.date
+        date: that.data.date,
+        cookie: app.globalData.cookie
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -68,7 +69,8 @@ Page({
       data: {
         money: this.data.money,
         startDate: this.data.startDate,
-        endDate: this.data.endDate
+        endDate: this.data.endDate,
+        cookie:app.globalData.cookie
       },
       header: {
         'content-type': 'application/json' // 默认值

@@ -6,25 +6,14 @@ Page({
     currentDayList: '',
     currentObj: '',
     currentDay: '',
+    isSet:0,
     consumption: 0,
     balance: 0,
+    inPlan:0,
   },
   onLoad: function (options) {
-    var 
-     that = this;
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          console.log(res.code);
-          wx.request({
-            url: 'http://127.0.0.1/login',
-            data: {
-              js_code: res.code,
-            }
-          });
-        }
-      }
-    });
+    var that = this;
+  
     var currentObj = this.getCurrentDayString()
     this.setData({
       currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
@@ -32,26 +21,28 @@ Page({
       currentObj: currentObj
     })
   this.setSchedule(currentObj);
+  
   wx.request({
-    url: 'http://127.0.0.1/', //仅为示例，并非真实的接口地址
-    data: {
-      year: that.data.currentObj.getFullYear(),
-      month: that.data.currentObj.getMonth() + 1,
-      date: that.data.selectDate,
-    },
-    header: {
-      'content-type': 'application/json' // 默认值
-    },
-    success: function (res) {
-      var obj = res.data;
-      that.setData({
-        consumption: obj.consumption,
-        balance: obj.balance
+        url: 'http://127.0.0.1/', //仅为示例，并非真实的接口地址
+        data: {
+          year: that.data.currentObj.getFullYear(),
+          month: that.data.currentObj.getMonth() + 1,
+          date: currentObj.getDate(),
+          cookie:app.globalData.cookie
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          var obj = res.data;
+          that.setData({
+            consumption: obj.consumption,
+            balance: obj.balance,
+            inPlan: obj.inPlan,
+            isSet: obj.isSet
+          });
+        }
       });
-    }
-  });
-
-
 
   },
   doDay: function (e) {
@@ -100,6 +91,7 @@ Page({
     wx.navigateTo({
       url: '../showBill/index?year=' + that.data.currentObj.getFullYear() + '&month=' + (that.data.currentObj.getMonth() + 1) + "&date=" + event.currentTarget.id
     })
+
   },
   tapName: function (event) {
     var that = this;
@@ -110,16 +102,20 @@ Page({
           year: that.data.currentObj.getFullYear(),
           month: that.data.currentObj.getMonth() + 1,
           date: event.currentTarget.id,
+          cookie:app.globalData.cookie
         },
         header: {
           'content-type': 'application/json' // 默认值
         },
         success: function (res) {
           var obj = res.data;
+          console.log(obj.isSet);
           that.setData({
             selectDate: event.currentTarget.id,
             consumption: obj.consumption,
-            balance: obj.balance
+            balance: obj.balance,
+            inPlan:obj.inPlan,
+            isSet:obj.isSet
           });
         }
       });

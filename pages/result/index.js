@@ -69,7 +69,7 @@ Page({
       type: 'radar',
       categories: that.data.categories,
       series: [{
-        name: '成交量1',
+        name: '消费情况',
         data: that.data.canvasData
       }],
       width: windowWidth,
@@ -231,7 +231,8 @@ Page({
       url: 'http://127.0.0.1/result', //仅为示例，并非真实的接口地址
       data: {
         startDate: that.data.startDate,
-        endDate: that.data.endDate
+        endDate: that.data.endDate,
+        cookie:app.globalData.cookie
       },
       header: {
         'content-type': 'application/json' // 默认值

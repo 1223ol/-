@@ -27,7 +27,8 @@ Page({
           data: {
             year: options.year,
             month: options.month,
-            date: options.date
+            date: options.date,
+            cookie:app.globalData.cookie
           },
           header: {
               'content-type': 'application/json' // 默认值
