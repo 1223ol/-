@@ -67,23 +67,25 @@ Page({
   },
   tapName: function (event) {
     var that = this;
-    wx.request({
-      url: 'http://127.0.0.1/', //仅为示例，并非真实的接口地址
-      data: {
-        date: event.currentTarget.id,
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        var obj = res.data;
-        that.setData({
-          selectDate: event.currentTarget.id,
-          consumption: obj.consumption,
-          balance: obj.balance
-        });
-      }
-    });
+    if (event.currentTarget.id != '') {
+      wx.request({
+        url: 'http://127.0.0.1/', //仅为示例，并非真实的接口地址
+        data: {
+          date: event.currentTarget.id,
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          var obj = res.data;
+          that.setData({
+            selectDate: event.currentTarget.id,
+            consumption: obj.consumption,
+            balance: obj.balance
+          });
+        }
+      });
+    }
   },
   setSchedule: function (currentObj) {
     var that = this
