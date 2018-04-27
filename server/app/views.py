@@ -20,6 +20,18 @@ def str2Date(strDate):
     return datetime.date(int(dateList[0]),int(dateList[1]),int(dateList[2]))
 def date2Str(myDate):
     return str(myDate.year) + "-" + str(myDate.month) + "-" + str(myDate.day)
+def inPlan(myDate):
+    startDate = db.session.query(Plan.startTime).order_by(Plan.planId.desc()).first()[0]
+    endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
+    # print startDate
+    # print endDate
+    if myDate > startDate and myDate <endDate:
+        return True
+    return False
+def countDays():
+    startDate = db.session.query(Plan.startTime).order_by(Plan.planId.desc()).first()[0]
+    endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
+    return (endDate - startDate).days
 
 @app.route('/login')
 def login():
@@ -38,7 +50,7 @@ def login():
             db.session.add(myUser)
             db.session.commit()
             uid = db.session.query(User.uid).filter_by(openid = openid).first()
-        session['uid'] = uid
+        data['openid'] =  openid
         data['status'] = 'success'
     except Exception as e:
         data['status'] = 'fail'
@@ -53,6 +65,10 @@ def index():
     year = int(request.args.get('year'))
     month = int(request.args.get('month'))
     date = int(request.args.get('date'))
+    if inPlan(datetime.date(year,month,date)):
+        data['inPlan'] = 1
+    else:
+        data['inPlan'] = 0
     # if date == '4' :
     #     consumption = 30
     #     balance = 40 - consumption
@@ -61,16 +77,19 @@ def index():
         dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=1).first()
         if dateId == None:
             data['consumption']= 0
-            data['balance'] = 0
+            data['isSet'] = 0
         else:
             consumption = db.session.query(func.sum(Category.money)).filter_by(dateId = dateId[0]).first()[0]
             data['consumption'] = consumption
             money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
-            data['balance'] = money/30 - consumption
+            days = countDays()
+            data['isSet'] = 1
+            data['balance'] = money/days - consumption
     except Exception as e:
         raise e
     # data['consumption']=consumption
     # data['balance']=balance
+    # print data
     return json.dumps(data,ensure_ascii=False) 
 
 @app.route("/showPlan")
@@ -99,7 +118,9 @@ def showBill():
         bill['date'] = date2Str(db.session.query(Date).filter_by(dateId=i.dateId).first().date)
         testData['Bill'] .append(bill)
     testData['allSpend'] = allSpend
-    testData['surplus'] = 10
+    money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
+    days = countDays()
+    testData['surplus'] = money/days - allSpend
     return json.dumps(testData,ensure_ascii=False)
 
 @app.route("/addPlan")
@@ -108,7 +129,9 @@ def addPlan():
     money =  request.args.get('money')
     startDate = request.args.get('startDate')
     endDate = request.args.get('endDate')
-    myplan = Plan(str2Date(startDate),str2Date(endDate),money,1)
+    openid = request.args.get('cookie')
+    uid = db.session.query(User.uid).filter_by(openid = openid).first()
+    myplan = Plan(str2Date(startDate),str2Date(endDate),money,uid)
     try:
         db.session.add(myplan)
         db.session.commit()
@@ -124,10 +147,12 @@ def addBill():
     money =  request.args.get('money')
     typeName = request.args.get('typeName')
     date = request.args.get('date')
+    openid = request.args.get('cookie')
     try:
         dateId = db.session.query(Date.dateId).filter_by(date=str2Date(date)).first()
+        uid = db.session.query(User.uid).filter_by(openid = openid).first()
         if dateId == None:
-            myDate = Date(str2Date(date),1)
+            myDate = Date(str2Date(date),uid)
             db.session.add(myDate)
             db.session.commit()
             dateId = db.session.query(Date.dateId).filter_by(date=str2Date(date)).first()
@@ -147,7 +172,7 @@ def result():
     startDate =  request.args.get('startDate')
     endDate =  request.args.get('endDate')
     eat = db.session.query(func.sum(Category.money)).filter_by(name=unicode('饮食')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
-    wear = db.session.query(func.sum(Category.money)).filter_by(name=unicode('服饰妆容')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
+    wear = db.session.query(func.sum(Category.money)).filter_by(name=unicode('服饰装容')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
     live = db.session.query(func.sum(Category.money)).filter_by(name=unicode('生活日用')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
     house = db.session.query(func.sum(Category.money)).filter_by(name=unicode('住房缴费')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
     go = db.session.query(func.sum(Category.money)).filter_by(name=unicode('交通出行')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
@@ -160,7 +185,7 @@ def result():
     for i,content in enumerate(data['result']):
         if content == None:
             data['result'][i] = 0
-    # print(data['result'])
+    print(data['result'])
     return json.dumps(data,ensure_ascii=False)
 
 # @app.route("/login")
