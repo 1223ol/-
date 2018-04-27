@@ -10,13 +10,26 @@ Page({
     balance: 0,
   },
   onLoad: function (options) {
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          console.log(res.code);
+          wx.request({
+            url: 'http://127.0.0.1/login',
+            data: {
+              js_code: res.code,
+            }
+          });
+        }
+      }
+    });
     var currentObj = this.getCurrentDayString()
     this.setData({
       currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
       selectDate: currentObj.getDate(),
       currentObj: currentObj
     })
-    this.setSchedule(currentObj)
+    this.setSchedule(currentObj);
   },
   doDay: function (e) {
     var that = this
@@ -43,7 +56,8 @@ Page({
     currentObj = new Date(str)
     this.setData({
       currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
-      currentObj: currentObj
+      currentObj: currentObj,
+
     })
     this.setSchedule(currentObj);
   },
@@ -71,6 +85,8 @@ Page({
       wx.request({
         url: 'http://127.0.0.1/', //仅为示例，并非真实的接口地址
         data: {
+          year: that.data.currentObj.getFullYear(),
+          month: that.data.currentObj.getMonth() + 1,
           date: event.currentTarget.id,
         },
         header: {

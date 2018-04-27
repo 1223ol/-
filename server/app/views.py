@@ -4,13 +4,14 @@
 # @Author  : daiker (daikersec@gmail.com)
 # @Link    : https://daikersec.com
 # @Version : $Id$
-from flask import request,g
+from flask import request,g,session
 from app import app,db
 from models import *
 import json
 import sys
 import datetime 
-import random                                                                                                 
+import random
+import requests                                                                                                
 reload(sys)
 sys.setdefaultencoding('utf8')
 def str2Date(strDate):
@@ -19,20 +20,46 @@ def str2Date(strDate):
 def date2Str(myDate):
     return str(myDate.year) + "-" + str(myDate.month) + "-" + str(myDate.day)
 
+@app.route('/login')
+def login():
+    data = {}
+    APPID = 'wx69349d4642d367c0'
+    SECRET = 'fd33dc688c6e08418787d938dd8ec779'
+    JSCODE = request.args.get('js_code')
+    url = "https://api.weixin.qq.com/sns/jscode2session?appid={APPID}&secret={SECRET}&js_code={JSCODE}&grant_type=authorization_code".format(APPID=APPID,SECRET=SECRET,JSCODE=JSCODE)
+    r = requests.get(url)
+    result= eval(r.text)
+    openid = result['openid']
+    try:
+        uid = db.session.query(User.uid).filter_by(openid = openid).first()
+        if uid == None:
+            myUser = User(openid)
+            db.session.add(myUser)
+            db.session.commit()
+            uid = db.session.query(User.uid).filter_by(openid = openid).first()
+        session['uid'] = uid
+        data['status'] = 'success'
+    except Exception as e:
+        data['status'] = 'fail'
+        raise e
+    return json.dumps(data,ensure_ascii=False)
+
+
 @app.route('/')
 @app.route('/index')
 def index():
     t={}
+    year = request.args.get('year')
+    month = request.args.get('month')
     date = request.args.get('date')
-    print request.args.get('b')
-    if date == '4' :
-        consumption = 30
-        balance = 40 - consumption
-    else:
-        consumption = random.randint(20,40)
-        balance = 40 - consumption
+    # if date == '4' :
+    #     consumption = 30
+    #     balance = 40 - consumption
+    # else:
+    consumption = random.randint(20,40)
+    balance = 40 - consumption
     t['consumption']=consumption
-    t['balance']=balance    
+    t['balance']=balance
     return json.dumps(t,ensure_ascii=False) 
 
 @app.route("/showPlan")
@@ -103,12 +130,12 @@ def result():
     data['result'] =  [90, 110, 145, 95, 87, 160]
     return json.dumps(data,ensure_ascii=False)
 
-@app.route("/login")
-def login():
-    data = {}
-    data['status'] = 'success'
-    data['result'] =  [90, 110, 145, 95, 87, 160]
-    return json.dumps(data,ensure_ascii=False)
+# @app.route("/login")
+# def login():
+#     data = {}
+#     data['status'] = 'success'
+#     data['result'] =  [90, 110, 145, 95, 87, 160]
+#     return json.dumps(data,ensure_ascii=False)
 
 @app.route("/.well-known/pki-validation/fileauth.txt")
 def verity():

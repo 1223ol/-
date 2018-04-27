@@ -10,14 +10,12 @@ from app import db
 class User(db.Model):
     __tablename__ = 'user'
     uid = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(64), index = True)
-    unionId = db.Column(db.Integer, index = True)
+    openid = db.Column(db.String(64), index = True)
     # date = db.relationship('Date', backref='Customer', lazy='dynamic')
-    def __init__(self,username,unionId):
-        self.username = username
-        self.unionId = unionId
+    def __init__(self,unionId):
+        self.openid = openid
     def __repr__(self):
-        return '<User %r>' % (self.username)
+        return '<User %r>' % (self.uid)
 
 
 
