@@ -5,6 +5,7 @@
 # @Link    : https://daikersec.com
 # @Version : $Id$
 from flask import request,g,session
+from sqlalchemy.sql import func
 from app import app,db
 from models import *
 import json
@@ -48,23 +49,33 @@ def login():
 @app.route('/')
 @app.route('/index')
 def index():
-    t={}
-    year = request.args.get('year')
-    month = request.args.get('month')
-    date = request.args.get('date')
+    data={}
+    year = int(request.args.get('year'))
+    month = int(request.args.get('month'))
+    date = int(request.args.get('date'))
     # if date == '4' :
     #     consumption = 30
     #     balance = 40 - consumption
     # else:
-    consumption = random.randint(20,40)
-    balance = 40 - consumption
-    t['consumption']=consumption
-    t['balance']=balance
-    return json.dumps(t,ensure_ascii=False) 
+    try:
+        dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=1).first()
+        if dateId == None:
+            data['consumption']= 0
+            data['balance'] = 0
+        else:
+            consumption = db.session.query(func.sum(Category.money)).filter_by(dateId = dateId[0]).first()[0]
+            data['consumption'] = consumption
+            money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
+            data['balance'] = money/30 - consumption
+    except Exception as e:
+        raise e
+    # data['consumption']=consumption
+    # data['balance']=balance
+    return json.dumps(data,ensure_ascii=False) 
 
 @app.route("/showPlan")
 def showPlan():
-    print(db.session.query('user').first())
+    # print(db.session.query('user').first())
     return "123"
 
 @app.route("/showBill")
@@ -88,13 +99,14 @@ def addPlan():
     money =  request.args.get('money')
     startDate = request.args.get('startDate')
     endDate = request.args.get('endDate')
-    myplan = Plan(str2Date(startDate),str2Date(endDate),money)
+    myplan = Plan(str2Date(startDate),str2Date(endDate),money,1)
     try:
         db.session.add(myplan)
         db.session.commit()
         data['status'] = 'success'
     except Exception as e:
         data['status'] = 'Fail'
+        print(e)
     return json.dumps(data,ensure_ascii=False)
 
 @app.route("/addBill")
