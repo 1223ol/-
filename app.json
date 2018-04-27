@@ -1,11 +1,12 @@
 {
   "pages": [
     "pages/index/index",
+"pages/plan/index",
+
 "pages/result/index",    
 
 
 
-"pages/plan/index",
 
 "pages/showBill/index",
 

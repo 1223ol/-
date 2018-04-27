@@ -8,7 +8,7 @@
   <view class="plan" wx:if="{{selectItem==1}}">
     <view class="itemView-1">
 
-      <text class="itemTextforplan">请输入总金额金额：</text>
+      <text class="itemTextforplan">请输入总金额：</text>
 
       <input class="flex-borider-both" class='itemPriceforplan' name="userName" placeholder="0.00" bindinput='changMoney' />
     </view>

@@ -1,5 +1,5 @@
 <!--pages/showBill/index.wxml-->
-<view class='showBill' style="background: url('../../images/back8.jpg');">
+<view class='showBill' style="background: url('../../images/back10.jpg');">
   <view id="panel" class="flex-column">
     <view class="flex-cell flex-row">
       <text class="flex-cell flex-row">类别</text>

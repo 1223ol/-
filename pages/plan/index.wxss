@@ -38,8 +38,8 @@
 .itemTextforplan{
 
   position: absolute;
-  left: 35%;
 
+  left: 30%;
   height: 25px;
  
   color: black;
@@ -91,11 +91,7 @@
 }
 
 
-.itemTextforplan{
-  position: absolute;
 
-  left: 30%;
-}
 
 .flex-borider-both{
   border-top: 1rpx solid #ddd;
@@ -104,9 +100,10 @@
 }
 
 .itemPriceforplan{
-  position: absolute;
+  
   top:45%;
-  left: 45%;
+    position: relative;
+ text-align: center;
 }
 
 .itemStartDateforplan{
@@ -191,8 +188,8 @@
 }
 
 .itemPriceforBill{
-  position: absolute;
-  left: 45%;
+   position: relative;
+ text-align: center;
   top: 45%;
 }
 
@@ -209,9 +206,9 @@
 }
 
 .itemType{
-  position: absolute;
+  position: relative;
   top:45%;
-  left: 45%;  
+ text-align: center;
 }
 
 
