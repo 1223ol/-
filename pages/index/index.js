@@ -13,15 +13,15 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
-  
-    var currentObj = this.getCurrentDayString()
+    var currentObj = that.getCurrentDayString();
     this.setData({
       currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
       selectDate: currentObj.getDate(),
       currentObj: currentObj
     })
   this.setSchedule(currentObj);
-  
+    app.getAuthKey().then(function (res) {
+      console.log("login over");
   wx.request({
         url: 'http://127.0.0.1/', //仅为示例，并非真实的接口地址
         data: {
@@ -43,7 +43,7 @@ Page({
           });
         }
       });
-
+});
   },
   doDay: function (e) {
     var that = this

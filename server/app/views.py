@@ -44,7 +44,7 @@ def login():
     result= eval(r.text)
     openid = result['openid']
     try:
-        uid = db.session.query(User.uid).filter_by(openid = openid).first()
+        uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
         if uid == None:
             myUser = User(openid)
             db.session.add(myUser)
@@ -74,7 +74,9 @@ def index():
     #     balance = 40 - consumption
     # else:
     try:
-        dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=1).first()
+        openid = request.args.get('cookie')
+        uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
+        dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=uid).first()
         if dateId == None:
             data['consumption']= 0
             data['isSet'] = 0
@@ -102,7 +104,9 @@ def showBill():
     year = int(request.args.get('year'))
     month = int(request.args.get('month'))
     date = int(request.args.get('date'))
-    dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=1).first()
+    openid = request.args.get('cookie')
+    uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
+    dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=uid).first()
     if dateId == None:
         allBill = []
     else:      
@@ -130,7 +134,7 @@ def addPlan():
     startDate = request.args.get('startDate')
     endDate = request.args.get('endDate')
     openid = request.args.get('cookie')
-    uid = db.session.query(User.uid).filter_by(openid = openid).first()
+    uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
     myplan = Plan(str2Date(startDate),str2Date(endDate),money,uid)
     try:
         db.session.add(myplan)
@@ -150,7 +154,7 @@ def addBill():
     openid = request.args.get('cookie')
     try:
         dateId = db.session.query(Date.dateId).filter_by(date=str2Date(date)).first()
-        uid = db.session.query(User.uid).filter_by(openid = openid).first()
+        uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
         if dateId == None:
             myDate = Date(str2Date(date),uid)
             db.session.add(myDate)
