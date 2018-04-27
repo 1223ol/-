@@ -257,10 +257,17 @@ Page({
 
   },
   listenerPickerSelected:function(e){
+    var that = this;
     console.log("listenerPickerSelected is invocked");
     this.setData({
       index: e.detail.value
     });
+    switch (that.data.index) {
+      case "0": that.drawRadar(); break;
+      case "1": that.drawPip(); break;
+      case "2": that.drawColumn(); break;
+      default: that.drawLine(); break;
+    };
   },
   createSimulationData: function () {
     var categories = [];

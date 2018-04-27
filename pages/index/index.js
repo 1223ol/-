@@ -10,6 +10,8 @@ Page({
     balance: 0,
   },
   onLoad: function (options) {
+    var 
+     that = this;
     wx.login({
       success: function (res) {
         if (res.code) {
@@ -29,7 +31,28 @@ Page({
       selectDate: currentObj.getDate(),
       currentObj: currentObj
     })
-    this.setSchedule(currentObj);
+  this.setSchedule(currentObj);
+  wx.request({
+    url: 'http://127.0.0.1/', //仅为示例，并非真实的接口地址
+    data: {
+      year: that.data.currentObj.getFullYear(),
+      month: that.data.currentObj.getMonth() + 1,
+      date: that.data.selectDate,
+    },
+    header: {
+      'content-type': 'application/json' // 默认值
+    },
+    success: function (res) {
+      var obj = res.data;
+      that.setData({
+        consumption: obj.consumption,
+        balance: obj.balance
+      });
+    }
+  });
+
+
+
   },
   doDay: function (e) {
     var that = this
@@ -73,11 +96,10 @@ Page({
   },
   jumpToBill: function (event) {
     var that = this;
+    console.log(event.currentTarget.id);
     wx.navigateTo({
-      url: '../showBill/index'
+      url: '../showBill/index?year=' + that.data.currentObj.getFullYear() + '&month=' + (that.data.currentObj.getMonth() + 1) + "&date=" + event.currentTarget.id
     })
-    console.log(this.data.selectDate);
-
   },
   tapName: function (event) {
     var that = this;

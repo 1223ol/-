@@ -25,8 +25,9 @@ Page({
         wx.request({
           url: 'http://127.0.0.1/showBill', //仅为示例，并非真实的接口地址
           data: {
-             x: '',
-             y: ''
+            year: options.year,
+            month: options.month,
+            date: options.date
           },
           header: {
               'content-type': 'application/json' // 默认值
