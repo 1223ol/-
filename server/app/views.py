@@ -80,16 +80,25 @@ def showPlan():
 
 @app.route("/showBill")
 def showBill():
-    allBill = db.session.query(Category).all()
+    year = int(request.args.get('year'))
+    month = int(request.args.get('month'))
+    date = int(request.args.get('date'))
+    dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=1).first()
+    if dateId == None:
+        allBill = []
+    else:      
+        allBill = db.session.query(Category).filter_by(dateId = dateId[0]).all()
     testData = {}
     testData['Bill']  = []
+    allSpend = 0
     for i in allBill:
         bill = {}
         bill['type'] = i.name
         bill['money'] = i.money
+        allSpend += i.money
         bill['date'] = date2Str(db.session.query(Date).filter_by(dateId=i.dateId).first().date)
         testData['Bill'] .append(bill)
-    testData['allSpend'] = 30
+    testData['allSpend'] = allSpend
     testData['surplus'] = 10
     return json.dumps(testData,ensure_ascii=False)
 
@@ -137,9 +146,21 @@ def result():
     data={}
     startDate =  request.args.get('startDate')
     endDate =  request.args.get('endDate')
-    db.session.query(Category).filter_by(name=unicode('饮食')).all()
+    eat = db.session.query(func.sum(Category.money)).filter_by(name=unicode('饮食')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
+    wear = db.session.query(func.sum(Category.money)).filter_by(name=unicode('服饰妆容')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
+    live = db.session.query(func.sum(Category.money)).filter_by(name=unicode('生活日用')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
+    house = db.session.query(func.sum(Category.money)).filter_by(name=unicode('住房缴费')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
+    go = db.session.query(func.sum(Category.money)).filter_by(name=unicode('交通出行')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
+    chat = db.session.query(func.sum(Category.money)).filter_by(name=unicode('通讯')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).first()[0]
     data['status'] = 'success'
-    data['result'] =  [90, 110, 145, 95, 87, 160]
+    # print(dateId)
+    # '饮食', '服饰妆容', '生活日用', '住房缴费', '交通出行', '通讯']
+    # db.session.query(func.sum(Category.money)).filter_by(name=unicode('饮食')).first()[0]
+    data['result'] =  [eat, wear, live, house, go, chat]
+    for i,content in enumerate(data['result']):
+        if content == None:
+            data['result'][i] = 0
+    # print(data['result'])
     return json.dumps(data,ensure_ascii=False)
 
 # @app.route("/login")
