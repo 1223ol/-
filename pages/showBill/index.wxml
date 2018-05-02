@@ -1,5 +1,5 @@
 <!--pages/showBill/index.wxml-->
-<view class='showBill' style="background: url('../../images/back10.jpg');">
+<view class='showBill' style="background: url('https://upload-images.jianshu.io/upload_images/11954490-bc8cf26c54a95d07.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/494');">
   <view id="panel" class="flex-column">
     <view class="flex-cell flex-row">
       <text class="flex-cell flex-row">类别</text>

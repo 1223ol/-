@@ -15,7 +15,7 @@ page {
 .box {
   display: block;
   margin: 10px;
-  height: 67%;
+  height: 70%;
   border-style: solid;
   color: black;
   background-color: rgba(255, 255, 255, 0.7);

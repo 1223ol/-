@@ -1,9 +1,9 @@
-<view class="page" style="background: url('../../images/back6.jpg');">
+<view class="page" style="background: url('https://upload-images.jianshu.io/upload_images/11954490-0dff0f0a2fd9188b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/480');">
   <view class="box">
     <view class="box-flex">
       <view class="flex-item">
         <view class="item-content" bindtap="doDay" data-key='left'>
-          <image class="leftArrow" src="../../images/箭头左.png" mode="aspectFill"> </image> 
+          <image class="leftArrow" src="https://upload-images.jianshu.io/upload_images/11954490-23c76ea7a8bf0f75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/32" mode="aspectFill"> </image> 
 
         </view>
       </view>
@@ -12,7 +12,7 @@
       </view>
       <view class="flex-item">
         <view class="item-content" bindtap="doDay" data-key="right">
-          <image class="rightArrow" src="../../images/箭头右.png" mode="aspectFill"> </image>  
+          <image class="rightArrow" src="https://upload-images.jianshu.io/upload_images/11954490-1c85a53f0436e0ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/32" mode="aspectFill"> </image>  
         </view>
       </view>
     </view>
