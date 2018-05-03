@@ -38,6 +38,8 @@ def inPlan(myDate):
     return False
 
 def countDays():
+    if not havaPlan():
+        return 0
     startDate = db.session.query(Plan.startTime).order_by(Plan.planId.desc()).first()[0]
     endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
     return (endDate - startDate).days
@@ -59,7 +61,7 @@ def balanceCalcu(today):
     if spentMon == None:
         spent = 0
     else:
-        spent = spentMon[0]
+        spent = spentMon
     print "spent = {i}".format(i = spent)
     return (allMoney - spent)/restDay
 
