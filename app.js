@@ -12,7 +12,7 @@ App({
             if (res.code) {
               console.log(res.code);
               wx.request({
-                url: 'http://127.0.0.1/login', //仅为示例，并非真实的接口地址
+                url: 'https://tally.slickghost.com/login', //仅为示例，并非真s实的接口地址
                 data: {
                   js_code: res.code
                 },

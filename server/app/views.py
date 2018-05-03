@@ -25,7 +25,7 @@ def inPlan(myDate):
     endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
     # print startDate
     # print endDate
-    if myDate > startDate and myDate <endDate:
+    if myDate >= startDate and myDate =< endDate:
         return True
     return False
 def countDays():
@@ -46,10 +46,13 @@ def login():
     try:
         uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
         if uid == None:
+            print "None,I will add it on database!!!"
             myUser = User(openid)
             db.session.add(myUser)
             db.session.commit()
+            print "Yep,I hava add it on database"
             uid = db.session.query(User.uid).filter_by(openid = openid).first()
+            print uid
         data['openid'] =  openid
         data['status'] = 'success'
     except Exception as e:

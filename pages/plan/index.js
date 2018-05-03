@@ -40,7 +40,7 @@ Page({
     console.log("addBill is invoked");
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1/addBill', //仅为示例，并非真实的接口地址
+      url: 'https://tally.slickghost.com/addBill', //仅为示例，并非真实的接口地址
       data: {
         money: that.data.billMoney,
         typeName: that.data.array[that.data.index],
@@ -66,7 +66,7 @@ Page({
     console.log("addPlan is invoke");
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1/addPlan', //仅为示例，并非真实的接口地址
+      url: 'https://tally.slickghost.com/addPlan', //仅为示例，并非真实的接口地址
       data: {
         money: this.data.money,
         startDate: this.data.startDate,
@@ -122,10 +122,14 @@ Page({
   },
   listenerEndDatePickerSelected: function (e) {
     console.log("listenerEndDatePickerSelected  is invoke");
+    var d1 = e.detail.value;
+    var d2 = this.data.startDate;
+    if((new Date(d1.replace(/-/g, "\/"))) > (new Date(d2.replace(/-/g, "\/")))){
     //调用setData()重新绘制
     this.setData({
       endDate: e.detail.value,
     });
+    }
   },
 
   /**

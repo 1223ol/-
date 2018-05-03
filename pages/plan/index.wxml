@@ -10,7 +10,7 @@
 
       <text class="itemTextforplan">请输入总金额：</text>
 
-      <input class="flex-borider-both" class='itemPriceforplan' name="userName" placeholder="0.00" bindinput='changMoney' />
+      <input class="flex-borider-both" class='itemPriceforplan'  type="digit"  value="{{money}}" bindinput='changMoney'  />
     </view>
 
     <view class="itemView-2">
@@ -41,7 +41,7 @@
 
       <text class="itemTextforbill">请输入金额：</text>
 
-      <input class="flex-borider-both" class='itemPriceforBill' name="userName" placeholder="0.00" bindinput='changBillMoney' />
+      <input class="flex-borider-both" class='itemPriceforBill' type="digit" name="userName" placeholder="0.00" bindinput='changBillMoney' />
     </view>
 
     <view class="itemView-2">
