@@ -36,6 +36,7 @@ def inPlan(myDate):
     if myDate >= startDate and myDate <= endDate:
         return True
     return False
+
 def countDays():
     startDate = db.session.query(Plan.startTime).order_by(Plan.planId.desc()).first()[0]
     endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
@@ -43,13 +44,17 @@ def countDays():
 
 
 def balanceCalcu(today):
+    print "today"
+    print today
     allMoney = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
+    print "allmoney : {i}".format(i = allMoney)
     startDate = db.session.query(Plan.startTime).order_by(Plan.planId.desc()).first()[0]
     endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
     restDay = (endDate - today).days
-    spent = 12
-    planMoney = 12
-
+    print restDay
+    spent = db.session.query(func.sum(Category.money)).join(Date).filter(Date.date.between(startDate,today)).first()[0]
+    print "spent = {i}".format(i = spent)
+    return (allMoney - spent)/restDay
 
 
 @app.route('/login')
@@ -110,7 +115,7 @@ def index():
         days = countDays()
         if inPlan(datetime.date(year,month,date)) and days != 0:
             money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
-            data['balance'] =  round((money/days - data['consumption']),2)
+            data['balance'] =  round((balanceCalcu(datetime.date(year,month,day)) - data['consumption']),2)
         else:
             data['balance'] = 0
     except Exception as e:
@@ -151,7 +156,7 @@ def showBill():
     money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
     days = countDays()
     if days != 0:
-        testData['surplus'] = round((money/days - allSpend),2)
+        testData['surplus'] = round((balanceCalcu(datetime.date(year,month,day)) - allSpend),2)
     else:
         testData['surplus'] = 0
     return json.dumps(testData,ensure_ascii=False)
