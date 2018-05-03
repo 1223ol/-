@@ -89,15 +89,15 @@ def index():
             money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
             days = countDays()
             data['isSet'] = 1
-            if inPlan(datetime.date(year,month,date)):
-                data['balance'] = money/days - consumption
+            if inPlan(datetime.date(year,month,date)) and days != 0:
+                data['balance'] =  round((money/days - consumption),2)
             else:
                 data['balance'] = 0
     except Exception as e:
         raise e
     # data['consumption']=consumption
     # data['balance']=balance
-    # print data
+    print data
     return json.dumps(data,ensure_ascii=False) 
 
 @app.route("/showPlan")
@@ -130,7 +130,10 @@ def showBill():
     testData['allSpend'] = allSpend
     money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
     days = countDays()
-    testData['surplus'] = money/days - allSpend
+    if days != 0:
+        testData['surplus'] = round((money/days - allSpend),2)
+    else:
+        testData['surplus'] = 0
     return json.dumps(testData,ensure_ascii=False)
 
 @app.route("/addPlan")
@@ -140,6 +143,9 @@ def addPlan():
     startDate = request.args.get('startDate')
     endDate = request.args.get('endDate')
     openid = request.args.get('cookie')
+    if str2Date(startDate) >= str2Date(endDate):
+        data['status'] = 'Fail'
+        return json.dumps(data,ensure_ascii=False)
     uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
     myplan = Plan(str2Date(startDate),str2Date(endDate),money,uid)
     try:

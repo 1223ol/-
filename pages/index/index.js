@@ -109,7 +109,6 @@ Page({
         },
         success: function (res) {
           var obj = res.data;
-          console.log(obj.isSet);
           that.setData({
             selectDate: event.currentTarget.id,
             consumption: obj.consumption,
@@ -117,6 +116,10 @@ Page({
             inPlan:obj.inPlan,
             isSet:obj.isSet
           });
+          console.log("-------------");
+          console.log(that.data.isSet);
+          console.log(that.data.inPlan);
+          console.log("-------------");
         }
       });
     }
