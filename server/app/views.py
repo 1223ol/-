@@ -52,6 +52,9 @@ def balanceCalcu(today):
     endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
     restDay = (endDate - today).days + 1
     print restDay
+    print startDate
+    print today + datetime.timedelta(days = -1)
+    print endDate
     if today == startDate:
         spent = 0
     else:
@@ -159,7 +162,7 @@ def showBill():
     money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
     days = countDays()
     if days != 0:
-        testData['surplus'] = round((balanceCalcu(datetime.date(year,month,day)) - allSpend),2)
+        testData['surplus'] = round((balanceCalcu(datetime.date(year,month,date)) - allSpend),2)
     else:
         testData['surplus'] = 0
     return json.dumps(testData,ensure_ascii=False)
