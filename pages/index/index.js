@@ -116,10 +116,10 @@ Page({
             inPlan:obj.inPlan,
             isSet:obj.isSet
           });
-          console.log("-------------");
-          console.log(that.data.isSet);
-          console.log(that.data.inPlan);
-          console.log("-------------");
+          // console.log("-------------");
+          // console.log(that.data.isSet);
+          // console.log(that.data.inPlan);
+          // console.log("-------------");
         }
       });
     }

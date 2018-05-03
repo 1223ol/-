@@ -20,7 +20,15 @@ def str2Date(strDate):
     return datetime.date(int(dateList[0]),int(dateList[1]),int(dateList[2]))
 def date2Str(myDate):
     return str(myDate.year) + "-" + str(myDate.month) + "-" + str(myDate.day)
+
+def havaPlan():
+    if db.session.query(Plan.startTime).order_by(Plan.planId.desc()).first() == None:
+        return False
+    return True
+
 def inPlan(myDate):
+    if not havaPlan():
+        return False
     startDate = db.session.query(Plan.startTime).order_by(Plan.planId.desc()).first()[0]
     endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
     # print startDate
@@ -32,6 +40,17 @@ def countDays():
     startDate = db.session.query(Plan.startTime).order_by(Plan.planId.desc()).first()[0]
     endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
     return (endDate - startDate).days
+
+
+def balanceCalcu(today):
+    allMoney = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
+    startDate = db.session.query(Plan.startTime).order_by(Plan.planId.desc()).first()[0]
+    endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
+    restDay = (endDate - today).days
+    spent = 12
+    planMoney = 12
+
+
 
 @app.route('/login')
 def login():
@@ -67,7 +86,7 @@ def index():
     data={}
     year = int(request.args.get('year'))
     month = int(request.args.get('month'))
-    date = int(request.args.get('date'))
+    date = int(request.args.get('date'))  
     if inPlan(datetime.date(year,month,date)):
         data['inPlan'] = 1
     else:
@@ -80,19 +99,20 @@ def index():
         openid = request.args.get('cookie')
         uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
         dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=uid).first()
+        days = countDays()
         if dateId == None:
             data['consumption']= 0
             data['isSet'] = 0
         else:
             consumption = db.session.query(func.sum(Category.money)).filter_by(dateId = dateId[0]).first()[0]
             data['consumption'] = consumption
-            money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
-            days = countDays()
             data['isSet'] = 1
-            if inPlan(datetime.date(year,month,date)) and days != 0:
-                data['balance'] =  round((money/days - consumption),2)
-            else:
-                data['balance'] = 0
+        days = countDays()
+        if inPlan(datetime.date(year,month,date)) and days != 0:
+            money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
+            data['balance'] =  round((money/days - data['consumption']),2)
+        else:
+            data['balance'] = 0
     except Exception as e:
         raise e
     # data['consumption']=consumption

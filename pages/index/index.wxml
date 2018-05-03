@@ -58,7 +58,7 @@
       <text style='float:left;left:100px'>总消费</text>
       <text style='float:right;right:60px;'>{{consumption}}</text>
     </view>
-    <view wx:if="{{inPlan == 1 & isSet  == 1}}" class="current-remainer">
+    <view wx:if="{{inPlan == 1 }}" class="current-remainer">
       <text style='float:left;left:100px'>今日剩余</text>
       <text style='float:right;right:60px;'>{{balance}}</text>
     </view>
