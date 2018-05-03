@@ -25,7 +25,7 @@ def inPlan(myDate):
     endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
     # print startDate
     # print endDate
-    if myDate >= startDate and myDate =< endDate:
+    if myDate >= startDate and myDate <= endDate:
         return True
     return False
 def countDays():
@@ -44,7 +44,7 @@ def login():
     result= eval(r.text)
     openid = result['openid']
     try:
-        uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
+        uid = db.session.query(User.uid).filter_by(openid = openid).first()
         if uid == None:
             print "None,I will add it on database!!!"
             myUser = User(openid)
@@ -89,7 +89,10 @@ def index():
             money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
             days = countDays()
             data['isSet'] = 1
-            data['balance'] = money/days - consumption
+            if inPlan(datetime.date(year,month,date)):
+                data['balance'] = money/days - consumption
+            else:
+                data['balance'] = 0
     except Exception as e:
         raise e
     # data['consumption']=consumption

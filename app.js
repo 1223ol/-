@@ -24,6 +24,7 @@ App({
                   var app = getApp();
                   var obj = res.data;
                   app.globalData.cookie = obj.openid;
+                  console.log(app.globalData.cookie);
                   var res = {
                     status: 200,
                   }
