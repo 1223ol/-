@@ -98,7 +98,7 @@ page {
   height: 30px;
   width: 30px;
   top: 4vh;
-  right: 10%;
+  right: 15%;
 }
 
 
@@ -107,5 +107,5 @@ page {
   height: 30px;
   width: 30px;
   top: 4vh;
-  left: 10%;
+  left: 15%;
 }
