@@ -55,7 +55,7 @@ def balanceCalcu(today):
     print startDate
     print today + datetime.timedelta(days = -1)
     print endDate
-    spentMon = db.session.query(func.sum(Category.money)).join(Date).filter(Date.date.between(startDate,(today + datetime.timedelta(days = -1)))).first()
+    spentMon = db.session.query(func.sum(Category.money)).join(Date).filter(Date.date.between(startDate,(today + datetime.timedelta(days = -1)))).first()[0]
     if spentMon == None:
         spent = 0
     else:
