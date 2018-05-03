@@ -50,9 +50,12 @@ def balanceCalcu(today):
     print "allmoney : {i}".format(i = allMoney)
     startDate = db.session.query(Plan.startTime).order_by(Plan.planId.desc()).first()[0]
     endDate = db.session.query(Plan.endTime).order_by(Plan.planId.desc()).first()[0]
-    restDay = (endDate - today).days
+    restDay = (endDate - today).days + 1
     print restDay
-    spent = db.session.query(func.sum(Category.money)).join(Date).filter(Date.date.between(startDate,today)).first()[0]
+    if today == startDate:
+        spent = 0
+    else:
+        spent = db.session.query(func.sum(Category.money)).join(Date).filter(Date.date.between(startDate,(today + datetime.timedelta(days = -1)))).first()[0]
     print "spent = {i}".format(i = spent)
     return (allMoney - spent)/restDay
 
@@ -115,7 +118,7 @@ def index():
         days = countDays()
         if inPlan(datetime.date(year,month,date)) and days != 0:
             money = db.session.query(Plan.Money).order_by(Plan.planId.desc()).first()[0]
-            data['balance'] =  round((balanceCalcu(datetime.date(year,month,day)) - data['consumption']),2)
+            data['balance'] =  round((balanceCalcu(datetime.date(year,month,date)) - data['consumption']),2)
         else:
             data['balance'] = 0
     except Exception as e:
