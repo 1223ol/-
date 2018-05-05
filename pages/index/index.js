@@ -15,7 +15,7 @@ Page({
     var that = this;
     var currentObj = that.getCurrentDayString();
     this.setData({
-      currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
+      currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' ,
       selectDate: currentObj.getDate(),
       currentObj: currentObj
     })
@@ -69,7 +69,7 @@ Page({
     }
     currentObj = new Date(str)
     this.setData({
-      currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
+      currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' ,
       currentObj: currentObj,
 
     })

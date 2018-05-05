@@ -212,7 +212,7 @@ sure id is OK
 def addBill():
     data={}
     money =  request.args.get('money')
-    typeName = request.args.get('typeName')
+    typeName = request.args.get('typeName').strip()
     date = request.args.get('date')
     openid = request.args.get('cookie')
     try:
@@ -242,6 +242,7 @@ def result():
     endDate =  request.args.get('endDate')
     openid = request.args.get('cookie')
     uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
+    # eat = db.session.query(func.sum(Category.money)).filter_by(name=unicode('饮食 ')).first()[0]
     eat = db.session.query(func.sum(Category.money)).filter_by(name=unicode('饮食')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).filter_by(uid = uid).first()[0]
     wear = db.session.query(func.sum(Category.money)).filter_by(name=unicode('服饰装容')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).filter_by(uid = uid).first()[0]
     live = db.session.query(func.sum(Category.money)).filter_by(name=unicode('生活日用')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).filter_by(uid = uid).first()[0]
@@ -249,6 +250,7 @@ def result():
     go = db.session.query(func.sum(Category.money)).filter_by(name=unicode('交通出行')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).filter_by(uid = uid).first()[0]
     chat = db.session.query(func.sum(Category.money)).filter_by(name=unicode('通讯')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).filter_by(uid = uid).first()[0]
     data['status'] = 'success'
+    print(eat)
     # print(dateId)
     # '饮食', '服饰妆容', '生活日用', '住房缴费', '交通出行', '通讯']
     # db.session.query(func.sum(Category.money)).filter_by(name=unicode('饮食')).first()[0]
