@@ -54,24 +54,31 @@ def countDays(uid):
 sure id is OK
 """
 def balanceCalcu(today,uid):
-    print "today"
-    print today
+    # print "today"
+    # print today
     allMoney = db.session.query(Plan.Money).filter_by(uid = uid).order_by(Plan.planId.desc()).first()[0]
-    print "allmoney : {i}".format(i = allMoney)
+    # print "allmoney : {i}".format(i = allMoney)
     startDate = db.session.query(Plan.startTime).filter_by(uid = uid).order_by(Plan.planId.desc()).first()[0]
     endDate = db.session.query(Plan.endTime).filter_by(uid = uid).order_by(Plan.planId.desc()).first()[0]
     restDay = (endDate - today).days + 1
-    print restDay
-    print startDate
-    print today + datetime.timedelta(days = -1)
-    print endDate
+    # print restDay
+    # print startDate
+    # print today + datetime.timedelta(days = -1)
+    # print endDate
     spentMon = db.session.query(func.sum(Category.money)).join(Date).filter_by(uid = uid).filter(Date.date.between(startDate,(today + datetime.timedelta(days = -1)))).first()[0]
     if spentMon == None:
         spent = 0
     else:
         spent = spentMon
-    print "spent = {i}".format(i = spent)
+    # print "spent = {i}".format(i = spent)
     return (allMoney - spent)/restDay
+
+def countRestDay(today,uid):
+    endDate = db.session.query(Plan.endTime).filter_by(uid = uid).order_by(Plan.planId.desc()).first()[0]
+    restDays = (endDate - today).days + 1
+    return restDays
+
+
 """
 sure id is OK
 """
@@ -136,6 +143,9 @@ def index():
         if inPlan(datetime.date(year,month,date),uid) and days != 0:
             money = db.session.query(Plan.Money).filter_by(uid = uid).order_by(Plan.planId.desc()).first()[0]
             data['balance'] =  round((balanceCalcu(datetime.date(year,month,date),uid) - data['consumption']),2)
+            restDays = countRestDay(datetime.date(year,month,date),uid)
+            if datetime.date(year,month,date) >= datetime.date.today() and restDays >= 0:
+                data['balance'] = data['balance']/restDays
         else:
             data['balance'] = 0
     except Exception as e:
@@ -179,8 +189,12 @@ def showBill():
     days = countDays(uid)
     if days != 0:
         testData['surplus'] = round((balanceCalcu(datetime.date(year,month,date),uid) - allSpend),2)
+        restDays = countRestDay(datetime.date(year,month,date),uid)
+        if datetime.date(year,month,date) >= datetime.date.today() and restDays >= 0:
+            data['surplus'] = data['surplus']/restDays
     else:
         testData['surplus'] = 0
+
     return json.dumps(testData,ensure_ascii=False)
 """
 sure id is OK

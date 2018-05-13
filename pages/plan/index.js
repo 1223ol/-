@@ -22,10 +22,11 @@ Page({
   onLoad: function (options) {
     var util = require('../../utils/util.js');
     var time = util.formatDate(new Date());
+    var nextMonth = util.formatDateaddMonth(new Date());
     // 再通过setData更改Page()里面的data，动态更新页面的数据  
     this.setData({
       startDate: time,
-      endDate: time,
+      endDate: nextMonth,
       date: time
     });
   },

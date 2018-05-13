@@ -11,7 +11,7 @@
 
       <text class="itemText">开始时间</text>
 
-      <picker class='date' mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+      <picker class='date' mode="date" value="{{startDate}}" start="2010-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
         <text>{{startDate}}</text>
       </picker>
     </view>
@@ -20,7 +20,7 @@
 
       <text class="itemText">结束时间</text>
 
-      <picker class='date' mode="date" value="{{endDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
+      <picker class='date' mode="date" value="{{endDate}}" start="2010-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
         <text>{{endDate}}</text>
       </picker>
     </view>
