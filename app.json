@@ -35,6 +35,12 @@
         "text": "首页"
       },
       {
+        "selectedIconPath": "images/流水1.png",
+        "iconPath": "images/流水.png",
+        "pagePath": "pages/plan/index",
+        "text": "计划"
+      },
+      {
         "selectedIconPath": "images/计划1.png",
         "iconPath": "images/计划.png",
         "pagePath": "pages/plan/index",

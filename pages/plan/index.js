@@ -11,6 +11,7 @@ Page({
     startDate: '2016-09-26',
     endDate: '2016-09-26',
     date: '2016-09-26',
+    realDate:'2016-06-29',
     array: ['饮食 ', '服饰装容', '生活日用', '住房缴费', '交通出行', " 通讯 ", "文教娱乐", " 健康 ", "其他消费"],
     index: 0,
     selectItem: 1
@@ -27,7 +28,8 @@ Page({
     this.setData({
       startDate: time,
       endDate: nextMonth,
-      date: time
+      date: time,
+      realDate:time
     });
   },
 
