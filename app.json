@@ -1,22 +1,12 @@
 {
   "pages": [
-    
-"pages/plan/index",
+    "pages/Flowing/index",
+    "pages/plan/index",
     "pages/index/index",
-
-
-"pages/result/index",    
-
-
-
-
-"pages/showBill/index",
-
-
-"pages/logs/logs"
+    "pages/result/index",
+    "pages/showBill/index",
+    "pages/logs/logs"
   ],
-
-
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -37,7 +27,7 @@
       {
         "selectedIconPath": "images/流水1.png",
         "iconPath": "images/流水.png",
-        "pagePath": "pages/plan/index",
+        "pagePath": "pages/Flowing/index",
         "text": "计划"
       },
       {

@@ -10,11 +10,14 @@ Page({
     consumption: 0,
     balance: 0,
     inPlan:0,
+    options:0
   },
   onLoad: function (options) {
+    console.log("index onload");
     var that = this;
     var currentObj = that.getCurrentDayString();
     this.setData({
+      options:options,
       currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' ,
       selectDate: currentObj.getDate(),
       currentObj: currentObj
@@ -152,5 +155,8 @@ Page({
     that.setData({
       currentDayList: currentDayList
     })
+  },
+  onShow:function(){
+    this.onLoad(this.data.options);
   }
 })

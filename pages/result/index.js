@@ -261,5 +261,8 @@ Page({
     }
   },
   onReady: function (e) {
+  },
+  onShow: function () {
+    this.submit();
   }
 });
