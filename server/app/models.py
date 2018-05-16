@@ -39,7 +39,6 @@ class Category(db.Model):
     name = db.Column(db.String(64), index = True)
     dateId = db.Column(db.Integer,db.ForeignKey('date.dateId'))
     money = db.Column(db.Float,index = True)
-
     def __init__(self,name,dateId,money):
         self.name = name
         self.dateId = dateId

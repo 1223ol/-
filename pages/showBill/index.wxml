@@ -8,11 +8,12 @@
     </view>
   </view>
   <block wx:for="{{bill}}" wx:key="{{bill}}" wx:for-item="people">
-    <view id="panel" class="flex-column" >
-      <view   class="flex-cell flex-row" >
-        <text bindlongpress="bindDel"  class="flex-cell flex-row">{{people.type}}</text>
-        <text bindlongpress="bindDel" class="flex-cell flex-row">{{people.money}}</text>
-        <text bindlongpress="bindDel" class="flex-cell flex-row">{{people.date}}</text>
+    <view id="panel" class="flex-column">
+      <view   bindlongpress="bindDel"  id="{{people.id}}" class="flex-cell flex-row" >
+       <!-- <text  class="flex-cell flex-row">{{people.id}}</text> -->
+         <text  class="flex-cell flex-row">{{people.type}}</text> 
+        <text  class="flex-cell flex-row">{{people.money}}</text>
+        <text  class="flex-cell flex-row">{{people.date}}</text>
       </view>
     </view>
   </block>

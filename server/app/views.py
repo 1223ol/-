@@ -126,24 +126,29 @@ def index():
     #     consumption = 30
     #     balance = 40 - consumption
     # else:
-    try:
-        dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=uid).first()
-        days = countDays(uid)
-        if dateId == None:
-            data['consumption']= 0
-            data['isSet'] = 0
+    # try:
+    dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=uid).first()
+    days = countDays(uid)
+    if dateId == None:
+        data['consumption']= 0
+        data['isSet'] = 0
+    else:
+        consumption = db.session.query(func.sum(Category.money)).filter_by(dateId = dateId[0]).first()[0]
+        if consumption == None:
+            data['consumption'] = 0
         else:
-            consumption = db.session.query(func.sum(Category.money)).filter_by(dateId = dateId[0]).first()[0]
             data['consumption'] = consumption
-            data['isSet'] = 1
-        days = countDays(uid)
-        if inPlan(datetime.date(year,month,date),uid) and days != 0:
-            money = db.session.query(Plan.Money).filter_by(uid = uid).order_by(Plan.planId.desc()).first()[0]
-            data['balance'] =  round((balanceCalcu(datetime.date(year,month,date),uid) - data['consumption']),2)
-        else:
-            data['balance'] = 0
-    except Exception as e:
-        raise e
+        data['isSet'] = 1
+    days = countDays(uid)
+    print data['consumption']
+    if inPlan(datetime.date(year,month,date),uid) and days != 0:
+        money = db.session.query(Plan.Money).filter_by(uid = uid).order_by(Plan.planId.desc()).first()[0]
+        print data['consumption']
+        data['balance'] =  round((balanceCalcu(datetime.date(year,month,date),uid) - data['consumption']),2)
+    else:
+        data['balance'] = 0
+    # except Exception as e:
+        # raise e
     # data['consumption']=consumption
     # data['balance']=balance
     print data
@@ -173,6 +178,7 @@ def showBill():
     allSpend = 0
     for i in allBill:
         bill = {}
+        bill['id'] = i.CategoryId
         bill['type'] = i.name
         bill['money'] = i.money
         allSpend += i.money
@@ -185,11 +191,33 @@ def showBill():
         testData['surplus'] = round((balanceCalcu(datetime.date(year,month,date),uid) - allSpend),2)
     else:
         testData['surplus'] = 0
-
+    # print(testData)
     return json.dumps(testData,ensure_ascii=False)
 """
 sure id is OK
 """
+@app.route("/delBill")
+def delBill():
+    data = {}
+    openid = request.args.get('cookie')
+    id = request.args.get('id')
+    id = int(id)
+    uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
+    if uid == None:
+        data['status'] = 'Fail'
+    try:
+        sql = '''delete from Category where CategoryId = {CategoryId}'''.format(CategoryId = id)
+        db.engine.execute(sql)
+        # Item = Category(CategoryId = id)
+        # db.session.delete(Item)
+        # db.session.commit()
+        data['status'] = 'Succes'
+    except Exception as e:
+        data['status'] = 'Fail'
+        print e
+    return json.dumps(data,ensure_ascii=False)
+
+
 @app.route("/addPlan")
 def addPlan():
     data={}
