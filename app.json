@@ -4,7 +4,7 @@
     "pages/Flowing/index",
    
     "pages/index/index",
-    "pages/result/index",
+    "pages/newResult/index",
     "pages/showBill/index",
     "pages/logs/logs"
   ],
@@ -40,7 +40,7 @@
       {
         "selectedIconPath": "images/数据展示1.png",
         "iconPath": "images/数据展示.png",
-        "pagePath": "pages/result/index",
+        "pagePath": "pages/newResult/index",
         "text": "数据展示"
       }
     ]
