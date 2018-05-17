@@ -1,10 +1,18 @@
 {
   "pages": [
+<<<<<<< HEAD
     "pages/index/index",
     "pages/Flowing/index",
     "pages/plan/index",
 
     "pages/result/index",
+=======
+    "pages/plan/index",
+    "pages/Flowing/index",
+   
+    "pages/index/index",
+    "pages/newResult/index",
+>>>>>>> 11e591d889566c6cad2fe4abd02e95510b96630d
     "pages/showBill/index",
     "pages/logs/logs"
   ],
@@ -40,7 +48,7 @@
       {
         "selectedIconPath": "images/数据展示1.png",
         "iconPath": "images/数据展示.png",
-        "pagePath": "pages/result/index",
+        "pagePath": "pages/newResult/index",
         "text": "数据展示"
       }
     ]

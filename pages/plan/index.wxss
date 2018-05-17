@@ -1,1 +1,3 @@
-/* pages/plan/index.wxss */
+.container .chart-container .canvas {
+    height: 280px;
+}

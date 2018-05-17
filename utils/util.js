@@ -1,3 +1,15 @@
+let dataGenerator = (labels, keys = ['value'], min = 10, max = 50) => {
+  return labels.map(label => {
+    let d = {
+      label: label
+    };
+    keys.map(key => {
+      d[key] = Math.floor(Math.random() * (max - min + 1) + min);
+    });
+    // console.log(d);
+    return d;
+  });
+};
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -36,5 +48,6 @@ function formatNumber(n) {
 module.exports = {
   formatTime: formatTime,
   formatDate: formatDate,
-  formatDateaddMonth: formatDateaddMonth
+  formatDateaddMonth: formatDateaddMonth,
+  dataGenerator: dataGenerator
 }
