@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/Flowing/index",
     "pages/plan/index",
-    "pages/index/index",
+
     "pages/result/index",
     "pages/showBill/index",
     "pages/logs/logs"
