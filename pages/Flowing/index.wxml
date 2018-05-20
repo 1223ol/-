@@ -32,7 +32,9 @@
     <view>
       <button class="confirm " type="default " size="default " bindtap='addPlan'>确认</button>
     </view>
-
+  <view class="addText">
+  备注：
+  </view>
 
   </view>
 

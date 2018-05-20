@@ -48,8 +48,9 @@
   left: 0%;
   width: 100vw;
   height: 50px;
-   background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
   border-style: solid;
+  border-color: white;
   color: black;
 }
 
@@ -103,7 +104,7 @@ top:20%;
   border-style: solid;
   color: black;
   background-color: rgba(255, 255, 255, 0.8);
-
+border-color: white;
 }
 
 .itemStartDateforplan{
@@ -140,6 +141,7 @@ top:20%;
   border-style: solid;
   color: black;
   background-color: rgba(255, 255, 255, 0.8);
+  border-color: white;
 }
 
 .itemTextforBill{
@@ -247,4 +249,5 @@ top:20%;
    border-style: solid;
   color: black;
    background-color: rgba(255, 255, 255, 0.8);
+   border-color: white;
 }
