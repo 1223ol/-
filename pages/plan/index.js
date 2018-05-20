@@ -5,9 +5,6 @@ let app = getApp()
 let WxChart = require('../../utils/wxcharts.js');
 let Utils = require("../../utils/util.js");
 
-
-
-
 Page({
     /**
      * 页面的初始数据
@@ -15,15 +12,15 @@ Page({
     data: {
         labels : ['1号', '2号', '3号', '4号'],
         expectMoneys : [30,20,10,1],
-        realMoneys : [0,10,20,30]
+        realMoneys : [1,10,20,30]
     },
     multiLine : function(windowWidth){
         let data = this.getData(this.data.labels,this.data.expectMoneys,this.data.realMoneys);
         console.log(data);
         let wxLiner = new WxChart.WxLiner('multiLine', {
-            width: windowWidth,
+            width: windowWidth/1.5,
             height: 250,
-            title:'金钱燃尽图',
+            title:'                    金钱燃尽图',
             yScaleOptions: {
                 position: 'left',
                 title: '剩余金钱(元)'

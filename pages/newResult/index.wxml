@@ -1,2 +1,21 @@
 <!--pages/newResult/index.wxml-->
-<text>pages/newResult/index.wxml</text>
+<view class='flex-row'>
+<view>
+<picker class='date' mode="date" value="{{startDate}}" start="2010-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+<text>{{startDate}}</text>
+</picker>
+</view>
+<view>至</view>
+<view>
+<picker class='date' mode="date" value="{{endDate}}" start="2010-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
+    <text>{{endDate}}</text>
+</picker>
+</view>
+
+
+</view>
+<view class="container">
+ <view class="chart-container">
+    <canvas class="canvas" canvas-id="baseDoughnut" bindtouchend="baseDoughnutTapHandler"/>
+  </view>
+</view>
