@@ -252,7 +252,10 @@ border-color: white;
    border-color: white;
 }
 .titles{/*添加流水那几个字*/
+  position: relative;
  text-align: center;
- bottom: 0;
+  top: 0;
+ height: 50px;
+ 
 
 }
