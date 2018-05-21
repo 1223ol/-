@@ -1,46 +1,7 @@
 <!--pages/plan/index.wxml-->
-<view class='plan' >
-
-  <view class='buttonItem'>
-    <button class="buttonAdd" type="default" size="default" bindtap="jumpToAddBill">添加流水</button>
-    <button class="buttonPlan" type="default" size="default" bindtap="jumpToPlan">添加计划</button>
-  </view>
-  <view class="plan" wx:if="{{selectItem==1}}">
+  <view class="plan" >
+  <view class="titles">添加流水</view>
     <view class="itemView-1">
-
-      <text class="itemTextforplan">总金额：</text>
-
-      <input class="flex-borider-both" class='itemPriceforplan'  type="digit"  value="{{money}}" bindinput='changMoney'  />
-    </view>
-
-    <view class="itemView-2">
-
-      <text class="itemTextforplan">开始时间：</text>
-
-      <picker class='itemStartDateforplan' mode="date" value="{{startDate}}" start="2017-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
-        <text>{{startDate}}</text>
-      </picker>
-    </view>
-
-    <view class="itemView-3">
-      <text class="itemTextforplan">结束时间：</text>
-
-      <picker class='itemEndDateforplan' mode="date" value="{{endDate}}" start="2017-09-26" end="{{realDate}}" bindchange="listenerEndDatePickerSelected">
-        <text>{{endDate}}</text>
-      </picker>
-    </view>
-    <view>
-      <button class="confirm " type="default " size="default " bindtap='addPlan'>确认</button>
-    </view>
-  <view class="addText">
-  备注：
-  </view>
-
-  </view>
-
-  <view class="plan" wx:if="{{selectItem==0}}">
-    <view class="itemView-1">
-
       <text class="itemTextforbill">金额：</text>
 
       <input class="flex-borider-both" class='itemPriceforBill' type="digit" name="userName" placeholder="0.00" bindinput='changBillMoney' />
@@ -71,4 +32,3 @@
     </view>
 
 </view>
-  </view>

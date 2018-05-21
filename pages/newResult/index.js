@@ -12,6 +12,7 @@ let tapHandlers = {};
 Page({
   data: {
     labels:['饮食', '服饰妆容', '生活日用', '住房缴费', '交通出行', '通讯', '文教娱乐','健康','其他消费'],
+    Moneys:[100,20,40,50,20,0,200,0,60],
     startDate: '2016-09-26',
     endDate: '2016-09-26',
   },
@@ -21,6 +22,45 @@ Page({
   percentageFormatLabel:function (label, value, index, totalValue) {
     return label + ' (' + (value / totalValue * 100).toFixed(2) + '%)';
   },
+  indexOf:function(arr){
+        for(var i = 0; i < arr.length; i++){
+            if(arr[i] == 0){return i;}
+        }
+        return -1;
+   },
+  remove:function (){
+        var index = 0;
+        var l = this.data.labels;
+        var m = this.data.Moneys;
+        while(index != -1){
+          console.log(m);
+          console.log(l);
+          console.log(index);
+          console.log("-----------");
+          index = this.indexOf(m);
+          m.splice(index,1);
+          l.splice(index,1);
+        }
+        console.log(m);
+        console.log(l);
+        this.setData({
+          labels:l,
+          Moneys:m
+        });
+   },
+  getData : function(labels,Moneys,){
+        // console.log(labels);
+        // console.log(expectMoneys);
+        // console.log(realMoneys);
+        let d = [];
+        for(let index = 0,len=labels.length; index < len; index++) {
+            var myArray=new Array()
+            myArray['label'] = labels[index];
+            myArray['value'] = Moneys[index];
+            d[index] = myArray;
+        }
+        return d;
+    },
   baseDoughnut : function(windowWidth){
     let wxPie = new WxChart.WxDoughnut('baseDoughnut', {
       width: windowWidth-25,
@@ -30,13 +70,15 @@ Page({
         format: this.percentageFormatLabel
       }
     });
-
-    wxPie.update(Utils.dataGenerator(this.data.labels));
+    this.remove();
+    // console.log(this.remove(this.data.Moneys));
+    console.log(this.getData(this.data.labels,this.data.Moneys));
+    wxPie.update(this.getData(this.data.labels,this.data.Moneys));
 
     return {
       chart: wxPie,
       redraw: () => {
-        wxPie.update(Utils.dataGenerator(this.data.labels));
+        wxPie.update(this.getData(this.data.labels,this.data.Moneys));
       }
     };
   },

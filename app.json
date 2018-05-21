@@ -1,15 +1,16 @@
 {
   "pages": [
+    "pages/plan/index",
+    "pages/addPlan/index",
+    "pages/Flowing/index",
     "pages/newResult/index",
 
 
     "pages/index/index",
-    "pages/Flowing/index",
+
 
 
     "pages/result/index",
-
-    "pages/plan/index",
     "pages/showBill/index",
     "pages/logs/logs"
   ],
@@ -34,7 +35,7 @@
         "selectedIconPath": "images/流水1.png",
         "iconPath": "images/流水.png",
         "pagePath": "pages/Flowing/index",
-        "text": "计划"
+        "text": " 流水"
       },
       {
         "selectedIconPath": "images/计划1.png",

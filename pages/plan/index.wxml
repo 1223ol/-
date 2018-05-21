@@ -3,3 +3,4 @@
     <canvas class="canvas" canvas-id="multiLine" bindtouchend='multiLineChartTapHandler'/>
 </view>
 </view>
+<button bindtap="addPlan">添加</button>

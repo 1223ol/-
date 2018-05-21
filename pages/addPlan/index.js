@@ -39,23 +39,22 @@ Page({
   onReady: function () {
 
   },
-  addBill: function (event) {
-    console.log("addBill is invoked");
+  addPlan: function (event) {
+    console.log("addPlan is invoke");
     var that = this;
     wx.request({
-      url: 'https://tally.slickghost.com/addBill', //仅为示例，并非真实的接口地址
+      url: 'https://tally.slickghost.com/addPlan', //仅为示例，并非真实的接口地址
       data: {
-        money: that.data.billMoney,
-        typeName: that.data.array[that.data.index],
-        date: that.data.date,
-        cookie: app.globalData.cookie
+        money: this.data.money,
+        startDate: this.data.startDate,
+        endDate: this.data.endDate,
+        cookie:app.globalData.cookie
       },
       header: {
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
         var obj = res.data;
-        console.log(obj.status);
         wx.showToast({
           title: obj.status,
           icon: 'succes',

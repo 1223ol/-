@@ -26,7 +26,7 @@ Page({
     app.getAuthKey().then(function (res) {
       console.log("login over");
   wx.request({
-        url: 'https://tally.slickghost.com/', //仅为示例，并非真实的接口地址
+        url: 'https://tally.slickghost.com/',
         data: {
           year: that.data.currentObj.getFullYear(),
           month: that.data.currentObj.getMonth() + 1,
@@ -34,7 +34,7 @@ Page({
           cookie:app.globalData.cookie
         },
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json' 
         },
         success: function (res) {
           var obj = res.data;

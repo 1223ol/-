@@ -14,6 +14,11 @@ Page({
         expectMoneys : [30,20,10,1],
         realMoneys : [1,10,20,30]
     },
+    addPlan:function(){
+      wx.navigateTo({
+        url: '../addPlan/index'
+      });
+    },
     multiLine : function(windowWidth){
         let data = this.getData(this.data.labels,this.data.expectMoneys,this.data.realMoneys);
         console.log(data);
