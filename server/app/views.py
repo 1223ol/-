@@ -154,10 +154,10 @@ def index():
     print data
     return json.dumps(data,ensure_ascii=False) 
 
-@app.route("/showPlan")
-def showPlan():
-    # print(db.session.query('user').first())
-    return "123"
+# @app.route("/showPlan")
+# def showPlan():
+#     # print(db.session.query('user').first())
+#     return "123"
 """
 sure id is OK
 """
@@ -265,6 +265,21 @@ def addBill():
         data['status'] = 'fail'
         raise e
     return json.dumps(data,ensure_ascii=False)
+
+
+@app.route("/showPlan")
+def showPlan():
+    openid = request.args.get('cookie')
+    uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
+    money = db.session.query(Plan.Money).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
+    startDate = db.session.query(Plan.startTime).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
+    print startDate
+    endDate = db.session.query(Plan.endTime).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
+    print endDate
+    allMoney = db.session.query(Category).join(Date).filter(Date.date.between(startDate,endDate)).filter_by(uid = uid).all()[0]
+    print allMoney.money
+    print allMoney.dateId
+    return str(money)
 """
 sure id is OK
 """
@@ -301,6 +316,6 @@ def result():
 #     data['result'] =  [90, 110, 145, 95, 87, 160]
 #     return json.dumps(data,ensure_ascii=False)
 
-@app.route("/.well-known/pki-validation/fileauth.txt")
-def verity():
-    return "20180424101213022w97rnxl5swy0p57qo6uy2rfmr52o3bb05g2c8zaku4pffsj"
+# @app.route("/.well-known/pki-validation/fileauth.txt")
+# def verity():
+#     return "20180424101213022w97rnxl5swy0p57qo6uy2rfmr52o3bb05g2c8zaku4pffsj"

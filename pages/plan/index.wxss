@@ -1,3 +1,5 @@
 .container .chart-container .canvas {
     height: 280px;
+    width: 400px;
+    /* position: center; */
 }

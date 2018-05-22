@@ -12,7 +12,7 @@ let tapHandlers = {};
 Page({
   data: {
     labels:['饮食', '服饰妆容', '生活日用', '住房缴费', '交通出行', '通讯', '文教娱乐','健康','其他消费'],
-    Moneys:[100,20,40,50,20,0,200,0,60],
+    Moneys:[100,200,0,0,0,0,0,0,0],
     startDate: '2016-09-26',
     endDate: '2016-09-26',
   },
@@ -33,13 +33,15 @@ Page({
         var l = this.data.labels;
         var m = this.data.Moneys;
         while(index != -1){
-          console.log(m);
-          console.log(l);
-          console.log(index);
-          console.log("-----------");
+          // console.log(m);
+          // console.log(l);
           index = this.indexOf(m);
+          // console.log(index);
+          // console.log("-----------");
+          if (index > -1){
           m.splice(index,1);
           l.splice(index,1);
+          }
         }
         console.log(m);
         console.log(l);
