@@ -1,11 +1,14 @@
 {
   "pages": [
-        "pages/index/index",
-        "pages/plan/index",
+          "pages/plan/index",
 "pages/newResult/index",
+        "pages/Flowing/index",
+        "pages/index/index",
+ 
+
 
     "pages/addPlan/index",
-    "pages/Flowing/index",
+
    
 
 

@@ -1,6 +1,27 @@
-.container .chart-container .canvas {
-    height: 280px;
-    width: 400px;
+ .chart-container  {
+    position: absolute;
+}
 
-    /* position: center; */
+
+.plan{
+  height: 100vh;
+  width: 100vw;
+
+}
+
+.canvas{
+  position: absolute;
+  background-color: white;
+  top: 100px;
+  left: 15vw;
+  height: 50vh;
+  text-align: center;
+  transform: scale(1.1);
+}
+
+
+.addButton{
+  position: absolute;
+  bottom: 0px;
+  width: 100vw;
 }

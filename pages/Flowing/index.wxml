@@ -1,6 +1,6 @@
 <!--pages/plan/index.wxml-->
   <view class="plan" >
-  <view class="titles">添加流水</view>
+
     <view class="itemView-1">
       <text class="itemTextforbill">金额：</text>
 
