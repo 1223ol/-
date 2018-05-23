@@ -74,27 +74,27 @@ Page({
         let chart = this[canvasName + 'Chart'];
         chart.redraw();
     },
-    onLoad:function(){
-        var that = this;
-        wx.request({
-          url: 'https://tally.slickghost.com/showPlan', //仅为示例，并非真实的接口地址
-          header: {
-            'content-type': 'application/json' // 默认值
-          },
-          success: function (res) {
-            var obj = res.data;
-            console.log(obj.result);
-            that.setData(
-              {
-                labels: obj.labels,
-                expectMoneys:obj.expectMoneys,
-                realMoneys:obj.realMoneys
+    // onLoad:function(){
+    //     var that = this;
+    //     wx.request({
+    //       url: 'https://tally.slickghost.com/showPlan', //仅为示例，并非真实的接口地址
+    //       header: {
+    //         'content-type': 'application/json' // 默认值
+    //       },
+    //       success: function (res) {
+    //         var obj = res.data;
+    //         console.log(obj.result);
+    //         that.setData(
+    //           {
+    //             labels: obj.labels,
+    //             expectMoneys:obj.expectMoneys,
+    //             realMoneys:obj.realMoneys
 
-              }
-            );
-          }
-        });
-    },
+    //           }
+    //         );
+    //       }
+    //     });
+    // },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -114,5 +114,8 @@ Page({
         me.multiLineChart.chart.once('draw', function (views) {
           me.multiLineChartTapHandler = this.mouseoverTooltip(views);
         }, me.multiLineChart.chart);
-    }
+    },
+  //   onShow:function(){
+  //   this.onLoad();
+  // }
 });

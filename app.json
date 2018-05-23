@@ -1,5 +1,6 @@
 {
   "pages": [
+        "pages/index/index",
         "pages/plan/index",
 "pages/newResult/index",
 
@@ -8,7 +9,7 @@
    
 
 
-    "pages/index/index",
+
 
 
 
