@@ -116,26 +116,26 @@ Page({
     } catch (e) {
       // do something when get system info failed
     };
-    wx.request({
-      url: 'https://tally.slickghost.com/result', //仅为示例，并非真实的接口地址
-      data: {
-        startDate: this.data.startDate,
-        endDate: this.data.endDate,
-        cookie:app.globalData.cookie
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        var obj = res.data;
-        console.log(obj.result);
-        that.setData(
-          {
-            Moneys: obj.result
-          }
-        );
-      }
-    });
+    // wx.request({
+    //   url: 'https://tally.slickghost.com/result', //仅为示例，并非真实的接口地址
+    //   data: {
+    //     startDate: this.data.startDate,
+    //     endDate: this.data.endDate,
+    //     cookie:app.globalData.cookie
+    //   },
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success: function (res) {
+    //     var obj = res.data;
+    //     console.log(obj.result);
+    //     that.setData(
+    //       {
+    //         Moneys: obj.result
+    //       }
+    //     );
+    //   }
+    // });
 
     me.baseDoughnutChart = this.baseDoughnut(windowWidth);
     me.baseDoughnutChart.chart.once('draw', function (views) {
