@@ -273,13 +273,30 @@ def showPlan():
     uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
     money = db.session.query(Plan.Money).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
     startDate = db.session.query(Plan.startTime).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
+    dateList = []
+    leftMoney = []
+    planMoneys = []
     print startDate
     endDate = db.session.query(Plan.endTime).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
     print endDate
-    allMoney = db.session.query(Category).join(Date).filter(Date.date.between(startDate,endDate)).filter_by(uid = uid).all()[0]
-    print allMoney.money
-    print allMoney.dateId
-    return str(money)
+    newstartDate = startDate
+    i = 0
+    while newstartDate <= endDate:
+        date_str = newstartDate.strftime("%m-%d")
+        dateList.append(date_str)
+        newstartDate += datetime.timedelta(days=1)
+        allMoney = db.session.query(func.sum(Category.money)).join(Date).filter(Date.date.between(startDate,newstartDate)).filter_by(uid = uid).first()[0]
+        allMoney = 0 if allMoney == None else allMoney
+        leftMoney.append(money-allMoney)
+        days = (endDate - startDate).days
+        planMoney = money/days * i
+        i += 1
+        planMoneys.append(round((money - planMoney),2))
+
+    data['labels'] = dateList
+    data['realMoneys'] =  leftMoney
+    data['expectMoneys'] =  planMoneys
+    return json.dumps(data,ensure_ascii=False)
 """
 sure id is OK
 """

@@ -17,7 +17,14 @@ Page({
     endDate: '2016-09-26',
   },
   onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
+    var util = require('../../utils/util.js');
+    var time = util.formatDate(new Date());
+    var  nextMonth = util.formatDateaddMonth(new Date());
+    // 再通过setData更改Page()里面的data，动态更新页面的数据  
+    this.setData({
+      startDate: time,
+      endDate: nextMonth,
+    });
   },
   percentageFormatLabel:function (label, value, index, totalValue) {
     return label + ' (' + (value / totalValue * 100).toFixed(2) + '%)';
@@ -50,6 +57,21 @@ Page({
           Moneys:m
         });
    },
+  listenerStartDatePickerSelected: function (e) {
+    this.setData(
+      {
+        startDate: e.detail.value
+      }
+    );
+  },
+  listenerEndDatePickerSelected: function (e) {
+    this.setData(
+      {
+        endDate: e.detail.value
+      }
+    );
+    this.onReady();
+  },
   getData : function(labels,Moneys,){
         // console.log(labels);
         // console.log(expectMoneys);
@@ -86,13 +108,34 @@ Page({
   },
   onReady: function () {
     let me = this;
-    let windowWidth = 250
+    let windowWidth = 250;
+    var that = this;
     try {
       let res = wx.getSystemInfoSync();
       windowWidth = res.windowWidth;
     } catch (e) {
       // do something when get system info failed
-    }
+    };
+    wx.request({
+      url: 'https://tally.slickghost.com/result', //仅为示例，并非真实的接口地址
+      data: {
+        startDate: this.data.startDate,
+        endDate: this.data.endDate,
+        cookie:app.globalData.cookie
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var obj = res.data;
+        console.log(obj.result);
+        that.setData(
+          {
+            Moneys: obj.result
+          }
+        );
+      }
+    });
 
     me.baseDoughnutChart = this.baseDoughnut(windowWidth);
     me.baseDoughnutChart.chart.once('draw', function (views) {
