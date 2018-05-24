@@ -1,9 +1,12 @@
 {
   "pages": [
+"pages/index/index",
           "pages/plan/index",
+    "pages/Flowing/index",
+
 "pages/newResult/index",
-        "pages/Flowing/index",
-        "pages/index/index",
+   
+        
  
 
 
