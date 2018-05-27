@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/line/index",
 "pages/index/index",
           "pages/plan/index",
     "pages/Flowing/index",

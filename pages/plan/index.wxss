@@ -1,5 +1,8 @@
- .chart-container  {
+cd  .chart-container  {
     position: absolute;
+    left:0
+    
+
 }
 
 
