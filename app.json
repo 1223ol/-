@@ -1,5 +1,6 @@
 {
   "pages": [
+"pages/showBill/index",
     "pages/plan/index",
 "pages/index/index",
     "pages/Flowing/index",
@@ -20,7 +21,7 @@
 
 
     "pages/result/index",
-    "pages/showBill/index",
+    
     "pages/logs/logs"
   ],
   "window": {

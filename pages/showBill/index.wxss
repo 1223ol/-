@@ -37,6 +37,7 @@
 .showBill{
   height: 100vh;
   font-family:  	KaiTi;
+    background-color:  	#ACD6FF;
 }
 
 
