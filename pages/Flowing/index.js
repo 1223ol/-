@@ -6,8 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    money: 0.0,
-    billMoney: 0.0,
+    billMoney: "0.0",
     startDate: '2016-09-26',
     endDate: '2016-09-26',
     date: '2016-09-26',
@@ -26,11 +25,13 @@ Page({
     var nextMonth = util.formatDateaddMonth(new Date());
     // 再通过setData更改Page()里面的data，动态更新页面的数据  
     this.setData({
+      billMoney: "0.0",
       startDate: time,
       endDate: nextMonth,
       date: time,
       realDate:time
     });
+    console.log(this.data.billMoney)
   },
 
   /**
@@ -61,7 +62,10 @@ Page({
           icon: 'succes',
           duration: 1000,
           mask: true
-        })
+        });
+        that.setData({
+          billMoney: "0.0"
+        });
       }
     });
   },
@@ -114,7 +118,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad()
   },
 
   /**

@@ -4,7 +4,7 @@
     <view class="itemView-1">
       <text class="itemTextforbill">金额：</text>
 
-      <input class="flex-borider-both" class='itemPriceforBill' type="digit" name="userName" placeholder="0.00" bindinput='changBillMoney' />
+      <input class="flex-borider-both" class='itemPriceforBill' type="digit" name="userName" placeholder="0.00" value="{{billMoney}}" bindinput='changBillMoney' />
     </view>
 
     <view class="itemView-2">
