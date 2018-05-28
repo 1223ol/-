@@ -285,14 +285,17 @@ def showPlan():
     while newstartDate <= endDate:
         date_str = newstartDate.strftime("%m-%d")
         dateList.append(date_str)
-        newstartDate += datetime.timedelta(days=1)
         allMoney = db.session.query(func.sum(Category.money)).join(Date).filter(Date.date.between(startDate,newstartDate)).filter_by(uid = uid).first()[0]
         allMoney = 0 if allMoney == None else allMoney
-        leftMoney.append(money-allMoney)
+        if newstartDate > datetime.date.today:
+            leftMoney.append(0)
+        else:
+            leftMoney.append(money-allMoney)
         days = (endDate - startDate).days
         planMoney = money/days * i
         i += 1
         planMoneys.append(round((money - planMoney),2))
+        newstartDate += datetime.timedelta(days=1)
 
     data['labels'] = dateList
     data['realMoneys'] =  leftMoney
