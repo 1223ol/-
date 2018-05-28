@@ -105,8 +105,8 @@ Page({
     // console.log("onRead start")
     // console.log(this.data.expectMoneys);
       
+  },
+  onShow:function () {
+    this.onLoad();
   }
-  // onShow:function () {
-  //   this.onLoad();
-  // }
 });
