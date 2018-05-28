@@ -287,9 +287,7 @@ def showPlan():
         dateList.append(date_str)
         allMoney = db.session.query(func.sum(Category.money)).join(Date).filter(Date.date.between(startDate,newstartDate)).filter_by(uid = uid).first()[0]
         allMoney = 0 if allMoney == None else allMoney
-        if newstartDate > datetime.date.today():
-            leftMoney.append(0)
-        else:
+        if newstartDate <= datetime.date.today():
             leftMoney.append(money-allMoney)
         days = (endDate - startDate).days
         planMoney = money/days * i
