@@ -269,6 +269,7 @@ def addBill():
 
 @app.route("/showPlan")
 def showPlan():
+    data = {}
     openid = request.args.get('cookie')
     uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
     money = db.session.query(Plan.Money).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
