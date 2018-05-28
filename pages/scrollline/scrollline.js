@@ -14,6 +14,11 @@ Page({
         expectMoneys: [1200.0, 1161.29, 1122.58, 1083.87, 1045.16],
         realMoneys: [1200.0, 1200.0, 1200.0, 1200.0, 1200.0]
     },
+    addPlan:function(e){
+        wx.navigateTo({
+        url: '../addPlan/index'
+      });
+    },
     touchHandler: function (e) {
         lineChart.scrollStart(e);
     },

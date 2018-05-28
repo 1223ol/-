@@ -297,6 +297,7 @@ def showPlan():
     data['labels'] = dateList
     data['realMoneys'] =  leftMoney
     data['expectMoneys'] =  planMoneys
+    print(data)
     return json.dumps(data,ensure_ascii=False)
 """
 sure id is OK
