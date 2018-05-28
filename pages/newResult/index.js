@@ -39,6 +39,8 @@ Page({
         var index = 0;
         var l = this.data.labels;
         var m = this.data.Moneys;
+        console.log(m);
+        console.log("-----------------------");
         while(index != -1){
           // console.log(m);
           // console.log(l);
@@ -116,35 +118,36 @@ Page({
     } catch (e) {
       // do something when get system info failed
     };
-    // wx.request({
-    //   url: 'https://tally.slickghost.com/result', //仅为示例，并非真实的接口地址
-    //   data: {
-    //     startDate: this.data.startDate,
-    //     endDate: this.data.endDate,
-    //     cookie:app.globalData.cookie
-    //   },
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success: function (res) {
-    //     var obj = res.data;
-    //     console.log(obj.result);
-    //     that.setData(
-    //       {
-    //         Moneys: obj.result
-    //       }
-    //     );
-    //   }
-    // });
-
-    me.baseDoughnutChart = this.baseDoughnut(windowWidth);
-    me.baseDoughnutChart.chart.once('draw', function (views) {
-      me.baseDoughnutTapHandler = this.mouseoverTooltip(views);
-    }, me.baseDoughnutChart.chart);
+    wx.request({
+      url: 'https://tally.slickghost.com/result', //仅为示例，并非真实的接口地址
+      data: {
+        startDate: this.data.startDate,
+        endDate: this.data.endDate,
+        cookie:app.globalData.cookie
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var obj = res.data;
+        console.log(obj.result);
+        that.setData(
+          {
+            Moneys: obj.result
+          }
+        );
+      },
+      complete:function(){
+        me.baseDoughnutChart = me.baseDoughnut(windowWidth);
+        me.baseDoughnutChart.chart.once('draw', function (views) {
+          me.baseDoughnutTapHandler = this.mouseoverTooltip(views);
+        }, me.baseDoughnutChart.chart);
+      }
+    });
 
   },
   onShow: function () {
-    // 页面显示
+    this.onReady();
   },
   onHide: function () {
     // 页面隐藏
