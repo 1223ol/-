@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/newResult/index",
       "pages/index/index",
     "pages/palnTest/index",
   
 "pages/showBill/index",
  "pages/plan/index",
 "pages/Flowing/index",
-"pages/newResult/index",
+
 "pages/scrollline/scrollline",
 "pages/addPlan/index",
  "pages/result/index",
