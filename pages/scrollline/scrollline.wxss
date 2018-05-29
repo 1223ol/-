@@ -8,8 +8,8 @@
 .canvas{
   position: absolute;
   width: 100vw;
-  top:10vh;
-  height: 60vh;
+  top:5vh;
+  height: 80vh;
   background-color: white;
 }
 
