@@ -112,7 +112,7 @@ Page({
   },
   onReady: function () {
     let me = this;
-    let windowWidth = 250;
+    let windowWidth = 350;
     var that = this;
     try {
       let res = wx.getSystemInfoSync();
