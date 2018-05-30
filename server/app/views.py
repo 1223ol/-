@@ -343,9 +343,20 @@ def result():
 # @app.route("/.well-known/pki-validation/fileauth.txt")
 # def verity():
 #     return "20180424101213022w97rnxl5swy0p57qo6uy2rfmr52o3bb05g2c8zaku4pffsj"
-def getAccessToken():
-    appID = "wxda414635ff6fd070"
-    appse  = "http://120.78.181.248/wx"
+# def getAccessToken():
+#     appID = "wxda414635ff6fd070"
+#     appse  = "7125e4cdd86f80dec33054bb6c7383ea"
+#     url = '''https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={appid}&secret={appse}'''
+#     url = url.format(appid = appID,appse = appse)
+#     r = requests.get(url)
+#     return r.text
+
+# def getUnionId(ACCESS_TOKEN,OPENID):
+#     url = '''https://api.weixin.qq.com/cgi-bin/user/info?access_token={ACCESS_TOKEN}&openid={OPENID}&lang=zh_CN'''
+#     url = url.format(ACCESS_TOKEN = ACCESS_TOKEN,OPENID = OPENID)
+#     r = requests.get(url)
+#     return r.text
+
 @app.route("/wx",methods=['POST'])
 # @app.route("/wx")
 def wx():
@@ -356,10 +367,15 @@ def wx():
     # print (isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text')
     if isinstance(recMsg, receive.Msg) and (recMsg.MsgType == 'text' or recMsg.MsgType == 'voice'):
         toUser = recMsg.FromUserName
-        openId = recMsg.ToUserName
+        ToUserName = recMsg.ToUserName
         content = recMsg.Content
-        print openId
-        replyMsg = reply.TextMsg(toUser, openId, content)
+        openId = toUser
+        # print openId
+        # uni = UnionId(openId)
+        # tokenJson = json.loads(getAccessToken())
+        # access_token =  tokenJson['access_token']
+        # print(getUnionId(access_token,openId))
+        replyMsg = reply.TextMsg(toUser, ToUserName, content)
         # print replyMsg.send()
         return replyMsg.send()
     else:

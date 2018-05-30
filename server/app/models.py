@@ -65,3 +65,13 @@ class Plan(db.Model):
         self.uid = uid
     def __repr__(self):
         return '<Plan {pId}:{sTime}-{eTime}>'.format(pId = self.planId,sTime = self.startTime,eTime = self.endTime)
+
+# class UnionId(db.Model):
+#     __tablename__='UnionId'
+#     xiaoId =  db.Column(db.String(64), index = True)
+#     gongId =  db.Column(db.String(64), index = True)
+
+#     def __init__(self,gongId):
+#         gongId = self.gongId
+
+        
