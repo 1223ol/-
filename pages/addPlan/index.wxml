@@ -1,6 +1,6 @@
 <!--pages/plan/index.wxml-->
   <view class="plan" >
-  <view class="titles">添加计划</view>
+
     <view class="itemView-1">
 
       <text class="itemTextforplan">总金额：</text>
@@ -27,7 +27,9 @@
     <view>
       <button class="confirm " type="default " size="default " bindtap='addPlan'>确认</button>
     </view>
-  <view class="addText">
-  备注：
-  </view>
+<view class="addText">  备注：
+  <textarea>
+
+  </textarea>
+</view>
   </view>
