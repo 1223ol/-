@@ -12,7 +12,11 @@ import json
 import sys
 import datetime 
 import random
-import requests                                                                                                
+import requests
+import hashlib
+import reply
+import receive
+                                                                                           
 reload(sys)
 sys.setdefaultencoding('utf8')
 def str2Date(strDate):
@@ -339,3 +343,41 @@ def result():
 # @app.route("/.well-known/pki-validation/fileauth.txt")
 # def verity():
 #     return "20180424101213022w97rnxl5swy0p57qo6uy2rfmr52o3bb05g2c8zaku4pffsj"
+def getAccessToken():
+    appID = "wxda414635ff6fd070"
+    appse  = "http://120.78.181.248/wx"
+@app.route("/wx",methods=['POST'])
+# @app.route("/wx")
+def wx():
+    webData = request.data
+    print "Handle Post webdata is ", webData
+    recMsg = receive.parse_xml(webData)
+    # print recMsg.MsgId
+    # print (isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text')
+    if isinstance(recMsg, receive.Msg) and (recMsg.MsgType == 'text' or recMsg.MsgType == 'voice'):
+        toUser = recMsg.FromUserName
+        openId = recMsg.ToUserName
+        content = recMsg.Content
+        print openId
+        replyMsg = reply.TextMsg(toUser, openId, content)
+        # print replyMsg.send()
+        return replyMsg.send()
+    else:
+        print "暂且不处理"
+        return "success"
+    # print request.form
+    # signature = request.args.get('signature')
+    # timestamp = request.args.get('timestamp')
+    # nonce = request.args.get('nonce')
+    # echostr = request.args.get('echostr')
+    # token = "daiker"
+    # list = [token, timestamp, nonce]
+    # list.sort()
+    # sha1 = hashlib.sha1()
+    # map(sha1.update, list)
+    # hashcode = sha1.hexdigest()
+    # print "handle/GET func: hashcode, signature: ", hashcode, signature
+    # if hashcode == signature:
+    #     return echostr
+    # else:
+    #     return ""    
