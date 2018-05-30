@@ -21,11 +21,11 @@
       </picker>
     </view>
 
+<view class="addText">  备注：
+  <textarea>
 
-  <view class="addText">
-  备注：
-  </view>
-
+  </textarea>
+</view>
 
     <view>
       <button class="confirm " type="default " size="default " bindtap='addBill'>确认</button>
