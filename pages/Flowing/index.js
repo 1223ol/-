@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    billMoney: "0.0",
+    billMoney: null,
     startDate: '2016-09-26',
     endDate: '2016-09-26',
     date: '2016-09-26',
@@ -25,7 +25,7 @@ Page({
     var nextMonth = util.formatDateaddMonth(new Date());
     // 再通过setData更改Page()里面的data，动态更新页面的数据  
     this.setData({
-      billMoney: "0.0",
+      billMoney: null,
       startDate: time,
       endDate: nextMonth,
       date: time,
@@ -64,7 +64,7 @@ Page({
           mask: true
         });
         that.setData({
-          billMoney: "0.0"
+          billMoney: null
         });
       }
     });

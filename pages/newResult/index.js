@@ -12,19 +12,48 @@ let tapHandlers = {};
 Page({
   data: {
     labels:['饮食', '服饰妆容', '生活日用', '住房缴费', '交通出行', '通讯', '文教娱乐','健康','其他消费'],
-    Moneys:[100,200,0,0,0,0,0,0,0],
+    // labels: ['饮食','服饰妆容'],
+    Moneys:[100],
     startDate: '2016-09-26',
     endDate: '2016-09-26',
   },
   onLoad: function (options) {
+    var that = this;
     var util = require('../../utils/util.js');
     var time = util.formatDate(new Date());
-    var  nextMonth = util.formatDateaddMonth(new Date());
+    // var  nextMonth = util.formatDateaddMonth(new Date());
     // 再通过setData更改Page()里面的data，动态更新页面的数据  
     this.setData({
       startDate: time,
-      endDate: nextMonth,
+      endDate: time,
     });
+
+    wx.request({
+      url: 'https://tally.slickghost.com/result', //仅为示例，并非真实的接口地址
+      data: {
+        startDate: this.data.startDate,
+        endDate: this.data.endDate,
+        cookie:app.globalData.cookie
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var obj = res.data;
+        console.log(obj.result);
+        that.setData(
+          {
+            Moneys: obj.result
+          }
+        );
+      },
+      complete:function(){
+        that.draw();
+      }
+    });
+
+
+
   },
   percentageFormatLabel:function (label, value, index, totalValue) {
     return label + ' (' + (value / totalValue * 100).toFixed(2) + '%)';
@@ -39,8 +68,10 @@ Page({
         var index = 0;
         var l = this.data.labels;
         var m = this.data.Moneys;
+        console.log("======================");
         console.log(m);
-        console.log("-----------------------");
+        console.log(l);
+        console.log("========================");
         while(index != -1){
           // console.log(m);
           // console.log(l);
@@ -52,8 +83,7 @@ Page({
           l.splice(index,1);
           }
         }
-        console.log(m);
-        console.log(l);
+
         this.setData({
           labels:l,
           Moneys:m
@@ -98,9 +128,11 @@ Page({
         format: this.percentageFormatLabel
       }
     });
+    console.log(this.data.labels);
+    console.log(this.data.Moneys);
     this.remove();
     // console.log(this.remove(this.data.Moneys));
-    console.log(this.getData(this.data.labels,this.data.Moneys));
+    // console.log(this.getData(this.data.labels,this.data.Moneys));
     wxPie.update(this.getData(this.data.labels,this.data.Moneys));
 
     return {
@@ -110,7 +142,7 @@ Page({
       }
     };
   },
-  onReady: function () {
+  draw: function () {
     let me = this;
     let windowWidth = 350;
     var that = this;
@@ -120,36 +152,19 @@ Page({
     } catch (e) {
       // do something when get system info failed
     };
-    wx.request({
-      url: 'https://tally.slickghost.com/result', //仅为示例，并非真实的接口地址
-      data: {
-        startDate: this.data.startDate,
-        endDate: this.data.endDate,
-        cookie:app.globalData.cookie
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        var obj = res.data;
-        console.log(obj.result);
-        that.setData(
-          {
-            Moneys: obj.result
-          }
-        );
-      },
-      complete:function(){
+    
+    // console.log("--------------->");
+    // console.log(this.data.Moneys);
+    // console.log(this.data.labels);
+    // console.log("<---------------");
         me.baseDoughnutChart = me.baseDoughnut(windowWidth);
         me.baseDoughnutChart.chart.once('draw', function (views) {
           me.baseDoughnutTapHandler = this.mouseoverTooltip(views);
         }, me.baseDoughnutChart.chart);
-      }
-    });
 
   },
   onShow: function () {
-    this.onReady();
+    // this.onReady();
   },
   onHide: function () {
     // 页面隐藏

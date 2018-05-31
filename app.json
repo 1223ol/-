@@ -9,9 +9,6 @@
 "pages/Flowing/index",
 "pages/newResult/index",
 "pages/scrollline/scrollline",
-
- "pages/result/index",
-    
     "pages/logs/logs"
   ],
   "window": {

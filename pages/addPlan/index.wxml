@@ -20,7 +20,7 @@
     <view class="itemView-3">
       <text class="itemTextforplan">结束时间：</text>
 
-      <picker class='itemEndDateforplan' mode="date" value="{{endDate}}" start="2017-09-26" end="{{realDate}}" bindchange="listenerEndDatePickerSelected">
+      <picker class='itemEndDateforplan' mode="date" value="{{endDate}}" end="2030-09-26"  bindchange="listenerEndDatePickerSelected">
         <text>{{endDate}}</text>
       </picker>
     </view>

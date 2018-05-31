@@ -21,7 +21,11 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 def str2Date(strDate):
     dateList = strDate.split("-")
+    # try:
+    print strDate
     return datetime.date(int(dateList[0]),int(dateList[1]),int(dateList[2]))
+    # except Exception as e:
+        # print dateList
 def date2Str(myDate):
     return str(myDate.year) + "-" + str(myDate.month) + "-" + str(myDate.day)
 """
@@ -321,12 +325,15 @@ def result():
     house = db.session.query(func.sum(Category.money)).filter_by(name=unicode('住房缴费')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).filter_by(uid = uid).first()[0]
     go = db.session.query(func.sum(Category.money)).filter_by(name=unicode('交通出行')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).filter_by(uid = uid).first()[0]
     chat = db.session.query(func.sum(Category.money)).filter_by(name=unicode('通讯')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).filter_by(uid = uid).first()[0]
+    wen = db.session.query(func.sum(Category.money)).filter_by(name=unicode('文教娱乐')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).filter_by(uid = uid).first()[0]
+    health = db.session.query(func.sum(Category.money)).filter_by(name=unicode('健康')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).filter_by(uid = uid).first()[0]
+    other = db.session.query(func.sum(Category.money)).filter_by(name=unicode('其他消费')).join(Date).filter(Date.date.between(str2Date(startDate),str2Date(endDate))).filter_by(uid = uid).first()[0]
     data['status'] = 'success'
     print(eat)
     # print(dateId)
     # '饮食', '服饰妆容', '生活日用', '住房缴费', '交通出行', '通讯']
     # db.session.query(func.sum(Category.money)).filter_by(name=unicode('饮食')).first()[0]
-    data['result'] =  [eat, wear, live, house, go, chat]
+    data['result'] =  [eat, wear, live, house, go, chat,wen,health,other]
     for i,content in enumerate(data['result']):
         if content == None:
             data['result'][i] = 0

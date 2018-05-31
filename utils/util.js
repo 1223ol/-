@@ -37,6 +37,12 @@ function formatDateaddMonth(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 2
   var day = date.getDate()
+  date.setMonth(date.getMonth() + 1);
+  date.setDate(0);//最大天数
+  if(day > date.getDate()){
+      day = date.getDate();
+  } 
+  
 
   return [year, month, day].map(formatNumber).join('-')
 }

@@ -7,7 +7,7 @@ Page({
    */
   data: {
     money: 0.0,
-    billMoney: 0.0,
+    billMoney: null,
     startDate: '2016-09-26',
     endDate: '2016-09-26',
     date: '2016-09-26',
@@ -60,9 +60,15 @@ Page({
           icon: 'succes',
           duration: 1000,
           mask: true
-        })
-      }
+        });
+        console.log("navigate");
+        wx.navigateTo({
+          url: '../index/index',
+        });
+      },
     });
+    
+
   },
   changMoney: function (event) {
     console.log("changMoney is invoke");

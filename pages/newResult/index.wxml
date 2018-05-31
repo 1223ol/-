@@ -5,7 +5,7 @@
   <view class='flex-row'>
 
     <view class>
-      <picker class='date-1' mode="date" value="{{startDate}}" start="2010-09-26" end="2020-10-10" bindchange="listenerStartDatePickerSelected">
+      <picker class='date-1' mode="date" value="{{startDate}}" start="2010-09-26" end="3020-10-10" bindchange="listenerStartDatePickerSelected">
         <text>{{startDate}}</text>
         <image class="arrow-1" src="https://upload-images.jianshu.io/upload_images/5443560-bcad4e323768450a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" mode="aspectFill"></image>
       </picker>
@@ -15,7 +15,7 @@
 
 
     <view>
-      <picker class='date-2' mode="date" value="{{endDate}}" start="2010-09-26" end="2020-10-10" bindchange="listenerEndDatePickerSelected">
+      <picker class='date-2' mode="date" value="{{endDate}}" start="2010-09-26" end="3020-10-10" bindchange="listenerEndDatePickerSelected">
         <text>{{endDate}}</text>
         <image class="arrow-2" src="https://upload-images.jianshu.io/upload_images/5443560-bcad4e323768450a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" mode="aspectFill"></image>
       </picker>
