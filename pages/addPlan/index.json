@@ -1,7 +1,12 @@
 {
-  "navigationBarBackgroundColor": "#2A8CEF",
-  "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "添加计划",
-  "backgroundColor": "#f00",
-  "backgroundTextStyle": "light"
+
+
+      "navigationBarBackgroundColor": "#2A8CEF",
+      "navigationBarTextStyle": "white",
+      "navigationBarTitleText": "添加计划",
+      "backgroundColor": "#f00",
+      "backgroundTextStyle": "light"
+
 }
+    
+  

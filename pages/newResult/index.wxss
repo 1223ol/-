@@ -19,6 +19,7 @@
 
 .flex-row{
   display: flex;
+  height: 40px;
   flex-direction: row;
   background-color:  	#B9B9FF;
 }
@@ -29,6 +30,7 @@
 .between{
     width: 100vw;
     text-align: center;
+    font-size: 1.3rem;
 }
 
 .arrow-1{
@@ -48,12 +50,14 @@
 .date-1{
   position: absolute;
   left: 5px;
+  font-size: 1.3rem;
  
 }
 
 .date-2{
   position: absolute;
   right: 25px;
+  font-size: 1.3rem;
 }
 /*
 .container{

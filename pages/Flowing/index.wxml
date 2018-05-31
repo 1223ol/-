@@ -21,7 +21,7 @@
       </picker>
     </view>
 
-<view class="addText">  备注：
+<view class="addText">  激活码：
   <textarea>
 
   </textarea>

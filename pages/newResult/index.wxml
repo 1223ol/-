@@ -23,8 +23,8 @@
   </view>
 
 
-    <canvas class="canvas" canvas-id="baseDoughnut" bindtouchend="baseDoughnutTapHandler" />
- 
+  <canvas class="canvas" canvas-id="baseDoughnut" bindtouchend="baseDoughnutTapHandler" />
+
 
 
 
