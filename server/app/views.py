@@ -12,7 +12,11 @@ import json
 import sys
 import datetime 
 import random
-import requests                                                                                                
+import requests
+import hashlib
+import reply
+import receive
+                                                                                           
 reload(sys)
 sys.setdefaultencoding('utf8')
 def str2Date(strDate):
@@ -339,3 +343,57 @@ def result():
 # @app.route("/.well-known/pki-validation/fileauth.txt")
 # def verity():
 #     return "20180424101213022w97rnxl5swy0p57qo6uy2rfmr52o3bb05g2c8zaku4pffsj"
+# def getAccessToken():
+#     appID = "wxda414635ff6fd070"
+#     appse  = "7125e4cdd86f80dec33054bb6c7383ea"
+#     url = '''https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={appid}&secret={appse}'''
+#     url = url.format(appid = appID,appse = appse)
+#     r = requests.get(url)
+#     return r.text
+
+# def getUnionId(ACCESS_TOKEN,OPENID):
+#     url = '''https://api.weixin.qq.com/cgi-bin/user/info?access_token={ACCESS_TOKEN}&openid={OPENID}&lang=zh_CN'''
+#     url = url.format(ACCESS_TOKEN = ACCESS_TOKEN,OPENID = OPENID)
+#     r = requests.get(url)
+#     return r.text
+
+@app.route("/wx",methods=['POST'])
+# @app.route("/wx")
+def wx():
+    webData = request.data
+    print "Handle Post webdata is ", webData
+    recMsg = receive.parse_xml(webData)
+    # print recMsg.MsgId
+    # print (isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text')
+    if isinstance(recMsg, receive.Msg) and (recMsg.MsgType == 'text' or recMsg.MsgType == 'voice'):
+        toUser = recMsg.FromUserName
+        ToUserName = recMsg.ToUserName
+        content = recMsg.Content
+        openId = toUser
+        # print openId
+        # uni = UnionId(openId)
+        # tokenJson = json.loads(getAccessToken())
+        # access_token =  tokenJson['access_token']
+        # print(getUnionId(access_token,openId))
+        replyMsg = reply.TextMsg(toUser, ToUserName, content)
+        # print replyMsg.send()
+        return replyMsg.send()
+    else:
+        print "暂且不处理"
+        return "success"
+    # print request.form
+    # signature = request.args.get('signature')
+    # timestamp = request.args.get('timestamp')
+    # nonce = request.args.get('nonce')
+    # echostr = request.args.get('echostr')
+    # token = "daiker"
+    # list = [token, timestamp, nonce]
+    # list.sort()
+    # sha1 = hashlib.sha1()
+    # map(sha1.update, list)
+    # hashcode = sha1.hexdigest()
+    # print "handle/GET func: hashcode, signature: ", hashcode, signature
+    # if hashcode == signature:
+    #     return echostr
+    # else:
+    #     return ""    

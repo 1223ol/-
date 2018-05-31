@@ -1,0 +1,18 @@
+<xml>
+    <ToUserName><![CDATA[gh_8895684633cc]]></ToUserName>
+    <FromUserName><![CDATA[oIJSx0jRIePsPMRBm4V9zLP29VHg]]></FromUserName>
+    <CreateTime>1527583126</CreateTime>
+    <MsgType><![CDATA[voice]]></MsgType>
+    <MediaId><![CDATA[3vw6867_PXu9ut23llc4IznyK4qRl8XWMHhA_A1nIfZHegK57sxr2sy_JecBLWnf]]></MediaId>
+    <Format><![CDATA[amr]]></Format>
+    <MsgId>6560919568091447296</MsgId>
+    <Recognition><![CDATA[语音设施。]]></Recognition>
+</xml>
+<xml>
+    <ToUserName><![CDATA[gh_8895684633cc]]></ToUserName>
+    <FromUserName><![CDATA[oIJSx0jRIePsPMRBm4V9zLP29VHg]]></FromUserName>
+    <CreateTime>1527583199</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[123456]]></Content>
+    <MsgId>6560919882048492910</MsgId>
+</xml>
