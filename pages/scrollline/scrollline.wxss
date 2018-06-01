@@ -8,10 +8,14 @@
 
 .canvas{
   position: absolute;
-  width: 100vw;
+  width: 94vw;
+  left: 2vw;
   top:3vh;
   height: 80vh;
+
+  color: black;
   background-color: white;
+
 }
 
 .addPlan{

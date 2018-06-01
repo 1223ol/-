@@ -21,7 +21,7 @@
       </picker>
     </view>
 
-<view class="addText">  激活码：
+<view class="addText">  <view style="text-align:center">激活码</view>
   <textarea>
 
   </textarea>

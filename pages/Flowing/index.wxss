@@ -182,7 +182,7 @@ border-color: white;
 
 .addText{
   position: absolute;
-  top:190px;
+  top:50vh;
   left: 2vw;
   width: 94vw;
   height: 150px;

@@ -1,6 +1,8 @@
 <view class="container">
+
     <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler"></canvas>
-    <!-- <view >拖动图表查看</view> -->
+
     <button class="addPlan" type="default " size="default " bindtap="addPlan" > 增加计划 </button>
+    
 </view>
 

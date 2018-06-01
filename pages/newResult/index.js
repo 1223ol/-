@@ -120,8 +120,9 @@ Page({
   baseDoughnut : function(windowWidth){
     let wxPie = new WxChart.WxDoughnut('baseDoughnut', {
       width: windowWidth-25,
-      height:350,
-      title: '  消费情况　',
+      height:300,
+      title:'  消费情况　',
+
 
 
       point: {

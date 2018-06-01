@@ -64,7 +64,7 @@ Page({
                 },
                 min: 0
             },
-            width: windowWidth-30,
+            width: windowWidth,
             height: 350,
             dataLabel: true,
             dataPointShape: true,
