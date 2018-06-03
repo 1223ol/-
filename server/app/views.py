@@ -249,15 +249,11 @@ def addPlan():
 """
 sure id is OK
 """
-@app.route("/addBill")
-def addBill():
-    data={}
-    money =  request.args.get('money')
-    typeName = request.args.get('typeName').strip()
-    date = request.args.get('date')
-    openid = request.args.get('cookie')
+def addBillLocal(money,typeName,date,openid):
+    data = {}
     try:
         uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
+        print 1
         dateId = db.session.query(Date.dateId).filter_by(date=str2Date(date),uid=uid).first()
         if dateId == None:
             myDate = Date(str2Date(date),uid)
@@ -275,12 +271,27 @@ def addBill():
     return json.dumps(data,ensure_ascii=False)
 
 
+@app.route("/addBill")
+def addBill():
+    money =  request.args.get('money')
+    typeName = request.args.get('typeName').strip()
+    date = request.args.get('date')
+    openid = request.args.get('cookie')
+    return addBillLocal(money,typeName,date,openid)
+
+
 @app.route("/showPlan")
 def showPlan():
     data = {}
     openid = request.args.get('cookie')
     uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
-    money = db.session.query(Plan.Money).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
+    money = db.session.query(Plan.Money).filter_by(uid=uid).order_by(Plan.planId.desc()).first()
+    if money == None:
+        data['have'] = 0
+        return json.dumps(data,ensure_ascii=False)
+    else:
+        data['have'] = 1
+        money = money[0]
     startDate = db.session.query(Plan.startTime).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
     dateList = []
     leftMoney = []
@@ -364,6 +375,41 @@ def result():
 #     r = requests.get(url)
 #     return r.text
 
+def addConver(content,pnId):
+    mpId = db.session.query(Conver.mpId).filter_by(pnId = pnId).first()
+    if mpId != None:
+        return mpId
+    mpId = content.lstrip("激活");
+    converClass = Conver(mpId,pnId)
+    db.session.add(converClass)
+    db.session.commit()
+    mpId = db.session.query(Conver.mpId).filter_by(pnId = pnId).first()[0]
+    return mpId
+
+def idConvert(pnId):
+    mpId = db.session.query(Conver.mpId).filter_by(pnId = pnId).first()
+    print mpId
+    return mpId
+
+def addBillByPn(content,pnId):
+    content = content.lstrip("添加账单")
+    typeName = content.split(" ")[0]
+    money = content.split(" ")[1]
+    print typeName
+    print money
+    date = datetime.datetime.now().strftime('%Y-%m-%d')
+    print date
+    mpId = idConvert(pnId)
+    if mpId == None:
+        return u"请输入激活码"
+    print mpId[0]
+    result = eval(addBillLocal(money,typeName,date,mpId[0]))
+    print result
+    return result['status']
+    # return "123"
+
+
+
 @app.route("/wx",methods=['POST'])
 # @app.route("/wx")
 def wx():
@@ -375,14 +421,35 @@ def wx():
     if isinstance(recMsg, receive.Msg) and (recMsg.MsgType == 'text' or recMsg.MsgType == 'voice'):
         toUser = recMsg.FromUserName
         ToUserName = recMsg.ToUserName
-        content = recMsg.Content
-        openId = toUser
-        # print openId
-        # uni = UnionId(openId)
-        # tokenJson = json.loads(getAccessToken())
-        # access_token =  tokenJson['access_token']
-        # print(getUnionId(access_token,openId))
-        replyMsg = reply.TextMsg(toUser, ToUserName, content)
+        content = recMsg.Content.strip().rstrip('.')
+        pnId = toUser
+        replyContent = u"处理异常，请稍后重试"
+        if content.startswith("激活"):
+            addConver(content,pnId)
+            replyContent = u"添加成功,请尽情使用"
+        elif content.startswith("添加账单"):
+            replyContent = addBillByPn(content,pnId)
+        else:
+            replyContent = '''
+        输入格式错误，如果激活,请输入"激活+激活码"
+        如果要添加账单，请输入"添加账单+类型+金钱"
+        类型有底下几类
+        ["饮食", "服饰妆容", "生活日用", "住房缴费", "交通出行", "通讯", "文教娱乐", "健康", "其他消费"]
+            '''
+        replyMsg = reply.TextMsg(toUser, ToUserName, replyContent)
+        # print replyMsg.send()
+        return replyMsg.send()
+    elif isinstance(recMsg, receive.Msg) and (recMsg.MsgType == 'event'):
+        toUser = recMsg.FromUserName
+        ToUserName = recMsg.ToUserName
+        replyContent = '''
+        欢迎关注，这里是吃土神器公众号。这个公众号配合小程序使用
+        如果想激活,请输入"激活+激活码"
+        如果要添加账单，请输入"添加账单+类型+金钱"
+        类型有底下几类
+        ["饮食", "服饰妆容", "生活日用", "住房缴费", "交通出行", "通讯", "文教娱乐", "健康", "其他消费"]
+            '''
+        replyMsg = reply.TextMsg(toUser, ToUserName, replyContent)
         # print replyMsg.send()
         return replyMsg.send()
     else:

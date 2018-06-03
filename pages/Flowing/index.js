@@ -11,6 +11,7 @@ Page({
     endDate: '2016-09-26',
     date: '2016-09-26',
     realDate:'2016-06-29',
+    code:"",
     array: ['饮食 ', '服饰装容', '生活日用', '住房缴费', '交通出行', " 通讯 ", "文教娱乐", " 健康 ", "其他消费"],
     index: 0,
   },
@@ -29,9 +30,32 @@ Page({
       startDate: time,
       endDate: nextMonth,
       date: time,
-      realDate:time
+      realDate:time,
+      code: app.globalData.cookie
     });
-    console.log(this.data.billMoney)
+    console.log(this.data.code)
+  },
+  copyTBL:function(e){
+
+    var self = this;
+    wx.setClipboardData({
+      data: self.data.code,
+      success: function (res) {
+        // self.setData({copyTip:true}),  
+        // wx.showModal({
+        //   title: '提示',
+        //   content: '复制成功',
+        //   success: function (res) {
+        //     if (res.confirm) {
+        //       console.log('确定')
+        //     } else if (res.cancel) {
+        //       console.log('取消')
+        //     }
+        //   }
+        // })
+      }
+    });  
+
   },
 
   /**

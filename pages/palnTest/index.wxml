@@ -1,8 +1,0 @@
-<!-- line.wxml -->
-<view class="container">
-  
-  <view class="chart-container">
-    <canvas class="canvas" canvas-id="multiLine" bindtouchend='multiLineChartTapHandler'/>
-    <button class="change-button" type="primary" bindtap="changeChart" data-canvas-name="multiLine"> 增加计划 </button>
-  </view>
-</view>

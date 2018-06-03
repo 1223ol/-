@@ -6,7 +6,8 @@ Page({
     data: {
         labels: [1,2,3],
         expectMoneys: [3,2,1],
-        realMoneys: [3,2.5,0]
+        realMoneys: [3,2.5,0],
+        havaPlan: 0,
     },
     addPlan:function(e){
         wx.navigateTo({
@@ -87,13 +88,21 @@ Page({
           success: function (res) {
             console.log("success");
             var obj = res.data;
+            console.log(obj.have);
+            if(obj.have == 0){
+              that.setData({
+                    havePlan:0
+                  });
+            }else{
             console.log(obj.expectMoneys);
             that.setData({
+                havePlan: 1,
                 labels:obj.labels,
                 expectMoneys:obj.expectMoneys,
                 realMoneys:obj.realMoneys,
             });
             console.log("setData complete");
+            }
           },
           complete:function(res){  
               that.draw();

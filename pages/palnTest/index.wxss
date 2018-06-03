@@ -1,5 +1,0 @@
-.container .chart-container .canvas {
-    height: 250px;
-    /* width:350px; */
-
-}

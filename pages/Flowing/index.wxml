@@ -21,10 +21,12 @@
       </picker>
     </view>
 
-<view class="addText">  <view style="text-align:center">激活码</view>
-  <textarea>
-
-  </textarea>
+<view class="addText">  
+<view style="text-align:center">激活码</view>
+<view style="text-align:center">(点击复制)</view>
+    <text  bindtap="copyTBL">  
+{{code}}
+    </text>  
 </view>
 
     <view>

@@ -17,23 +17,16 @@ Page({
     startDate: '2016-09-26',
     endDate: '2016-09-26',
   },
-  onLoad: function (options) {
+  requ:function(){
     var that = this;
-    var util = require('../../utils/util.js');
-    var time = util.formatDate(new Date());
-    // var  nextMonth = util.formatDateaddMonth(new Date());
-    // 再通过setData更改Page()里面的data，动态更新页面的数据  
-    this.setData({
-      startDate: time,
-      endDate: time,
-    });
-
+    console.log(this.data.startDate);
+    console.log(this.data.endDate);
     wx.request({
       url: 'https://tally.slickghost.com/result', //仅为示例，并非真实的接口地址
       data: {
         startDate: this.data.startDate,
         endDate: this.data.endDate,
-        cookie:app.globalData.cookie
+        cookie: app.globalData.cookie
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -47,10 +40,23 @@ Page({
           }
         );
       },
-      complete:function(){
+      complete: function () {
         that.draw();
       }
     });
+  },
+  onLoad: function (options) {
+    var that = this;
+    var util = require('../../utils/util.js');
+    var time = util.formatDate(new Date());
+    // var  nextMonth = util.formatDateaddMonth(new Date());
+    // 再通过setData更改Page()里面的data，动态更新页面的数据  
+    this.setData({
+      startDate: time,
+      endDate: time,
+    });
+    this.requ();
+
 
 
 
@@ -102,7 +108,9 @@ Page({
         endDate: e.detail.value
       }
     );
-    this.onReady();
+    // console.log(this.data.startDate);
+    // console.log(this.data.endDate);
+    this.requ();
   },
   getData : function(labels,Moneys,){
         // console.log(labels);

@@ -66,12 +66,13 @@ class Plan(db.Model):
     def __repr__(self):
         return '<Plan {pId}:{sTime}-{eTime}>'.format(pId = self.planId,sTime = self.startTime,eTime = self.endTime)
 
-# class UnionId(db.Model):
-#     __tablename__='UnionId'
-#     xiaoId =  db.Column(db.String(64), index = True)
-#     gongId =  db.Column(db.String(64), index = True)
+class Conver(db.Model):
+    __tablename__='Conver'
+    mpId =  db.Column(db.String(64), index = True)
+    pnId =  db.Column(db.String(64), index = True, primary_key = True)
 
-#     def __init__(self,gongId):
-#         gongId = self.gongId
+    def __init__(self,mpId,pnId):
+        self.mpId = mpId
+        self.pnId = pnId
 
         

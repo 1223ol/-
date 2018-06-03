@@ -1,7 +1,0 @@
- <view class="plan"> 
- <view class="chart-container">
-    <canvas class="canvas" canvas-id="multiLine" bindtouchend='multiLineChartTapHandler'/>
-</view>
-   <button class='addButton' bindtap="addPlan">添加</button> 
- </view> 
-  
