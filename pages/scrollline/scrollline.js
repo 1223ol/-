@@ -24,6 +24,8 @@ Page({
         lineChart.scrollEnd(e);
         lineChart.showToolTip(e, {
             format: function (item, category) {
+              console.log(item);
+              console.log(item);
                 return category + ' ' + item.name + ':' + item.data 
             }
         });        
@@ -45,13 +47,19 @@ Page({
                 name: '预期剩余',
                 data: this.data.expectMoneys,
                 format: function (val, name) {
+                  if (val != null){
                     return val.toFixed(2);
+                  }
+                  return null;
                 }
                 },{
                 name: '实际剩余',
                 data: this.data.realMoneys,
                 format: function (val, name) {
+                  if (val != null) {
                     return val.toFixed(2);
+                  }
+                  return null;
                 }
                 }
             ],
@@ -61,7 +69,10 @@ Page({
             yAxis: {
                 title: '余额(元)',
                 format: function (val) {
+                  if (val != null) {
                     return val.toFixed(2);
+                  }
+                  return null;
                 },
                 min: 0
             },

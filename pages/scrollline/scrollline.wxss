@@ -30,3 +30,17 @@
   background-color: rgba(255, 255, 255, 0.8);
   border-color: white;
 }
+
+.onPlan{
+  position: absolute;
+  width: 80vw;
+  left: 10vw;
+  top:20vh;
+  height: 50vh;
+}
+
+image{
+  position: absolute;
+  width: 80vw;
+  height: 50vh;
+}

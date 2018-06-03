@@ -75,3 +75,17 @@ text-align:  center;
   
 }
 */
+
+.onDate{
+  position: absolute;
+  width: 80vw;
+  left: 10vw;
+  top:20vh;
+  height: 50vh;
+}
+
+image{
+  position: absolute;
+  width: 80vw;
+  height: 50vh;
+}
