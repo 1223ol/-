@@ -35,14 +35,26 @@ Page({
       success: function (res) {
         var obj = res.data;
         console.log(obj.result);
+        console.log(obj.flag)
+        if(obj.flag == 0){
+          that.setData(
+            {
+              haveData: 0
+            }
+          );
+        }else{
         that.setData(
           {
+            haveData:1,
             Moneys: obj.result
           }
         );
+        }
       },
       complete: function () {
+        if (that.data.haveData == 1) {
         that.draw();
+        }
       }
     });
   },
@@ -111,7 +123,7 @@ Page({
     );
     // console.log(this.data.startDate);
     // console.log(this.data.endDate);
-    this.requ();
+      this.requ();
   },
   getData : function(labels,Moneys,){
         // console.log(labels);

@@ -171,17 +171,21 @@ sure id is OK
 """
 @app.route("/showBill")
 def showBill():
+    testData = {}
     year = int(request.args.get('year'))
     month = int(request.args.get('month'))
     date = int(request.args.get('date'))
     openid = request.args.get('cookie')
     uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
+    if inPlan(datetime.date(year,month,date),uid):
+        testData['inPlan'] = 1
+    else:
+        testData['inPlan'] = 0
     dateId = db.session.query(Date.dateId).filter_by(date = datetime.date(year,month,date),uid=uid).first()
     if dateId == None:
         allBill = []
     else:      
         allBill = db.session.query(Category).filter_by(dateId = dateId[0]).all()
-    testData = {}
     testData['Bill']  = []
     allSpend = 0
     for i in allBill:
@@ -193,13 +197,16 @@ def showBill():
         bill['date'] = date2Str(db.session.query(Date).filter_by(dateId=i.dateId).first().date)
         testData['Bill'] .append(bill)
     testData['allSpend'] = allSpend
-    money = db.session.query(Plan.Money).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
-    days = countDays(uid)
-    if days != 0:
-        testData['surplus'] = round((balanceCalcu(datetime.date(year,month,date),uid) - allSpend),2)
+    if inPlan(datetime.date(year,month,date),uid):
+        money = db.session.query(Plan.Money).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
+        days = countDays(uid)
+        if days != 0:
+            testData['surplus'] = round((balanceCalcu(datetime.date(year,month,date),uid) - allSpend),2)
+        else:
+            testData['surplus'] = 0
+        # print(testData)
     else:
         testData['surplus'] = 0
-    # print(testData)
     return json.dumps(testData,ensure_ascii=False)
 """
 sure id is OK
@@ -345,10 +352,14 @@ def result():
     # '饮食', '服饰妆容', '生活日用', '住房缴费', '交通出行', '通讯']
     # db.session.query(func.sum(Category.money)).filter_by(name=unicode('饮食')).first()[0]
     data['result'] =  [eat, wear, live, house, go, chat,wen,health,other]
+    flag = 0
     for i,content in enumerate(data['result']):
         if content == None:
             data['result'][i] = 0
-    print(data['result'])
+        else:
+            flag = 1
+    data['flag'] = flag
+    print(data)
     return json.dumps(data,ensure_ascii=False)
 
 # @app.route("/login")

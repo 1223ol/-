@@ -8,6 +8,7 @@ Page({
     "limit": 1,
     allSpend: 0,
     surplus: 0,
+    inPlan:0,
     "bill": [
       {
       },
@@ -33,6 +34,7 @@ Page({
           bill: obj.Bill,
           allSpend: obj.allSpend,
           surplus: obj.surplus,
+          inPlan: obj.inPlan
         });
       }
     });
