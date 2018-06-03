@@ -16,6 +16,7 @@ Page({
     Moneys:[100],
     startDate: '2016-09-26',
     endDate: '2016-09-26',
+    haveData:0
   },
   requ:function(){
     var that = this;
