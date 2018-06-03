@@ -23,10 +23,11 @@
   </view>
 
 
-   <canvas wx:if="{{haveData == 1}}" class="canvas" canvas-id="baseDoughnut" bindtouchend="baseDoughnutTapHandler" /> 
+  <canvas wx:if="{{haveData == 1}}" class="canvas" canvas-id="baseDoughnut" bindtouchend="baseDoughnutTapHandler" />
 
-<view wx:if="{{haveData == 0}}" style="background-image::url('https://upload-images.jianshu.io/upload_images/5443560-b14bfbc7a0e1295a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)')"></view>
+  <view class="onDate" wx:if="{{haveData == 0}}">
 
-
+    <image src="https://upload-images.jianshu.io/upload_images/5443560-b14bfbc7a0e1295a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></image>
+  </view>
 
 </view>
