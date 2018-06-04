@@ -5,7 +5,7 @@
 }
 
 
-/*.container .chart-container*/
+
  .canvas {
     position: absolute;
   border-style: solid;
