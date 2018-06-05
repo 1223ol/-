@@ -41,18 +41,18 @@ Page({
     wx.setClipboardData({
       data: self.data.code,
       success: function (res) {
-        // self.setData({copyTip:true}),  
-        // wx.showModal({
-        //   title: '提示',
-        //   content: '复制成功',
-        //   success: function (res) {
-        //     if (res.confirm) {
-        //       console.log('确定')
-        //     } else if (res.cancel) {
-        //       console.log('取消')
-        //     }
-        //   }
-        // })
+        // self.setData({copyTip:false}) 
+        wx.showModal({
+          title: '复制成功',
+          content: '请到公众号"吃TU神器"中使用',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('确认')
+            } else if (res.cancel) {
+              console.log('取消')
+            }
+          }
+        })
       }
     });  
 

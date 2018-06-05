@@ -15,6 +15,8 @@ def parse_xml(web_data):
         return TextMsg(xmlData)
     elif msg_type == 'voice':
         return VioceMsg(xmlData)
+    elif msg_type == 'event':
+        return eventMsg(xmlData)
 
 
 class Msg(object):
@@ -23,7 +25,7 @@ class Msg(object):
         self.FromUserName = xmlData.find('FromUserName').text
         self.CreateTime = xmlData.find('CreateTime').text
         self.MsgType = xmlData.find('MsgType').text
-        self.MsgId = xmlData.find('MsgId').text
+        # self.MsgId = xmlData.find('MsgId').text
 
 class TextMsg(Msg):
     def __init__(self, xmlData):
@@ -35,3 +37,8 @@ class VioceMsg(Msg):
     def __init__(self,xmlData):
         Msg.__init__(self,xmlData)
         self.Content = xmlData.find('Recognition').text.encode("utf-8")
+
+class eventMsg(Msg):
+    def __init__(self,xmlData):
+        Msg.__init__(self,xmlData)
+        self.Content = xmlData.find('Event').text.encode("utf-8")

@@ -62,8 +62,8 @@ Page({
           mask: true
         });
         console.log("navigate");
-        wx.navigateTo({
-          url: '../index/index',
+        wx.switchTab({
+          url: '/pages/scrollline/scrollline',
         });
       },
     });

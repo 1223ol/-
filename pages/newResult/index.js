@@ -85,7 +85,9 @@ Page({
    },
   remove:function (){
         var index = 0;
-        var l = this.data.labels;
+        console.log("labels")
+        console.log(this.data.labels)
+        var l = ['饮食', '服饰妆容', '生活日用', '住房缴费', '交通出行', '通讯', '文教娱乐', '健康', '其他消费'];
         var m = this.data.Moneys;
         console.log("======================");
         console.log(m);
@@ -186,7 +188,7 @@ Page({
 
   },
   onShow: function () {
-    // this.onReady();
+    this.requ();
   },
   onHide: function () {
     // 页面隐藏

@@ -16,6 +16,7 @@ import requests
 import hashlib
 import reply
 import receive
+import re
                                                                                            
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -391,6 +392,8 @@ def addConver(content,pnId):
     if mpId != None:
         return mpId
     mpId = content.lstrip("激活");
+    print mpId
+    print pnId
     converClass = Conver(mpId,pnId)
     db.session.add(converClass)
     db.session.commit()
@@ -403,20 +406,36 @@ def idConvert(pnId):
     return mpId
 
 def addBillByPn(content,pnId):
-    content = content.lstrip("添加账单")
-    typeName = content.split(" ")[0]
-    money = content.split(" ")[1]
+    mpId = idConvert(pnId)
+    if mpId == None:
+        return u"请输入激活码"
+    typeList = ["饮食", "服饰妆容", "生活日用", "住房缴费", "交通出行", "通讯", "文教娱乐", "健康", "其他消费"]
+    for i in typeList:
+        if i in content:
+            typeName = i
+            break
+        else:
+            typeName = u'其他消费'
+
+    money = re.findall(r"\d+\.?\d*",content)
+    if money == []:
+        return '''输入格式错误，
+如果要添加账单,请输入"类型+金钱",如"吃饭50"
+类型有底下几类
+["饮食", "服饰妆容", "生活日用", "住房缴费", "交通出行", "通讯", "文教娱乐", "健康", "其他消费"]
+            '''
+    else:
+        money = money[0]
     print typeName
     print money
     date = datetime.datetime.now().strftime('%Y-%m-%d')
     print date
-    mpId = idConvert(pnId)
-    if mpId == None:
-        return u"请输入激活码"
     print mpId[0]
-    result = eval(addBillLocal(money,typeName,date,mpId[0]))
+    kk = addBillLocal(money,typeName,date,mpId[0])
+    print kk
+    result = eval(kk)
     print result
-    return result['status']
+    return result['status']+",类型为: "+typeName+",金额为: "+money
     # return "123"
 
 
@@ -432,33 +451,29 @@ def wx():
     if isinstance(recMsg, receive.Msg) and (recMsg.MsgType == 'text' or recMsg.MsgType == 'voice'):
         toUser = recMsg.FromUserName
         ToUserName = recMsg.ToUserName
-        content = recMsg.Content.strip().rstrip('.')
+        content = recMsg.Content.strip().rstrip('。')
         pnId = toUser
         replyContent = u"处理异常，请稍后重试"
         if content.startswith("激活"):
             addConver(content,pnId)
-            replyContent = u"添加成功,请尽情使用"
-        elif content.startswith("添加账单"):
-            replyContent = addBillByPn(content,pnId)
-        else:
-            replyContent = '''
-        输入格式错误，如果激活,请输入"激活+激活码"
-        如果要添加账单，请输入"添加账单+类型+金钱"
-        类型有底下几类
-        ["饮食", "服饰妆容", "生活日用", "住房缴费", "交通出行", "通讯", "文教娱乐", "健康", "其他消费"]
+            replyContent = '''激活成功,请尽情使用
+如果要添加账单，请输入"类型+金钱"
+如"饮食50",类型有底下几类
+["饮食", "服饰妆容", "生活日用", "住房缴费", "交通出行", "通讯", "文教娱乐", "健康", "其他消费"]
             '''
+        else:
+            replyContent = addBillByPn(content,pnId)
+
         replyMsg = reply.TextMsg(toUser, ToUserName, replyContent)
         # print replyMsg.send()
         return replyMsg.send()
-    elif isinstance(recMsg, receive.Msg) and (recMsg.MsgType == 'event'):
+    elif recMsg.MsgType == 'event':
         toUser = recMsg.FromUserName
         ToUserName = recMsg.ToUserName
-        replyContent = '''
-        欢迎关注，这里是吃土神器公众号。这个公众号配合小程序使用
-        如果想激活,请输入"激活+激活码"
-        如果要添加账单，请输入"添加账单+类型+金钱"
-        类型有底下几类
-        ["饮食", "服饰妆容", "生活日用", "住房缴费", "交通出行", "通讯", "文教娱乐", "健康", "其他消费"]
+        replyContent = '''欢迎关注，这里是吃土神器公众号，
+此公众号配合小程序"吃土神器"使用
+初次使用,请先激活,请先激活,输入"激活+激活码"
+如"激活vfbjfbhj(从小程序中获取)"
             '''
         replyMsg = reply.TextMsg(toUser, ToUserName, replyContent)
         # print replyMsg.send()
