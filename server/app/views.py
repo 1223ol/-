@@ -387,13 +387,72 @@ def result():
 #     r = requests.get(url)
 #     return r.text
 
+def convertChineseDigitsToArabic(chinese_digits, encoding="utf-8"):
+    chs_arabic_map = {u'零':0, u'一':1, u'二':2, u'三':3, u'四':4,
+        u'五':5, u'六':6, u'七':7, u'八':8, u'九':9,
+        u'十':10, u'百':100, u'千':10 ** 3, u'万':10 ** 4,
+        u'〇':0, u'壹':1, u'贰':2, u'叁':3, u'肆':4,
+        u'伍':5, u'陆':6, u'柒':7, u'捌':8, u'玖':9,
+        u'拾':10, u'佰':100, u'仟':10 ** 3, u'萬':10 ** 4,
+        u'亿':10 ** 8, u'億':10 ** 8, u'幺': 1,
+        u'０':0, u'１':1, u'２':2, u'３':3, u'４':4,
+        u'５':5, u'６':6, u'７':7, u'８':8, u'９':9}
+    if isinstance (chinese_digits, str):
+        chinese_digits = chinese_digits.decode (encoding)
+    number = re.compile(ur'([一二三四五六七八九零十百千万亿]+|[0-9]+[,]*[0-9]+.[0-9]+)')
+    pattern = re.compile(number)
+    result = pattern.findall(chinese_digits)
+    if result == []:
+        return None
+    else:
+        chinese_digits = result[0]
+    result  = 0
+    tmp     = 0
+    hnd_mln = 0
+    for count in range(len(chinese_digits)):
+        curr_char  = chinese_digits[count]
+        curr_digit = chs_arabic_map.get(curr_char, None)
+        # meet 「亿」 or 「億」
+        if curr_digit == 10 ** 8:
+            result  = result + tmp
+            result  = result * curr_digit
+            # get result before 「亿」 and store it into hnd_mln
+            # reset `result`
+            hnd_mln = hnd_mln * 10 ** 8 + result
+            result  = 0
+            tmp     = 0
+        # meet 「万」 or 「萬」
+        elif curr_digit == 10 ** 4:
+            result = result + tmp
+            result = result * curr_digit
+            tmp    = 0
+        # meet 「十」, 「百」, 「千」 or their traditional version
+        elif curr_digit >= 10:
+            tmp    = 1 if tmp == 0 else tmp
+            result = result + curr_digit * tmp
+            tmp    = 0
+        # meet single digit
+        elif curr_digit is not None:
+            tmp = tmp * 10 + curr_digit
+        else:
+            return result
+    result = result + tmp
+    result = result + hnd_mln
+    return result
+
+
 def addConver(content,pnId):
     mpId = db.session.query(Conver.mpId).filter_by(pnId = pnId).first()
     if mpId != None:
-        return mpId
-    mpId = content.lstrip("激活");
+        return "repeat"
+    mpId = content.lstrip("激活").strip();
     print mpId
     print pnId
+    Reuslt = db.session.query(User).filter_by(openid = mpId).first()
+    print "Reuslt"
+    print Reuslt
+    if Reuslt == None:
+        return "no"
     converClass = Conver(mpId,pnId)
     db.session.add(converClass)
     db.session.commit()
@@ -419,11 +478,13 @@ def addBillByPn(content,pnId):
 
     money = re.findall(r"\d+\.?\d*",content)
     if money == []:
-        return '''输入格式错误，
+        if convertChineseDigitsToArabic(content) == None:
+            return '''输入格式错误，
 如果要添加账单,请输入"类型+金钱",如"吃饭50"
 类型有底下几类
 ["饮食", "服饰妆容", "生活日用", "住房缴费", "交通出行", "通讯", "文教娱乐", "健康", "其他消费"]
             '''
+        money = convertChineseDigitsToArabic(content)
     else:
         money = money[0]
     print typeName
@@ -435,7 +496,7 @@ def addBillByPn(content,pnId):
     print kk
     result = eval(kk)
     print result
-    return result['status']+",类型为: "+typeName+",金额为: "+money
+    return result['status']+",类型为: "+typeName+",金额为: "+str(money)
     # return "123"
 
 
@@ -455,8 +516,13 @@ def wx():
         pnId = toUser
         replyContent = u"处理异常，请稍后重试"
         if content.startswith("激活"):
-            addConver(content,pnId)
-            replyContent = '''激活成功,请尽情使用
+            resu = addConver(content,pnId)
+            if resu == "no":
+                replyContent = "激活失败，请从小程序处复制激活码"
+            elif resu == "repeat":
+                replyContent = "您已经激活，无需再激活"
+            else:
+                replyContent = '''激活成功,请尽情使用
 如果要添加账单，请输入"类型+金钱"
 如"饮食50",类型有底下几类
 ["饮食", "服饰妆容", "生活日用", "住房缴费", "交通出行", "通讯", "文教娱乐", "健康", "其他消费"]
@@ -497,3 +563,15 @@ def wx():
     #     return echostr
     # else:
     #     return ""    
+
+@app.route("/active")
+def active():
+    data = {}
+    openid = request.args.get('cookie')
+    result = db.session.query(Conver).filter_by(mpId = openid).first()
+    if result == None:
+        data['active'] = 0
+    else:
+       data['active'] = 1
+    print data
+    return json.dumps(data,ensure_ascii=False)

@@ -21,7 +21,7 @@
       </picker>
     </view>
 
-<view class="addText">  
+<view wx:if="{{active == 0}}" class="addText">  
 <view style="text-align:center">激活码</view>
 <view style="text-align:center">(点击复制)</view>
     <text  bindtap="copyTBL">  

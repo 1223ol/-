@@ -127,6 +127,6 @@ Page({
       
   },
   onShow:function () {
-    this.draw();
+    this.onLoad();
   }
 });

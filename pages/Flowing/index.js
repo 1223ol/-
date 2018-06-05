@@ -12,6 +12,7 @@ Page({
     date: '2016-09-26',
     realDate:'2016-06-29',
     code:"",
+    active:0,
     array: ['饮食 ', '服饰装容', '生活日用', '住房缴费', '交通出行', " 通讯 ", "文教娱乐", " 健康 ", "其他消费"],
     index: 0,
   },
@@ -20,20 +21,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     console.log("Flowing onload");
     var util = require('../../utils/util.js');
     var time = util.formatDate(new Date());
     var nextMonth = util.formatDateaddMonth(new Date());
-    // 再通过setData更改Page()里面的data，动态更新页面的数据  
     this.setData({
       billMoney: null,
       startDate: time,
       endDate: nextMonth,
       date: time,
-      realDate:time,
+      realDate: time,
       code: app.globalData.cookie
     });
-    console.log(this.data.code)
+    //getAcive
+    wx.request({
+      url: 'https://tally.slickghost.com/active', 
+      data: {
+        cookie: app.globalData.cookie
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        var obj = res.data;
+        console.log();
+        that.setData({
+          active: obj.active
+        });
+      }
+        }) 
   },
   copyTBL:function(e){
 
@@ -68,7 +85,7 @@ Page({
     console.log("addBill is invoked");
     var that = this;
     wx.request({
-      url: 'https://tally.slickghost.com/addBill', //仅为示例，并非真实的接口地址
+      url: 'https://tally.slickghost.com/addBill',
       data: {
         money: that.data.billMoney,
         typeName: that.data.array[that.data.index],
@@ -81,12 +98,23 @@ Page({
       success: function (res) {
         var obj = res.data;
         console.log(obj.status);
-        wx.showToast({
-          title: obj.status,
-          icon: 'succes',
-          duration: 1000,
-          mask: true
-        });
+        // wx.showToast({
+        //   title: obj.status,
+        //   icon: 'succes',
+        //   duration: 1000,
+        //   mask: true
+        // });
+        wx.showModal({
+          title: '添加成功',
+          content: '请到日历处长按查看当天流水',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('确认')
+            } else if (res.cancel) {
+              console.log('取消')
+            }
+          }
+        })
         that.setData({
           billMoney: null
         });
