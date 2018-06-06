@@ -1,6 +1,15 @@
-# wxapp-calendar
+![Tally.png](https://upload-images.jianshu.io/upload_images/5443560-61c4d5fbe65e35f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-###     1.项目描述
+wxapp-Tally
+=========================
+
+[![Tally](https://img.shields.io/badge/Tally-2.0-blue.svg)](https://img.shields.io/badge/Tally-2.0-blue.svg)
+[![build](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://img.shields.io/badge/build-passing-brightgreen.svg)
+[![downloads](https://img.shields.io/badge/downloads-393k-red.svg)](https://img.shields.io/badge/downloads-393k-red.svg)
+
+项目描述
+------------
+
 -   项目名：基于微信的记账小程序开发
 -   项目版本：2.0
 -   项目功能简述：用户使用基于微信的记账小程序，使用“计划”功能配合用户自己输入的每天消费实现记录支出的作用。加上图表和公众号，方便用户的记录，查看和使用
@@ -16,11 +25,7 @@
     nohub python run.py &
 
 ####    2.3依赖库
-    三个依赖库
-    flask
-    flask_sqlalchemy
-    requests
-    
+```
     certifi==2018.4.16
     chardet==3.0.4
     click==6.7
@@ -34,7 +39,7 @@
     SQLAlchemy==1.2.8
     urllib3==1.22
     Werkzeug==0.14.1
-
+```
 
 ####    2.4发布
 -   微信小程序端
@@ -44,7 +49,7 @@
 角色|人员
 -|:-:
 产品经理|Ycl
-后端开发|Daiker
+后端开发|daiker
 前端开发|ST
 后端开发|KeKeFly
 测试|JX
