@@ -480,7 +480,7 @@ def addBillByPn(content,pnId):
     if money == []:
         if convertChineseDigitsToArabic(content) == None:
             return '''输入格式错误，
-如果要添加账单,请输入"类型+金钱",如"吃饭50"
+如果要添加账单,请输入"类型+金钱",如"饮食50"
 类型有底下几类
 ["饮食", "服饰妆容", "生活日用", "住房缴费", "交通出行", "通讯", "文教娱乐", "健康", "其他消费"]
             '''
