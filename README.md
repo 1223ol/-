@@ -1,19 +1,12 @@
-![Tally.png](https://upload-images.jianshu.io/upload_images/5443560-61c4d5fbe65e35f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-# wxapp-Tally
-[![Tally](https://img.shields.io/badge/Tally-2.0-blue.svg)](https://img.shields.io/badge/Tally-2.0-blue.svg)
-[![python](https://img.shields.io/badge/python-2.7-orange.svg)](https://img.shields.io/badge/python-2.7-orange.svg)
-[![build](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://img.shields.io/badge/build-passing-brightgreen.svg)
-[![downloads](https://img.shields.io/badge/downloads-393k-red.svg)](https://img.shields.io/badge/downloads-393k-red.svg)
-
+仓库地址：https://github.com/1223ol/team.git
 # 项目描述
 ------------
 
 -   项目名：基于微信的记账小程序开发
 -   项目版本：2.0
 -   项目功能简述：用户使用基于微信的记账小程序，使用“计划”功能配合用户自己输入的每天消费实现记录支出的作用。加上图表和公众号，方便用户的记录，查看和使用
--   代码仓库地址：https://gitee.com/SE-Tally/Tally
--   第一负责人：【Ycl】
+-   代码仓库地址：
+-   第一负责人：【hwl】
 
 运行
 ------------
@@ -51,26 +44,12 @@
 
 角色|人员
 -|:-:
-产品经理|Ycl
-后端开发|daiker
-前端开发|ST
-后端开发|KeKeFly
-测试|JX
+产品经理|cys
+后端开发|hzy
+前端开发|hjx
+后端开发|hzh
+测试|hzy
 
-## 业务介绍
-#### 业务入口
-
-页面目录|页面描述|页面链接
-:-:|:-:|:-:
-index|首页接口|https://tally.slickghost.com/
-login|登陆接口|https://tally.slickghost.com/login
-addPlan|添加计划接口|https://tally.slickghost.com/addPlan
-addBill|添加流水接口|https://tally.slickghost.com/addBill
-result|图表展示接口|https://tally.slickghost.com/result
-showPlan|计划展示接口|https://tally.slickghost.com/showPlan
-showBill|流水展示接口|https://tally.slickghost.com/showBill
-active|激活接口|https://tally.slickghost.com/active
-wx|公众号接口|https://tally.slickghost.com/wx
 
 ## CHANGELOG
 ### v2.0 (2018/6/1)
