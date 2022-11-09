@@ -1,0 +1,256 @@
+/* pages/plan/index.wxss */
+
+.plan{
+  font-family:  	KaiTi;
+  font-size: 1.2rem;
+  height: 100vh;
+  background-color:  	#ACD6FF;
+}
+
+
+.buttonItem{
+  position: absolute;
+  top:10px;
+  width: 80%;
+  height: 55px;
+  left: 10%;
+}
+
+.buttonAdd{
+  width: 110px;
+  position: absolute;
+  left: 10%;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.9);
+  border-radius: 50px;
+}
+.buttonPlan{
+  width: 110px;
+  position: absolute;
+  right: 10%;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.9);
+  border-radius: 50px;
+}
+
+
+
+
+
+
+.itemView-1{
+  position: absolute;
+  top:10px;
+  left: 2vw;
+  width: 94vw;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-style: solid;
+  border-color: white;
+  color: black;
+}
+
+.itemPriceforplan{
+  
+  top:20%;
+  left: 0%;
+    position: relative;
+ text-align: center;
+}
+
+.itemTextforplan{
+
+  position: absolute;
+top:20%;
+  left:0%;
+  height: 25px;
+ 
+  color: black;
+ 
+}
+
+
+
+
+.itemTextforbill{
+
+  position: absolute;
+  left: 0%;
+  top:20%;
+  height: 25px;
+ 
+  color: black;
+ 
+}
+
+
+.itemPriceforBill{
+   position: relative;
+ text-align: center;
+  top: 20%;
+}
+
+
+.itemView-2{
+  position: absolute;
+  top:70px;
+  left: 2vw;
+  width: 94vw;
+  height: 50px;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+border-color: white;
+}
+
+.itemStartDateforplan{
+  position: absolute;
+  top:20%;
+  left: 40%;
+}
+
+
+.itemTextforBill{
+
+  position: absolute;
+  left: 0%;
+  top:20%;
+  height: 25px;
+ 
+  color: black;
+ 
+}
+
+.itemType{
+  position: relative;
+  top:20%;
+ text-align: center;
+}
+
+
+.itemView-3{
+  position: absolute;
+  top:130px;
+  left: 2vw;
+  width: 94vw;
+  height: 50px;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: white;
+}
+
+.itemTextforBill{
+  position: absolute;
+
+  left: 30%;
+}
+
+.itemEndDateforplan{
+
+  position: absolute;
+  top:20%;
+  left: 40%;
+}
+.itemEndDateforBill{
+  position: absolute;
+  top:20%;
+  left:40%;  
+}
+
+
+
+
+.flex-borider-both{
+  border-top: 1rpx solid #ddd;
+  border-bottom: 1rpx solid #ddd;
+  border-right: 1rpx solid #ddd;
+}
+
+
+
+
+
+
+.itemDateforplan{
+  position: absolute;
+  top: 45%;
+  left: 35%;
+ 
+}
+
+
+.confirm{
+  position: absolute;
+  font-size: 1.2rem;
+  height: 50px;
+  width:96vw;
+  top:88%;
+  left: 2vw;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: white;
+}
+
+ /* 下面是以前的的css，再改  */
+
+
+.addBillforBill{
+  height: 600px;
+  width: 100%;
+  
+}
+
+
+
+.itemViewforBill{
+  height: 100px;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50px;
+}
+
+
+
+
+
+
+
+.itemTypeforBill{
+  position: absolute;
+  top:45%;
+  left: 45%;
+}
+
+.itemDateforBill{
+  position: absolute;
+  top:45%;
+  left: 35%;
+}
+
+
+
+
+
+
+.addText{
+  position: absolute;
+  top:190px;
+    left: 2vw;
+  width: 94vw;
+  height: 150px;
+   border-style: solid;
+  color: black;
+   background-color: rgba(255, 255, 255, 0.8);
+   border-color: white;
+}
+.titles{
+  text-align: center
+}

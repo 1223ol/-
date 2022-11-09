@@ -1,0 +1,36 @@
+<!--pages/plan/index.wxml-->
+  <view class="plan" >
+
+    <view class="itemView-1">
+      <text class="itemTextforbill">金额：</text>
+
+      <input class="flex-borider-both" class='itemPriceforBill' type="digit" name="userName" placeholder="0.00" value="{{billMoney}}" bindinput='changBillMoney' />
+    </view>
+
+    <view class="itemView-2">
+      <text class="itemTextforbill">分类：</text>
+      <picker class='itemType' mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
+        <text>{{array[index]}}</text>
+      </picker>
+    </view>
+
+    <view class="itemView-3">
+      <text class='itemTextforbill'>时间：</text>
+      <picker class='itemEndDateforBill' mode="date" value="{{date}}" start="2017-09-26" end="2020-10-10" bindchange="listenerDatePickerSelected">
+        <text>{{date}}</text>
+      </picker>
+    </view>
+
+<view wx:if="{{active == 0}}" class="addText">  
+<view style="text-align:center">激活码</view>
+<view style="text-align:center">(点击复制)</view>
+    <text  bindtap="copyTBL">  
+{{code}}
+    </text>  
+</view>
+
+    <view>
+      <button class="confirm " type="default " size="default " bindtap='addBill'>确认</button>
+    </view>
+
+</view>

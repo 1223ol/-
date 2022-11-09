@@ -1,0 +1,11 @@
+<view class="container">
+
+    <canvas wx:if="{{havePlan == 1}}" canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler"></canvas>
+    <view class="onPlan" wx:if="{{havePlan == 0}}" >
+    <image src="https://upload-images.jianshu.io/upload_images/5443560-c1abb047073c5ef9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></image>
+    </view>
+
+    <button class="addPlan" type="default " size="default " bindtap="addPlan" > 增加计划 </button>
+    
+</view>
+
