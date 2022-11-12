@@ -18,7 +18,7 @@ sys.setdefaultencoding('utf8')
 def str2Date(strDate):
     dateList = strDate.split("-")
     # try:
-    print strDate
+    print (strDate)
     return datetime.date(int(dateList[0]),int(dateList[1]),int(dateList[2]))
     # except Exception as e:
         # print dateList
@@ -96,13 +96,13 @@ def login():
     try:
         uid = db.session.query(User.uid).filter_by(openid = openid).first()
         if uid == None:
-            print "None,I will add it on database!!!"
+            print ("None,I will add it on database!!!")
             myUser = User(openid)
             db.session.add(myUser)
             db.session.commit()
-            print "Yep,I hava add it on database"
+            print ("Yep,I hava add it on database")
             uid = db.session.query(User.uid).filter_by(openid = openid).first()
-            print uid
+            print (uid)
         data['openid'] =  openid
         data['status'] = 'success'
     except Exception as e:
@@ -144,10 +144,10 @@ def index():
             data['consumption'] = consumption
         data['isSet'] = 1
     days = countDays(uid)
-    print data['consumption']
+    print (data['consumption'])
     if inPlan(datetime.date(year,month,date),uid) and days != 0:
         money = db.session.query(Plan.Money).filter_by(uid = uid).order_by(Plan.planId.desc()).first()[0]
-        print data['consumption']
+        print (data['consumption'])
         data['balance'] =  round((balanceCalcu(datetime.date(year,month,date),uid) - data['consumption']),2)
     else:
         data['balance'] = 0
@@ -155,7 +155,7 @@ def index():
         # raise e
     # data['consumption']=consumption
     # data['balance']=balance
-    print data
+    print (data)
     return json.dumps(data,ensure_ascii=False) 
 
 # @app.route("/showPlan")
@@ -225,7 +225,7 @@ def delBill():
         data['status'] = 'Succes'
     except Exception as e:
         data['status'] = 'Fail'
-        print e
+        print (e)
     return json.dumps(data,ensure_ascii=False)
 
 
@@ -256,7 +256,7 @@ def addBillLocal(money,typeName,date,openid):
     data = {}
     try:
         uid = db.session.query(User.uid).filter_by(openid = openid).first()[0]
-        print 1
+        print (1)
         dateId = db.session.query(Date.dateId).filter_by(date=str2Date(date),uid=uid).first()
         if dateId == None:
             myDate = Date(str2Date(date),uid)
@@ -299,9 +299,9 @@ def showPlan():
     dateList = []
     leftMoney = []
     planMoneys = []
-    print startDate
+    print (startDate)
     endDate = db.session.query(Plan.endTime).filter_by(uid=uid).order_by(Plan.planId.desc()).first()[0]
-    print endDate
+    print (endDate)
     newstartDate = startDate
     i = 0
     while newstartDate <= endDate:
@@ -441,11 +441,11 @@ def addConver(content,pnId):
     if mpId != None:
         return "repeat"
     mpId = content.lstrip("激活").strip();
-    print mpId
-    print pnId
+    print (mpId)
+    print (pnId)
     Reuslt = db.session.query(User).filter_by(openid = mpId).first()
-    print "Reuslt"
-    print Reuslt
+    print ("Reuslt")
+    print (Reuslt)
     if Reuslt == None:
         return "no"
     converClass = Conver(mpId,pnId)
@@ -456,7 +456,7 @@ def addConver(content,pnId):
 
 def idConvert(pnId):
     mpId = db.session.query(Conver.mpId).filter_by(pnId = pnId).first()
-    print mpId
+    print (mpId)
     return mpId
 
 def addBillByPn(content,pnId):
@@ -482,15 +482,15 @@ def addBillByPn(content,pnId):
         money = convertChineseDigitsToArabic(content)
     else:
         money = money[0]
-    print typeName
-    print money
+    print (typeName)
+    print (money)
     date = datetime.datetime.now().strftime('%Y-%m-%d')
-    print date
-    print mpId[0]
+    print (date)
+    print (mpId[0])
     kk = addBillLocal(money,typeName,date,mpId[0])
-    print kk
+    print (kk)
     result = eval(kk)
-    print result
+    print (result)
     return result['status']+",类型为: "+typeName+",金额为: "+str(money)
     # return "123"
 
@@ -500,7 +500,7 @@ def addBillByPn(content,pnId):
 # @app.route("/wx")
 def wx():
     webData = request.data
-    print "Handle Post webdata is ", webData
+    print ("Handle Post webdata is ", webData)
     recMsg = receive.parse_xml(webData)
     # print recMsg.MsgId
     # print (isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text')
@@ -540,7 +540,7 @@ def wx():
         # print replyMsg.send()
         return replyMsg.send()
     else:
-        print "暂且不处理"
+        print ("暂且不处理")
         return "success"
     # print request.form
     # signature = request.args.get('signature')
@@ -568,5 +568,5 @@ def active():
         data['active'] = 0
     else:
        data['active'] = 1
-    print data
+    print (data)
     return json.dumps(data,ensure_ascii=False)
