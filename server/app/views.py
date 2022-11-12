@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# @Date    : 2018-04-18 21:02:40
-# @Author  : daiker (daikersec@gmail.com)
-# @Link    : https://daikersec.com
-# @Version : $Id$
+
 from flask import request,g,session
 from sqlalchemy.sql import func
 from app import app,db

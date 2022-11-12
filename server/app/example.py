@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# @Date    : 2018-04-25 21:18:48
-# @Author  : daiker (daikersec@gmail.com)
-# @Link    : https://daikersec.com
-# @Version : $Id$
 
 In [2]: from app import models
 

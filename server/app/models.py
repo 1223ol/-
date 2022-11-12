@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# @Date    : 2018-04-18 21:16:36
-# @Author  : daiker (daikersec@gmail.com)
-# @Link    : https://daikersec.com
-# @Version : $Id$
 
 from app import db
 

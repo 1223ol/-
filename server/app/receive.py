@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# @Date    : 2018-05-29 16:05:30
-# @Author  : daiker (daikersec@gmail.com)
-# @Link    : https://daikersec.com
-# @Version : $Id$
+
 
 import xml.etree.ElementTree as ET
 def parse_xml(web_data):

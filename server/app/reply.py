@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# @Date    : 2018-05-29 16:05:50
-# @Author  : daiker (daikersec@gmail.com)
-# @Link    : https://daikersec.com
-# @Version : $Id$
 
 import time
 class Msg(object):
