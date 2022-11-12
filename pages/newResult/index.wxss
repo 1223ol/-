@@ -1,0 +1,91 @@
+.newResult{
+  width: 100vw;
+  height: 100vh;
+   background-color:  	#ACD6FF;
+}
+
+
+
+ .canvas {
+    position: absolute;
+  border-style: solid;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: white;
+  border-radius: 30px;
+    width: 90vw;
+    height: 70vh;
+    left: 5vw;
+    top: 100px;
+    transform: scale(1.0);
+    
+}
+
+.flex-row{
+  display: flex;
+  height: 40px;
+  flex-direction: row;
+  background-color:  	#B9B9FF;
+}
+.date{
+  color: 000000;
+}
+
+.between{
+    width: 100vw;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.arrow-1{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top:5px;
+  
+}
+.arrow-2{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top:5px;
+}
+
+.date-1{
+  position: absolute;
+  left: 5px;
+  font-size: 1.3rem;
+ 
+}
+
+.date-2{
+  position: absolute;
+  right: 25px;
+  font-size: 1.3rem;
+}
+/*
+.container{
+  position: absolute;
+  width: 100vw;
+text-align:  center;
+  top:40px;
+  height: 70vh;
+  background-color: yellowgreen;
+
+  
+}
+*/
+
+.onDate{
+  position: absolute;
+  width: 80vw;
+  left: 10vw;
+  top:20vh;
+  height: 50vh;
+}
+
+image{
+  position: absolute;
+  width: 80vw;
+  height: 50vh;
+}

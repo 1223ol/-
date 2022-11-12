@@ -1,0 +1,49 @@
+{
+  "pages": [
+    
+      "pages/index/index",
+  "pages/addPlan/index",
+"pages/showBill/index",
+"pages/Flowing/index",
+"pages/newResult/index",
+"pages/scrollline/scrollline",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/首页1.png",
+        "iconPath": "images/首页.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/流水1.png",
+        "iconPath": "images/流水.png",
+        "pagePath": "pages/Flowing/index",
+        "text": " 流水"
+      },
+      {
+        "selectedIconPath": "images/计划1.png",
+        "iconPath": "images/计划.png",
+        "pagePath": "pages/scrollline/scrollline",
+        "text": "计划"
+      },
+      {
+        "selectedIconPath": "images/数据展示1.png",
+        "iconPath": "images/数据展示.png",
+        "pagePath": "pages/newResult/index",
+        "text": "数据展示"
+      }
+    ]
+  }
+}
