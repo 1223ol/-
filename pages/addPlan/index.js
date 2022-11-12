@@ -1,3 +1,4 @@
+
 // pages/plan/index.js
 var app = getApp();
 Page({
