@@ -1,3 +1,4 @@
+
 var wxCharts = require('../../utils/wxcharts1.js');
 var app = getApp();
 var lineChart = null;

@@ -1,12 +1,4 @@
-/*!
- * wx-chart.js
- * Chart for WeiXin application
- * Version: 1.0.0
- *
- * Copyright 2016 Jone Casper
- * Released under the MIT license
- * https://github.com/xch89820/wx-chart/blob/master/LICENSE.md
- */
+
 "use strict";
 
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -44,13 +36,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
     1: [function (require, module, exports) {
       module.exports = require('./lib/bezier');
     }, { "./lib/bezier": 2 }], 2: [function (require, module, exports) {
-      /**
-        A javascript Bezier curve library by Pomax.
-      
-        Based on http://pomax.github.io/bezierinfo
-      
-        This code is MIT licensed.
-      **/
+ 
       (function () {
         "use strict";
 

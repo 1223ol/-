@@ -1,11 +1,3 @@
-/*
- * charts for WeChat small app v1.0
- *
- * https://github.com/xiaolin3303/wx-charts
- * 2016-11-28
- *
- * Designed and built with all the love of Web
- */
 
 'use strict';
 
@@ -35,9 +27,6 @@ var config = {
     radarGridCount: 3,
     radarLabelTextMargin: 15
 };
-
-// Object.assign polyfill
-// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 function assign(target, varArgs) {
     if (target == null) {
         // TypeError if undefined or null

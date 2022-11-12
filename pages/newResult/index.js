@@ -1,3 +1,4 @@
+
 // Pie.js
 // wxChart 柱状图
 let app = getApp()

@@ -1,3 +1,4 @@
+
 <!--pages/showBill/index.wxml-->
 <view class='showBill'>
   <view id="panel" class="flex-column">

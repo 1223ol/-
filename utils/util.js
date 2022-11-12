@@ -1,3 +1,4 @@
+
 let dataGenerator = (labels, keys = ['value'], min = 10, max = 50) => {
   return labels.map(label => {
     let d = {
